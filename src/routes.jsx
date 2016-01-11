@@ -4,15 +4,14 @@ import ReactDOM from 'react-dom';
 import App from './app.jsx';
 import {Router, Route, Link, IndexLink, IndexRoute} from 'react-router';
 
-import ExampleComponent from './components/ExampleComponent/ExampleComponent';
-import ExampleConnectedToStore from './components/ExampleComponent/ExampleConnectedToStore';
-import ExamplePureContainer from './components/ExampleComponent/ExamplePureContainer';
-import ExampleActionButton from './components/ExampleComponent/ExampleActionButton';
+import ListPage from './components/ListPage/ListPage';
+import SearchPage from './components/SearchPage/SearchPage';
+import FilterPage from './components/FilterPage/FilterPage';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={ExampleComponent} />
-    <Route path="connected" component={ExampleConnectedToStore} />
-    <Route path="pure" component={ExamplePureContainer} />
+    <IndexRoute component={ListPage} />
+    <Route path="search" component={SearchPage} />
+    <Route path="filter" component={FilterPage} />
   </Route>
 );
