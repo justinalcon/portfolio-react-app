@@ -1,0 +1,15 @@
+.spark-card {
+  border: 1px solid gray;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  margin: 0.5rem;
+
+  height: 200px;
+  background: white;
+
+  transition: background 0.5s ease 0s;
+
+  &.spark-card--swiped {
+    background: rgba(0,0,0,0.8);
+  }
+}

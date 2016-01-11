@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ListPage extends React.Component {
+export default class XYZ extends React.Component {
   constructor() {
     super();
   }
@@ -8,7 +8,7 @@ export default class ListPage extends React.Component {
   render() {
     return (
       <div>
-        Here's the list view :)
+        {Foobar}
       </div>
     )
   }

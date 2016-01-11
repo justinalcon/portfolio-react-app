@@ -4,14 +4,16 @@ import ReactDOM from 'react-dom';
 import App from './app.jsx';
 import {Router, Route, Link, IndexLink, IndexRoute} from 'react-router';
 
-import ListPage from './components/ListPage/ListPage';
+import MainPostsList from './components/MainPostsList/MainPostsList';
 import SearchPage from './components/SearchPage/SearchPage';
 import FilterPage from './components/FilterPage/FilterPage';
+import SparkDetailView from './components/Spark/SparkDetailView';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={ListPage} />
+    <IndexRoute component={MainPostsList} />
     <Route path="search" component={SearchPage} />
     <Route path="filter" component={FilterPage} />
+    <Route path="spark/:id" component={SparkDetailView} />    
   </Route>
 );

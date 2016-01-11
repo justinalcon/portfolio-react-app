@@ -90,6 +90,7 @@ gulp.task('bundleDev', function(){
       gutil.log("Finished", gutil.colors.cyan("'bundleDev update'"), "@", gutil.colors.green(PATH.JS_OUT_DEV))
   })
   .bundle()
+  .on('error', handleErrors)
   .pipe(source("build.js"))
   .pipe(gulp.dest(PATH.JS_OUT_DEV));
 });

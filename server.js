@@ -18,7 +18,7 @@ var routes = require('./src/routes');
 var alt = require('./src/js/alt');
 
 // Configure `app` as express instance
-var ip = '127.0.0.1';
+var ip = '0.0.0.0';
 var port = 8080;
 var app = express();
 
@@ -73,7 +73,7 @@ app.use(function(req, res) {
       // Compile correct components based on routing context. defined in ./src/routes
       // `renderToString` will render React Components to a string that client.js can rehydrate
       var content = ReactDOM.renderToString(React.createElement(Router.RoutingContext, renderProps));
-      
+
       // Add the content to Iso, and call flush -- take a snapshot, render the data, and reset your stores so they are ready for the next request.
       // 1. https://github.com/goatslacker/alt#alt-features
       // 2. https://github.com/goatslacker/iso
