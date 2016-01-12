@@ -25,7 +25,7 @@ export default class MainPostsList extends React.Component {
       });
     } else {
       cards = <p>Discovery content will show here. Working on that now...</p>;
-      console.error("MainPostList.state.posts_data returned empty.");
+      console.error("MainPostList.state.posts_data returned empty;");
     }
     
 

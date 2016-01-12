@@ -82,7 +82,7 @@ app.get('*', function(req, res, next){
 */
 app.get('/spark/:id', function(req, res, next){
   
-  var id = req.params.id;  
+  var id = parseInt(req.params.id);
 
   // Simulate an ansyc ajax call
   setTimeout(function(){
@@ -93,7 +93,7 @@ app.get('/spark/:id', function(req, res, next){
       // pass returned data into selected_post
       var data = {
         id: id,
-        title: `Spark defined server-side w/ id:${id}`,
+        title: `Spark defined server-side. id:${id}`,
       }
       stores_obj.PostsStore.selected_post = data;
 

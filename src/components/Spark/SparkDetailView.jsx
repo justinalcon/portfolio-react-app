@@ -1,36 +1,34 @@
 import React from 'react';
-
+import connectToStores from 'alt-utils/lib/connectToStores';
 import PostsStore from '../../js/stores/PostsStore';
 
-export default class SparkDetailView extends React.Component {
+class SparkDetailView extends React.Component {
   constructor() {
     super();
   }
 
-  state = {
-    spark_data: PostsStore.getState().selected_post
+  static getStores(props) {
+    return [PostsStore]
+  };
+  static getPropsFromStores(props) {
+    return PostsStore.getState()
   };
 
-  componentDidMount() {
-    PostsStore.listen(this.onChange);
+  static propTypes = {
+    selected_post: React.PropTypes.shape({
+        id: React.PropTypes.number.isRequired,
+        title: React.PropTypes.string.isRequired
+    })
   };
-
-  componentWillUnmount() {
-    PostsStore.unlisten(this.onChange);
-  };
-
-  onChange(state) {
-    this.setState({spark_data : state.spark_data});
-  };
-
 
   render() {
-    // console.log("PostsStore.getState()", PostsStore.getState())
     return (
       <div>
-        SparkDetailView - {this.state.spark_data.title}
+        SparkDetailView - {this.props.selected_post.title}
       </div>
     )
   }
 
 }
+
+export default SparkDetailView = connectToStores(SparkDetailView);
