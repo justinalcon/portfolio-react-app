@@ -30,22 +30,81 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(require('connect-livereload')());
 
+var stores_obj;
+
+var tmp_all_posts = [{
+        id: 1,
+        title: "1st spark",
+        summary: "This is my summary",
+        dev_notes: "My dev notes ",
+        direct_link: "http://direct-link.com",
+        iFramed_view: "I am a iframe",
+        image_gallery: "Image Gallery",
+        canned_video: "Canned Video",
+        created_at: "2015-12-28T20:51:21.000Z",
+        updated_at: "2015-12-28T20:51:21.000Z",
+        user_id: null,
+        published: null
+      }, {
+        id: 2,
+        title: "Spark number 2",
+        summary: "this is spark number 2",
+        dev_notes: "these are my dev notes for spark 2",
+        direct_link: "http://direct-link.com/spark2",
+        iFramed_view: "My iframed view",
+        image_gallery: "http://www.image1.com/image1.jpg,http://www.image1.com/image2.jpg,http://www.image1.com/image3.jpg,http://www.image1.com/image4.jpg,http://www.image1.com/image5.jpg",
+        canned_video: "This is a canned video",
+        created_at: "2016-01-06T20:49:22.000Z",
+        updated_at: "2016-01-06T20:49:22.000Z",
+        user_id: null,
+        published: true
+      }];
+var tmp_single_spark = {
+        id: -1,
+        title: "undefined",
+    };
+
+    var tmp_single_spark2 = {
+            id: 999,
+            title: "defined!",
+        };
+
+/*
+  Populate PostsStore with data from api
+*/
+app.get('*', function(req, res, next){
+  
+  //return data into var
+  stores_obj = {
+    PostsStore: {
+      current_posts: tmp_all_posts,
+      selected_post: tmp_single_spark
+    }
+  }
+
+  next();
+
+});
+
 /*
   Example fire when url is /pure
   Appennds data to the locals var, which is bootstrapped to the alt instance and passed to the stores on client.js
 */
-app.get('/pure', function(req, res, next){
+app.get('/spark/:id', function(req, res, next){
   
-  res.locals.data = {
-    ExampleStore: {
-      examples : [
-        {
-          "id" : 9999,
-          "name" : "From the Server :)"
-        }
-      ]
-    }
-  }
+  var id = req.params.id;
+
+  // res.locals.PostsStore.foo = "bar";
+  stores_obj.PostsStore.selected_post = tmp_single_spark2;
+  console.log("****");
+  console.log(stores_obj.PostsStore);
+  console.log("****");
+
+  // res.locals.PostsStore.selected_post = {
+  //     id: id,
+  //     title: "Should Populate from Server"
+  //   }
+  // }
   next();
 
 });
@@ -58,7 +117,7 @@ app.get('/pure', function(req, res, next){
 app.use(function(req, res) {
   
   // We take the locals data we have fetched and seed our stores with data
-  alt.bootstrap(JSON.stringify(res.locals.data || {}));
+  alt.bootstrap(JSON.stringify(stores_obj || {}));
 
   // Create a new instance of iso to pass data down to server
   var iso = new Iso.default();

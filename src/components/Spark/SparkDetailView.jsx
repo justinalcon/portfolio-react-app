@@ -25,7 +25,7 @@ export default class SparkDetailView extends React.Component {
 
 
   render() {
-    console.log("detail view", this.state.spark_data)
+    console.log("PostsStore.getState()", PostsStore.getState())
     return (
       <div>
         SparkDetailView - {this.state.spark_data.title}
