@@ -14,8 +14,6 @@ export default class MainPostsList extends React.Component {
   };
 
   render() {
-    
-    console.log(PostsStore.getState());
 
     let cards = this.state.posts_data.map((post) => {
       return (

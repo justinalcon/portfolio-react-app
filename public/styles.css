@@ -14,12 +14,6 @@ h1 {
   background: #EBEBEB;
   box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
 
-header {
-  background: #173B46;
-  color: white;
-  text-align: center;
-  padding: 1rem 0; }
-
 .spark-card {
   border: 1px solid gray;
   padding: 1rem 2rem;
@@ -28,7 +22,13 @@ header {
   height: 200px;
   background: white;
   transition: background 0.5s ease 0s; }
-  .spark-card.spark-card--swiped {
+  .spark-card.spark-card--toggled {
     background: rgba(0, 0, 0, 0.8); }
+
+header {
+  background: #173B46;
+  color: white;
+  text-align: center;
+  padding: 1rem 0; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -11,15 +11,15 @@ export default class SparkDetailView extends React.Component {
     spark_data: PostsStore.getState().selected_post
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     PostsStore.listen(this.onChange);
   };
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     PostsStore.unlisten(this.onChange);
   };
 
-  onChange = (state) => {
+  onChange(state) {
     this.setState({spark_data : state.spark_data});
   };
 

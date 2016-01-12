@@ -9,7 +9,7 @@
 
   transition: background 0.5s ease 0s;
 
-  &.spark-card--swiped {
+  &.spark-card--toggled {
     background: rgba(0,0,0,0.8);
   }
 }
