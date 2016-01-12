@@ -59,26 +59,16 @@ var tmp_all_posts = [{
         user_id: null,
         published: true
       }];
-var tmp_single_spark = {
-        id: -1,
-        title: "undefined",
-    };
-
-    var tmp_single_spark2 = {
-            id: 999,
-            title: "defined!",
-        };
 
 /*
-  Populate PostsStore with data from api
+  Runs on every get request
+  Populate Stores with default data
 */
 app.get('*', function(req, res, next){
   
-  //return data into var
   stores_obj = {
     PostsStore: {
-      current_posts: tmp_all_posts,
-      selected_post: tmp_single_spark
+      current_posts: tmp_all_posts
     }
   }
 
@@ -92,21 +82,28 @@ app.get('*', function(req, res, next){
 */
 app.get('/spark/:id', function(req, res, next){
   
-  var id = req.params.id;
+  var id = req.params.id;  
 
-  // res.locals.PostsStore.foo = "bar";
-  stores_obj.PostsStore.selected_post = tmp_single_spark2;
-  console.log("****");
-  console.log(stores_obj.PostsStore);
-  console.log("****");
+  // Simulate an ansyc ajax call
+  setTimeout(function(){
 
-  // res.locals.PostsStore.selected_post = {
-  //     id: id,
-  //     title: "Should Populate from Server"
-  //   }
-  // }
-  next();
+    // on success
+    if(true){
+      
+      // pass returned data into selected_post
+      var data = {
+        id: id,
+        title: `Spark defined server-side w/ id:${id}`,
+      }
+      stores_obj.PostsStore.selected_post = data;
 
+    } else {
+      res.status(404).send({ message: `spark with id:${id} not found` });
+      process.exit();
+    }  
+    next();
+  }, 300);
+  
 });
 
 
