@@ -8,7 +8,7 @@ export default class TestModule extends React.Component {
   render() {
     return (
       <div className="test-module">
-        This is a test module.
+        This is a test module inside: {this.props.test}
       </div>
     )
   }
