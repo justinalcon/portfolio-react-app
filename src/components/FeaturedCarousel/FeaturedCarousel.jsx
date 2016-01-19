@@ -6,21 +6,28 @@ export default class FeaturedCarousel extends React.Component {
   }
 
   static propTypes = {
-    tab_index: React.PropTypes.number.isRequired
+    tab_index: React.PropTypes.number.isRequired,
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ])
   };
 
   render() {
 
-    // React.Children.forEach(function(child){
-    //   console.log(child);
-    //   // return child
-    // });
+    let slides = React.Children.map(this.props.children, function(child){
+      return (
+        <div className="feat-carousel__slide">
+          {child}
+        </div>
+      )
+    });
 
     return (
-      <div className="feat-carousel" data-length={this.props.children.length} data-carousel-index={this.props.tab_index}>
+      <div className="feat-carousel feat-carousel--100p-height" data-length={this.props.children.length} data-carousel-index={this.props.tab_index}>
         <div className="feat-carousel__translate">
           <div className="feat-carousel__wide-contain">
-            {this.props.children}
+            {slides}
           </div>
         </div>
       </div>

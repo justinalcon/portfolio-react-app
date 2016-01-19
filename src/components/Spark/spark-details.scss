@@ -1,0 +1,13 @@
+$spark-details__tabs--height: 2rem;
+
+.spark-details__tabs {
+  height: $spark-details__tabs--height;
+}
+
+.spark-details__carousel {
+  position: absolute;
+  top: $spark-details__tabs--height;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

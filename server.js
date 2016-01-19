@@ -77,11 +77,11 @@ app.get('*', function(req, res, next){
 });
 
 /*
-  Example fire when url is /pure
-  Appennds data to the locals var, which is bootstrapped to the alt instance and passed to the stores on client.js
+  Matches requests that have /spark/:id, with an optional 2nd param /:carousel_index
+  Populates the PostsStore selected_post with data from spark/:id
 */
-app.get('/spark/:id', function(req, res, next){
-  
+app.get('/spark/:id/:carousel_index?', function(req, res, next){
+
   var id = parseInt(req.params.id);
 
   // Simulate an ansyc ajax call

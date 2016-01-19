@@ -6,35 +6,33 @@ export default class TabBar extends React.Component {
   }
 
   static propTypes = {
-    tab_names: React.PropTypes.array,
-    tab_index: React.PropTypes.number.isRequired
-    // cbSetTabState
+    tab_names: React.PropTypes.array.isRequired,
+    tab_index: React.PropTypes.number.isRequired,
+    cbSetTabState: React.PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    tab_names: ["Default Tab"],
-    cbSetTabState : function(){}
-  };
-
-  setTabState(index) {
-    this.props.cbSetTabState(index);
+    tab_names: ["Default Tab"]
   };
 
   render() {
 
+    // Create an array of btns with text and event handler
     let setTabState = this.props.cbSetTabState;
-    let tabs = this.props.tab_names.map(function(tab, index){
+    let btns = this.props.tab_names.map(function(tab_name, index) {
       return (
-        <button key={tab} onClick={setTabState.bind(this,index)}>
-          {tab}
+        <button key={tab_name} className="tab-bar__btn" data-tab-index={index} onClick={setTabState.bind(this,index)}>
+          {tab_name}
         </button>
       );
     });
 
     return (
-      <div>
-        <p>nav.tab_index:{this.props.tab_index}</p>
-        {tabs}
+      <div className="tab-bar" data-length={this.props.tab_names.length} data-tab-state={this.props.tab_index}>
+        <div className="tab-bar__flex-btns">
+          {btns}
+        </div>
+        <div className="tab-bar__selector" />
       </div>
     )
   }

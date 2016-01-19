@@ -7,6 +7,7 @@ html, body {
   box-sizing: border-box; }
 
 #router-content {
+  position: absolute;
   top: 50px;
   bottom: 0;
   left: 0;
@@ -98,10 +99,23 @@ html, body {
   height: 100%; }
 
 header {
+  position: relative;
   background: #173B46;
   color: white;
   text-align: center;
   padding: 1rem 0; }
+
+.header__nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex; }
+
+.header__logo,
+.header__logo > a {
+  color: white;
+  text-decoration: none; }
 
 .spark-card {
   border: 1px solid gray;
@@ -114,7 +128,107 @@ header {
   .spark-card.spark-card--toggled {
     background: rgba(0, 0, 0, 0.8); }
 
+.spark-details__tabs {
+  height: 2rem; }
+
+.spark-details__carousel {
+  position: absolute;
+  top: 2rem;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+.tab-bar {
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid #979797;
+  box-shadow: 0px 5px 6px rgba(128, 128, 128, 0.28);
+  position: relative;
+  z-index: 100; }
+
+.tab-bar__flex-btns {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: center;
+  height: 100%; }
+
+.tab-bar__btn {
+  flex: 1 1 auto;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.4s ease 0s; }
+
+.tab-bar__selector {
+  position: relative;
+  margin-top: -0.25rem;
+  height: 0.25rem;
+  background-color: #444;
+  transition: transform 0.4s ease 0s;
+  transform: translateX(0%); }
+
+.tab-bar[data-length="0"] .tab-bar__btn,
+.tab-bar[data-length="0"] .tab-bar__selector {
+  width: Infinity; }
+
+.tab-bar[data-tab-state="0"] .tab-bar__btn[data-tab-index="0"] {
+  color: black; }
+
+.tab-bar[data-tab-state="0"] .tab-bar__selector {
+  transform: translateX(0%); }
+
+.tab-bar[data-length="1"] .tab-bar__btn,
+.tab-bar[data-length="1"] .tab-bar__selector {
+  width: 100%; }
+
+.tab-bar[data-tab-state="1"] .tab-bar__btn[data-tab-index="1"] {
+  color: black; }
+
+.tab-bar[data-tab-state="1"] .tab-bar__selector {
+  transform: translateX(100%); }
+
+.tab-bar[data-length="2"] .tab-bar__btn,
+.tab-bar[data-length="2"] .tab-bar__selector {
+  width: 50%; }
+
+.tab-bar[data-tab-state="2"] .tab-bar__btn[data-tab-index="2"] {
+  color: black; }
+
+.tab-bar[data-tab-state="2"] .tab-bar__selector {
+  transform: translateX(200%); }
+
+.tab-bar[data-length="3"] .tab-bar__btn,
+.tab-bar[data-length="3"] .tab-bar__selector {
+  width: 33.33333%; }
+
+.tab-bar[data-tab-state="3"] .tab-bar__btn[data-tab-index="3"] {
+  color: black; }
+
+.tab-bar[data-tab-state="3"] .tab-bar__selector {
+  transform: translateX(300%); }
+
+.tab-bar[data-length="4"] .tab-bar__btn,
+.tab-bar[data-length="4"] .tab-bar__selector {
+  width: 25%; }
+
+.tab-bar[data-tab-state="4"] .tab-bar__btn[data-tab-index="4"] {
+  color: black; }
+
+.tab-bar[data-tab-state="4"] .tab-bar__selector {
+  transform: translateX(400%); }
+
+.tab-bar[data-length="5"] .tab-bar__btn,
+.tab-bar[data-length="5"] .tab-bar__selector {
+  width: 20%; }
+
+.tab-bar[data-tab-state="5"] .tab-bar__btn[data-tab-index="5"] {
+  color: black; }
+
+.tab-bar[data-tab-state="5"] .tab-bar__selector {
+  transform: translateX(500%); }
+
 .test-module {
-  border: 1px solid gray; }
+  border: 5px solid gray;
+  height: 100%; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -7,7 +7,7 @@ export default class TestModule extends React.Component {
 
   render() {
     return (
-      <div className="test-module feat-carousel__slide">
+      <div className="test-module">
         This is a test module.
       </div>
     )

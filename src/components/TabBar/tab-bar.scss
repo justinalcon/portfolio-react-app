@@ -1,0 +1,58 @@
+.tab-bar {
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid #979797;
+  box-shadow: 0px 5px 6px rgba(128, 128, 128, 0.28);
+  position: relative;
+  z-index: 100;
+}
+
+.tab-bar__flex-btns {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: center; 
+  height: 100%;
+}
+
+.tab-bar__btn {
+  flex: 1 1 auto;
+  height: 100%;
+  color: rgba(0,0,0,0.5);
+  transition: color 0.4s ease 0s;
+}
+
+
+$selector_height: 0.25rem;
+
+.tab-bar__selector {
+  position: relative;
+  margin-top: -1 * $selector_height;
+  height: $selector_height;
+  //width: auto; //set via JS.
+  background-color: #444;
+  transition: transform 0.4s ease 0s;
+  transform: translateX(0%);
+}
+
+
+@for $i from 0 through 5 {
+  // For diff # of buttons, divide width
+  .tab-bar[data-length="#{$i}"] {
+    .tab-bar__btn,
+    .tab-bar__selector {
+      width: #{100% / $i};
+    }
+  }
+
+  // Set bnt active state
+  .tab-bar[data-tab-state="#{$i}"] .tab-bar__btn[data-tab-index="#{$i}"] {
+    color: rgba(0,0,0,1);
+  }
+
+  // Move selector to correct spot
+  .tab-bar[data-tab-state="#{$i}"] .tab-bar__selector {
+    transform: translateX(#{100% * $i})
+  }
+
+}

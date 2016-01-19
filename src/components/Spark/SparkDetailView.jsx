@@ -7,8 +7,12 @@ import FeaturedCarousel from '../FeaturedCarousel/FeaturedCarousel';
 import TestModule from '../Tests/TestModule';
 
 class SparkDetailView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tab_index: parseInt(props.params.carousel_index) || 0
+    }
   }
 
   static getStores(props) {
@@ -25,8 +29,10 @@ class SparkDetailView extends React.Component {
     })
   };
 
-  state = {
-    tab_index: 0
+  static defaultProps = {
+    params: {
+      carousel_index: 0
+    }
   };
 
   setTabState = (index) => {
@@ -35,7 +41,13 @@ class SparkDetailView extends React.Component {
     });
   };
 
+  generateDetailContent = (selected_post) => {
+    return selected_post.title;
+  };
+
   render() {
+
+    // console.log(this.props.params);
 
     let post = this.props.selected_post;
     let slides = [];
@@ -56,13 +68,18 @@ class SparkDetailView extends React.Component {
 
     return (
       <div>
-        SparkDetailView - {this.props.selected_post.title} - tab_index:{this.state.tab_index}
+        {/*SparkDetailView - {this.props.selected_post.title} - tab_index:{this.state.tab_index}*/}
 
-        <TabBar tab_index={this.state.tab_index} tab_names={tab_names} cbSetTabState={this.setTabState}/>
+        <div className="spark-details__tabs">
+          <TabBar tab_index={this.state.tab_index} tab_names={tab_names} cbSetTabState={this.setTabState}/>
+        </div>
 
-        <FeaturedCarousel tab_index={this.state.tab_index}>
-          {slides}
-        </FeaturedCarousel>
+        <div className="spark-details__carousel">
+          <FeaturedCarousel tab_index={this.state.tab_index}>
+            {slides}
+          </FeaturedCarousel>
+        </div>
+
       </div>
     )
   }
