@@ -20,7 +20,9 @@ export default class App extends React.Component {
         </nav>
         
         {/* Dynamic content decided by the Router */}
-        {this.props.children}
+        <div id="router-content">
+          {this.props.children}
+        </div>
 
       </div>
     )

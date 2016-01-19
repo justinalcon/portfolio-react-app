@@ -1,0 +1,55 @@
+.feat-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.feat-carousel__translate {
+  position: relative;
+  width: 100%;
+  transition: transform 0.5s ease 0s;
+}
+
+.feat-carousel__wide-contain {
+  width: 99999px;
+  
+}
+
+.feat-carousel__slide {
+  width: 100%;
+  // display: inline-block;
+  float: left;
+  min-height: 1px;
+}
+
+@for $i from 0 through 5 {
+  
+  // size contain && slides based on length
+  .feat-carousel[data-length="#{$i}"] {
+    .feat-carousel__wide-contain {
+      width: #{100% * $i};
+    }
+    .feat-carousel__slide {
+     width: #{100% / $i}; 
+    }
+  }
+
+  // move carousel based on index
+  .feat-carousel[data-carousel-index="#{$i}"] {
+    .feat-carousel__translate {
+      transform: translateX( #{ $i * -100% })
+    }
+  }
+}
+
+// Makes all of the carousel components height 100%;
+// Used to fit carousel into container
+.feat-carousel--100p-height {
+
+  &,
+  .feat-carousel__translate,
+  .feat-carousel__wide-contain,
+  .feat-carousel__slide {
+    height: 100%;
+  }
+
+}

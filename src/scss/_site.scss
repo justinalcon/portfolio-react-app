@@ -4,6 +4,14 @@ html, body {
   margin: 0;
 }
 
-h1 {
-  color: cyan;
+* {
+  box-sizing: border-box;
+}
+
+#router-content {
+  // position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

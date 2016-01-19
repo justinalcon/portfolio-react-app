@@ -92,9 +92,21 @@ app.get('/spark/:id', function(req, res, next){
       
       // pass returned data into selected_post
       var data = {
-        id: id,
+        id: 1,
         title: `Spark defined server-side. id:${id}`,
+        summary: "This is my summary",
+        dev_notes: "My dev notes ",
+        direct_link: "http://direct-link.com",
+        iFramed_view: "I am a iframe",
+        image_gallery: "Image Gallery",
+        canned_video: "Canned Video",
+        created_at: "2015-12-28T20:51:21.000Z",
+        updated_at: "2015-12-28T20:51:21.000Z",
+        user_id: null,
+        published: null
       }
+
+      
       stores_obj.PostsStore.selected_post = data;
 
     } else {

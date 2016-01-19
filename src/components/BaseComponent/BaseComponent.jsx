@@ -8,7 +8,7 @@ export default class XYZ extends React.Component {
   render() {
     return (
       <div>
-        {Foobar}
+        Foobar
       </div>
     )
   }
