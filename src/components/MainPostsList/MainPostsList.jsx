@@ -1,8 +1,9 @@
 import React from 'react';
 
 import PostsStore from '../../js/stores/PostsStore';
+import HeaderActions from '../../js/actions/HeaderActions';
 
-import SparkCard from '../Spark/SparkCard';
+import SparkCard from '../SparkCard/SparkCard';
 
 export default class MainPostsList extends React.Component {
   constructor() {
@@ -12,6 +13,10 @@ export default class MainPostsList extends React.Component {
   state = {
     posts_data : PostsStore.getState().current_posts
   };
+
+  componentDidMount() {
+    HeaderActions.updateHeaderTitle(undefined);
+  }
 
   render() {
 

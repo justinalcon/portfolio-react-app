@@ -7,7 +7,7 @@ import {Router, Route, Link, IndexLink, IndexRoute} from 'react-router';
 import MainPostsList from './components/MainPostsList/MainPostsList';
 import SearchPage from './components/SearchPage/SearchPage';
 import FilterPage from './components/FilterPage/FilterPage';
-import SparkDetailView from './components/Spark/SparkDetailView';
+import SparkDetailView from './components/SparkDetailView/SparkDetailView';
 
 export default (
   <Route path="/" component={App}>

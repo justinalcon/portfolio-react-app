@@ -25,9 +25,11 @@ export default class FeaturedCarousel extends React.Component {
 
     return (
       <div className="feat-carousel feat-carousel--100p-height" data-length={this.props.children.length} data-carousel-index={this.props.tab_index}>
-        <div className="feat-carousel__translate">
-          <div className="feat-carousel__wide-contain">
-            {slides}
+        <div className="feat-carousel__scale">
+          <div className="feat-carousel__translate">
+            <div className="feat-carousel__wide-contain">
+              {slides}
+            </div>
           </div>
         </div>
       </div>

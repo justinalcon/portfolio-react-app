@@ -1,0 +1,22 @@
+@import "../../scss/_colors.scss";
+
+.floating-menu {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+}
+
+.floating-menu__btn-circle {
+  fill: white;
+}
+
+.floating-menu__btn-hamburg {
+  fill: $color-gray-main;
+}
+
+.floating-menu__sub-menu {
+  position: absolute;
+  bottom: 100%;
+}

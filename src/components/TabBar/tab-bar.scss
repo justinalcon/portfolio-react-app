@@ -1,10 +1,13 @@
 .tab-bar {
   height: 100%;
   width: 100%;
+  max-width: auto; // defined based on [data-length]
+  margin: 0 auto;
   border-bottom: 1px solid #979797;
   box-shadow: 0px 5px 6px rgba(128, 128, 128, 0.28);
   position: relative;
   z-index: 100;
+
 }
 
 .tab-bar__flex-btns {
@@ -39,6 +42,9 @@ $selector_height: 0.25rem;
 @for $i from 0 through 5 {
   // For diff # of buttons, divide width
   .tab-bar[data-length="#{$i}"] {
+    
+    max-width: #{7rem * $i};
+
     .tab-bar__btn,
     .tab-bar__selector {
       width: #{100% / $i};

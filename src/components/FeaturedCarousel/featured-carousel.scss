@@ -3,10 +3,12 @@
   overflow: hidden;
 }
 
-.feat-carousel__translate {
+.feat-carousel__translate,
+.feat-carousel__scale {
   position: relative;
   width: 100%;
   transition: transform 0.5s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.33, 0.22, 0.03, 0.97) 0s;
 }
 
 .feat-carousel__wide-contain {
@@ -46,6 +48,7 @@
 .feat-carousel--100p-height {
 
   &,
+  .feat-carousel__scale,
   .feat-carousel__translate,
   .feat-carousel__wide-contain,
   .feat-carousel__slide {
@@ -53,3 +56,17 @@
   }
 
 }
+
+
+.feat-carousel--zoom-out {
+  overflow: scroll;
+  
+  // .feat-carousel__scale {
+  //   transform: scale(0.5);
+  // }
+  .feat-carousel__slide {
+    transform: scale(0.75);  
+  }
+
+}
+
