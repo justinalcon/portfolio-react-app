@@ -7,3 +7,12 @@
   width: 40px;
   height: 40px;
 }
+
+.btn-chip--white-out {
+  .btn-chip__circle {
+    fill: rgba(0,0,0,0);
+  }
+  .btn-chip__icon {
+    fill: #fff;
+  }
+}

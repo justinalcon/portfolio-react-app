@@ -26,7 +26,6 @@ var PATH = {
 gulp.task("connectDev", ["scssDev", "watchDev", "bundleDev"], function(){
   livereload.listen();
   nodemon({
-    debug: true,
     script: 'server.js',
     ext: 'html css js',
     stdout: false
