@@ -13,6 +13,14 @@ html, body {
   left: 0;
   right: 0; }
 
+.example-component {
+  border: 1px solid gray;
+  padding: 1rem 0.5rem;
+  border-radius: 3px;
+  margin: 1rem 0;
+  background: #EBEBEB;
+  box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
+
 .feat-carousel {
   position: relative;
   overflow: hidden; }
@@ -98,14 +106,6 @@ html, body {
   .feat-carousel--zoom-out .feat-carousel__slide {
     transform: scale(0.75); }
 
-.example-component {
-  border: 1px solid gray;
-  padding: 1rem 0.5rem;
-  border-radius: 3px;
-  margin: 1rem 0;
-  background: #EBEBEB;
-  box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
-
 .floating-menu {
   position: absolute;
   bottom: 1rem;
@@ -120,8 +120,57 @@ html, body {
   fill: #4A4A4A; }
 
 .floating-menu__sub-menu {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
-  bottom: 100%; }
+  bottom: 100%;
+  width: 200%;
+  left: -50%;
+  padding: 0.5rem 50%;
+  pointer-events: none; }
+  .floating-menu--toggle-open .floating-menu__sub-menu {
+    pointer-events: auto; }
+  .floating-menu__sub-menu > hr {
+    width: 60%; }
+
+.floating-menu__sub-menu > * {
+  opacity: 0;
+  transition: opacity 0.5s ease 0s;
+  margin: 0.15rem; }
+  .floating-menu--toggle-open .floating-menu__sub-menu > * {
+    opacity: 1; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(1) {
+  transition-delay: 0.05s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(2) {
+  transition-delay: 0.1s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(3) {
+  transition-delay: 0.15s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(4) {
+  transition-delay: 0.2s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(5) {
+  transition-delay: 0.25s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(6) {
+  transition-delay: 0.3s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(7) {
+  transition-delay: 0.35s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(8) {
+  transition-delay: 0.4s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(9) {
+  transition-delay: 0.45s; }
+
+.floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(10) {
+  transition-delay: 0.5s; }
 
 header {
   position: relative;
@@ -269,5 +318,13 @@ header {
 .test-module {
   border: 5px solid gray;
   height: 100%; }
+
+.btn-chip {
+  width: 50px;
+  height: 50px; }
+
+.btn-chip--med {
+  width: 40px;
+  height: 40px; }
 
 /*# sourceMappingURL=styles.css.map */

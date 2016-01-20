@@ -67,27 +67,27 @@ class SparkDetailView extends React.Component {
     if(selected_post.article_text !== null){
       this.slides.push(<TestModule key={"article"+selected_post.id} test={"Article"} />);
       this.tab_names.push("Article");
-      this.menu_btns.push(<BtnChipArticle key={"article-btn"+selected_post.id} cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
+      this.menu_btns.push(<BtnChipArticle key={"article-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.dev_notes !== null){
       this.slides.push(<TestModule key={"notes"+selected_post.id} test={"Dev Notes"} />);
       this.tab_names.push("Dev Notes");
-      this.menu_btns.push(<BtnChipDevNotes key={"dev-btn"+selected_post.id} cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
+      this.menu_btns.push(<BtnChipDevNotes key={"dev-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.direct_link !== null){
       this.slides.push(<TestModule key={"link"+selected_post.id} test={"Link"} />);
       this.tab_names.push("Link");
-      this.menu_btns.push(<BtnChipLink key={"link-btn"+selected_post.id} cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
+      this.menu_btns.push(<BtnChipLink key={"link-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.image_gallery !== null){
       this.slides.push(<TestModule key={"imgs"+selected_post.id} test={"Images"} />);
       this.tab_names.push("Images"); 
-      this.menu_btns.push(<BtnChipImage key={"imgs-btn"+selected_post.id} cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
+      this.menu_btns.push(<BtnChipImage key={"imgs-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.canned_video !== null){
       this.slides.push(<TestModule key={"video"+selected_post.id} test={"Video"} />);
       this.tab_names.push("Video"); 
-      this.menu_btns.push(<BtnChipVideo key={"video-btn"+selected_post.id} cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
+      this.menu_btns.push(<BtnChipVideo key={"video-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
 
   }
@@ -114,10 +114,10 @@ class SparkDetailView extends React.Component {
         </div>
 
         <FloatingMenu>
-          {this.menu_btns}
+          <BtnChipShare add_class="btn-chip--med" />
+          <BtnChipFavorite add_class="btn-chip--med" />
           <hr />
-          <BtnChipFavorite />
-          <BtnChipShare />
+          {this.menu_btns}          
         </FloatingMenu>
 
       </div>
