@@ -293,8 +293,34 @@ header {
     opacity: 1;
     transform: translateX(0%); }
 
+.spark-card__summary,
+.spark-card__menu-btns {
+  margin: 0.5rem; }
+
 .spark-card__menu-btns > * {
-  margin: 0 0.25rem; }
+  margin: 0 0.5rem; }
+
+.spark-card__bottom-info {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  opacity: 1;
+  transition: opacity 0.4s ease-out 0s; }
+  .spark-card--toggled .spark-card__bottom-info {
+    opacity: 0; }
+
+.spark-card__author,
+.spark-card__date {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8rem; }
+
+.spark-card__author {
+  left: 0; }
+
+.spark-card__date {
+  right: 0; }
 
 .spark-details__tabs {
   height: 2rem; }

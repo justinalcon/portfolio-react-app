@@ -22,8 +22,8 @@ export default class SparkCard extends React.Component {
   static propTypes = {
     spark_data : React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
-      title: React.PropTypes.string.isRequired
-
+      title: React.PropTypes.string.isRequired,
+      image_gallery: React.PropTypes.arrayOf(React.PropTypes.string)
     })
   };
 
@@ -54,35 +54,35 @@ export default class SparkCard extends React.Component {
     if(this.props.spark_data.article_text !== null){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}/${this.menu_btns.length}`} key={"article-btn"+this.props.spark_data.id} onClick={this.selectPost}>
-          <BtnChipArticle add_class="btn-chip--white-out" />
+          <BtnChipArticle add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       );
     }
     if(this.props.spark_data.dev_notes !== null){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}/${this.menu_btns.length}`} key={"dev-btn"+this.props.spark_data.id} onClick={this.selectPost}>
-          <BtnChipDevNotes add_class="btn-chip--white-out" />
+          <BtnChipDevNotes add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       )
     }
     if(this.props.spark_data.direct_link !== null){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}/${this.menu_btns.length}`} key={"link-btn"+this.props.spark_data.id} onClick={this.selectPost}>
-          <BtnChipLink add_class="btn-chip--white-out" />
+          <BtnChipLink add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       )
     }
     if(this.props.spark_data.image_gallery !== null){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}/${this.menu_btns.length}`} key={"imgs-btn"+this.props.spark_data.id} onClick={this.selectPost}>
-          <BtnChipImage add_class="btn-chip--white-out" />
+          <BtnChipImage add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       )
     }
     if(this.props.spark_data.canned_video !== null){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}/${this.menu_btns.length}`} key={"video-btn"+this.props.spark_data.id} onClick={this.selectPost}>
-          <BtnChipVideo add_class="btn-chip--white-out" />
+          <BtnChipVideo add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       )
     }
@@ -107,6 +107,9 @@ export default class SparkCard extends React.Component {
       backgroundImage: `url(${this.props.spark_data.image_gallery[0]})`
     }
 
+    let d = new Date(this.props.spark_data.updated_at);
+    let date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear();
+
     return (
       <div className={card_class} ref="card" style={card_css}>
         <div className="spark-card__shadows" />
@@ -119,8 +122,12 @@ export default class SparkCard extends React.Component {
           </div>
         </Link>
         <div className="spark-card__detail">
-          <div className="spark-card__summary">{this.props.spark_data.summary}</div>
+          <p className="spark-card__summary">{this.props.spark_data.summary}</p>
           <div className="spark-card__menu-btns">{this.menu_btns}</div>
+        </div>
+        <div className="spark-card__bottom-info">
+          <div className="spark-card__author"><strong>By&nbsp;</strong>Foobar</div>
+          <div className="spark-card__date">{date}</div>
         </div>
       </div>
     )
