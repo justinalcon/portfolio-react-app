@@ -93,9 +93,15 @@ class SparkDetailView extends React.Component {
   }
 
   setTabState = (index) => {
+    
+    // update internal state
     this.setState({
       tab_index: index
     });
+
+    // update url to match
+    this.props.history.pushState(null, `/spark/${this.props.selected_post.id}/${index}`);
+
   };
 
   render() {
