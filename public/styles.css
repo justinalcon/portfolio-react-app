@@ -106,25 +106,6 @@ html, body {
   .feat-carousel--zoom-out .feat-carousel__slide {
     transform: scale(0.75); }
 
-header {
-  position: relative;
-  background: #173B46;
-  color: white;
-  text-align: center;
-  padding: 1rem 0; }
-
-.header__nav {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex; }
-
-.header__logo,
-.header__logo > a {
-  color: white;
-  text-decoration: none; }
-
 .floating-menu {
   position: absolute;
   bottom: 1rem;
@@ -189,6 +170,25 @@ header {
 
 .floating-menu--toggle-open .floating-menu__sub-menu > *:nth-child(10) {
   transition-delay: 0.5s; }
+
+header {
+  position: relative;
+  background: #173B46;
+  color: white;
+  text-align: center;
+  padding: 1rem 0; }
+
+.header__nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex; }
+
+.header__logo,
+.header__logo > a {
+  color: white;
+  text-decoration: none; }
 
 .spark-card {
   position: relative;
