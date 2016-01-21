@@ -15,7 +15,7 @@ import BtnChipVideo from '../Buttons/Chips/BtnChipVideo';
 export default class SparkCard extends React.Component {
   constructor() {
     super();
-    this.hammertime = undefined;
+    this.hammertime = false;
     this.menu_btns = [];
   }
   state = {
@@ -130,7 +130,7 @@ export default class SparkCard extends React.Component {
     return (
       <div className={card_class} ref="card" style={card_css} onMouseOver={this.handleMouseOn} onMouseOut={this.handleMouseOff}>
         <div className="spark-card__shadows" />
-        <Link className="spark-card__link" to={`/spark/${this.props.spark_data.id}`} onClick={this.selectPost} draggable={detectIsMobile()}>
+        <Link className="spark-card__link" to={`/spark/${this.props.spark_data.id}`} onClick={this.selectPost} draggable="false">
           <p className="spark-card__title">{this.props.spark_data.title}</p>
           <p className="spark-card__tags">{this.props.spark_data.tags}</p>
           <div className="spark-card__dots">
