@@ -137,6 +137,8 @@ $spark-card_dot-height: 1.5rem;
   left: 0;
   right: 0;
 
+  pointer-events: none; // Prevents bg from blocking click. Make sure to enable children.
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -159,7 +161,8 @@ $spark-card_dot-height: 1.5rem;
 }
 
 .spark-card__menu-btns > * {
-  margin: 0 0.5rem 
+  margin: 0 0.5rem;
+  pointer-events: auto;
 }
 
 

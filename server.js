@@ -17,6 +17,7 @@ var Iso = require('iso');
 var routes = require('./src/routes');
 var alt = require('./src/js/alt');
 
+
 // Configure `app` as express instance
 var ip = '0.0.0.0';
 var port = 8080;
@@ -32,35 +33,9 @@ app.use(require('connect-livereload')());
 
 var stores_obj;
 
-var tmp_all_posts = [{
-        id: 1,
-        title: "1st spark",
-        summary: "This is my summary",
-        dev_notes: "My dev notes ",
-        direct_link: "http://direct-link.com",
-        article_text: "This is long form article text.",
-        image_gallery: ["https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2470548/dribbble.png"],
-        canned_video: "Canned Video",
-        created_at: "2015-12-28T20:51:21.000Z",
-        updated_at: "2015-12-28T20:51:21.000Z",
-        user_id: null,
-        published: null,
-        tags: ["tag 1", "tag 2", "tag 3"]
-      }, {
-        id: 2,
-        title: "Spark number 2",
-        summary: "this is spark number 2",
-        dev_notes: "these are my dev notes for spark 2",
-        direct_link: "http://direct-link.com/spark2",
-        article_text: "This is long form article text.",
-        image_gallery: ["https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2470548/dribbble.png"],
-        canned_video: "This is a canned video",
-        created_at: "2016-01-06T20:49:22.000Z",
-        updated_at: "2016-01-06T20:49:22.000Z",
-        user_id: null,
-        published: true,
-        tags: ["tag 1", "tag 2", "tag 3"]
-      }];
+// While waiting for end-points, storing test data in here
+var tmp_models_data = require('./tmp/tmp_models_data');
+
 
 /*
   Runs on every get request
@@ -70,8 +45,9 @@ app.get('*', function(req, res, next){
   
   stores_obj = {
     PostsStore: {
-      current_posts: tmp_all_posts
-    }
+      current_posts: tmp_models_data.getAllPosts()
+    },
+    HeaderStore: {}
   }
 
   next();
@@ -93,24 +69,10 @@ app.get('/spark/:id/:carousel_index?', function(req, res, next){
     if(true){
       
       // pass returned data into selected_post
-      var data = {
-        id: 1,
-        title: `Spark defined server-side. id:${id}`,
-        summary: "This is my summary",
-        dev_notes: "My dev notes ",
-        direct_link: "http://direct-link.com",
-        article_text: "This is long form article text.",
-        image_gallery: ["https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2470548/dribbble.png"],
-        canned_video: "Canned Video",
-        created_at: "2015-12-28T20:51:21.000Z",
-        updated_at: "2015-12-28T20:51:21.000Z",
-        user_id: null,
-        published: null,
-        tags: ["tag 1", "tag 2", "tag 3"]
-      }
+      var data = tmp_models_data.getPostSingle(id);
 
-      
       stores_obj.PostsStore.selected_post = data;
+      stores_obj.HeaderStore.header_title = data.title;
 
     } else {
       res.status(404).send({ message: `spark with id:${id} not found` });
