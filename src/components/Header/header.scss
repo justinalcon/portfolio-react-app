@@ -2,10 +2,16 @@
 
 header {
   position: relative;
+  height: 3rem;
+
   background: $color-primary;
   color: white;
-  text-align: center;
-  padding: 1rem 0;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .header__nav {
@@ -15,10 +21,15 @@ header {
   bottom: 0;
 
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__logo,
 .header__logo > a {
     color: white;  
     text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }

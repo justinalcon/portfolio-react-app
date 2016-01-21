@@ -1,6 +1,8 @@
 import React from 'react';
 import BtnChipMenu from '../Buttons/Chips/BtnChipMenu';
 
+import {detectIsMobile} from '../../js/utils';
+
 export default class FloatingMenuChip extends React.Component {
   constructor() {
     super();
@@ -8,6 +10,12 @@ export default class FloatingMenuChip extends React.Component {
     this.state = {
       is_open: false
     }
+
+    this.isMobile = false;
+  }
+
+  componentDidMount() {
+    this.isMobile = detectIsMobile();
   }
 
   open = () => {
@@ -19,6 +27,12 @@ export default class FloatingMenuChip extends React.Component {
   close = () => {
     this.setState({
       is_open: false
+    })
+  };
+
+  toggle = () => {
+    this.setState({
+      is_open: !this.state.is_open
     })
   };
 
