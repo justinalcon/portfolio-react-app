@@ -9,11 +9,13 @@ import FeaturedCarousel from '../FeaturedCarousel/FeaturedCarousel';
 
 // Modules
 import TestModule from '../Tests/TestModule';
+import ModuleArticle from '../ModuleArticle/ModuleArticle';
+import ModuleDevNotes from '../ModuleDevNotes/ModuleDevNotes';
 
 // Menu
 import FloatingMenu from '../FloatingMenu/FloatingMenu';
-import BtnChipShare from '../Buttons/Chips/BtnChipShare';
-import BtnChipFavorite from '../Buttons/Chips/BtnChipFavorite';
+// import BtnChipShare from '../Buttons/Chips/BtnChipShare';
+// import BtnChipFavorite from '../Buttons/Chips/BtnChipFavorite';
 import BtnChipArticle from '../Buttons/Chips/BtnChipArticle';
 import BtnChipDevNotes from '../Buttons/Chips/BtnChipDevNotes';
 import BtnChipLink from '../Buttons/Chips/BtnChipLink';
@@ -65,12 +67,12 @@ class SparkDetailView extends React.Component {
   generateDetailContent(selected_post) {
     
     if(selected_post.article_text !== null){
-      this.slides.push(<TestModule key={"article"+selected_post.id} test={"Article"} />);
+      this.slides.push(<ModuleArticle key={"article"+selected_post.id} article_text={this.props.selected_post.article_text} />);
       this.tab_names.push("Article");
       this.menu_btns.push(<BtnChipArticle key={"article-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.dev_notes !== null){
-      this.slides.push(<TestModule key={"notes"+selected_post.id} test={"Dev Notes"} />);
+      this.slides.push(<ModuleDevNotes key={"notes"+selected_post.id} dev_notes={this.props.selected_post.dev_notes} />);
       this.tab_names.push("Dev Notes");
       this.menu_btns.push(<BtnChipDevNotes key={"dev-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }

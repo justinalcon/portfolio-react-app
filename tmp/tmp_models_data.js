@@ -4,9 +4,9 @@ exports.getAllPosts = function(){
             id: 1,
             title: "Spark #1",
             summary: "This is spark #1 isn't that dandy",
-            dev_notes: "My dev notes ",
+            dev_notes: "<h3>Here's some codez:</h3><pre><code><html><div class=\'foo\'><span id=\'bar\'></span></div></html></code></pre><p>Yup, those are some hot codes</p><h5>Syntax highlighting via hightlight.js.<br/><small>Auto detect langauge enabled.</small></h5><pre><code>var React = require(\'react\');</code></pre>",
             direct_link: "http://direct-link.com",
-            article_text: "This is long form article text.",
+            article_text: "<div class=\"section-inner layoutSingleColumn\"> <h3 name=\"d138\" id=\"d138\" class=\"graf--h3 graf--first\">Wealthfront:<br>Silicon Valley Tech at Wall Street Prices</h3> <p name=\"e57d\" id=\"e57d\" class=\"graf--p graf-after--h3\">Somewhere in the Bay Area, a developer teeters on the edge of insanity.</p> <p name=\"42af\" id=\"42af\" class=\"graf--p graf-after--p\">For the last 60 hours, he’s been A/B testing one word against another (“Get” or “Buy!” or “Install”?), one screenshot against the next. Delirious, he starts to A/B test reality&#8202;—&#8202;is that penguin really making paninis?&#8202;—&#8202;but all will be worth it in the end if he can manage to realize the impossible American dream: Convince you to pay <strong class=\"markup--strong markup--p-strong\">one dollar</strong>, <strong class=\"markup--strong markup--p-strong\">one time</strong> to install his life’s work on your iPhone.</p> <p name=\"d0e0\" id=\"d0e0\" class=\"graf--p graf-after--p\">Should he beat the odds, he’ll then take your <a href=\"http://www.techrepublic.com/blog/software-engineer/app-store-fees-percentages-and-payouts-what-developers-need-to-know/\" data-href=\"http://www.techrepublic.com/blog/software-engineer/app-store-fees-percentages-and-payouts-what-developers-need-to-know/\" class=\"markup--anchor markup--p-anchor\" rel=\"nofollow\">70 cents</a> and plow them into another app on his phone. This app will not only charge him every day for the rest of his life<strong class=\"markup--strong markup--p-strong\">, </strong>but it also increased his fee last year by <strong class=\"markup--strong markup--p-strong\">over a dollar a month</strong>.</p> <p name=\"1510\" id=\"1510\" class=\"graf--p graf-after--p\">What the hell is going on here?</p></div>",
             image_gallery: ["http://lorempixel.com/640/400/technics/1"],
             canned_video: "Canned Video",
             created_at: "2015-12-28T20:51:21.000Z",
@@ -98,9 +98,9 @@ exports.getPostSingle = function(id){
         id: 1,
         title: `Spark defined server-side. id:${id}`,
         summary: "This is my summary",
-        dev_notes: "My dev notes ",
+        dev_notes: "<h3>Here's some codez:</h3><pre><code><html><div class=\'foo\'><span id=\'bar\'></span></div></html></code></pre><p>Yup, those are some hot codes</p><h5>Syntax highlighting via hightlight.js.<br/><small>Auto detect langauge enabled.</small></h5><pre><code>var React = require(\'react\');</code></pre>",
         direct_link: "http://direct-link.com",
-        article_text: "This is long form article text.",
+        article_text: "<div class=\"section-inner layoutSingleColumn\"> <h3 name=\"d138\" id=\"d138\" class=\"graf--h3 graf--first\">Wealthfront:<br>Silicon Valley Tech at Wall Street Prices</h3> <p name=\"e57d\" id=\"e57d\" class=\"graf--p graf-after--h3\">Somewhere in the Bay Area, a developer teeters on the edge of insanity.</p> <p name=\"42af\" id=\"42af\" class=\"graf--p graf-after--p\">For the last 60 hours, he’s been A/B testing one word against another (“Get” or “Buy!” or “Install”?), one screenshot against the next. Delirious, he starts to A/B test reality&#8202;—&#8202;is that penguin really making paninis?&#8202;—&#8202;but all will be worth it in the end if he can manage to realize the impossible American dream: Convince you to pay <strong class=\"markup--strong markup--p-strong\">one dollar</strong>, <strong class=\"markup--strong markup--p-strong\">one time</strong> to install his life’s work on your iPhone.</p> <p name=\"d0e0\" id=\"d0e0\" class=\"graf--p graf-after--p\">Should he beat the odds, he’ll then take your <a href=\"http://www.techrepublic.com/blog/software-engineer/app-store-fees-percentages-and-payouts-what-developers-need-to-know/\" data-href=\"http://www.techrepublic.com/blog/software-engineer/app-store-fees-percentages-and-payouts-what-developers-need-to-know/\" class=\"markup--anchor markup--p-anchor\" rel=\"nofollow\">70 cents</a> and plow them into another app on his phone. This app will not only charge him every day for the rest of his life<strong class=\"markup--strong markup--p-strong\">, </strong>but it also increased his fee last year by <strong class=\"markup--strong markup--p-strong\">over a dollar a month</strong>.</p> <p name=\"1510\" id=\"1510\" class=\"graf--p graf-after--p\">What the hell is going on here?</p></div>",
         image_gallery: ["https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2470548/dribbble.png"],
         canned_video: "Canned Video",
         created_at: "2015-12-28T20:51:21.000Z",
@@ -110,3 +110,4 @@ exports.getPostSingle = function(id){
         tags: ["tag 1", "tag 2", "tag 3"]
     }
 }
+
