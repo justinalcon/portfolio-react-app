@@ -11,6 +11,7 @@ import FeaturedCarousel from '../FeaturedCarousel/FeaturedCarousel';
 import TestModule from '../Tests/TestModule';
 import ModuleArticle from '../ModuleArticle/ModuleArticle';
 import ModuleDevNotes from '../ModuleDevNotes/ModuleDevNotes';
+import ModuleLink from '../ModuleLink/ModuleLink';
 
 // Menu
 import FloatingMenu from '../FloatingMenu/FloatingMenu';
@@ -77,7 +78,7 @@ class SparkDetailView extends React.Component {
       this.menu_btns.push(<BtnChipDevNotes key={"dev-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.direct_link !== null){
-      this.slides.push(<TestModule key={"link"+selected_post.id} test={"Link"} />);
+      this.slides.push(<ModuleLink key={"link"+selected_post.id} direct_link={this.props.selected_post.direct_link} />);
       this.tab_names.push("Link");
       this.menu_btns.push(<BtnChipLink key={"link-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }

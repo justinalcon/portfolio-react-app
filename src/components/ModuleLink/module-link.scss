@@ -1,0 +1,56 @@
+.module-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.module-link__card {
+  width: 80%;
+  height: 80%;
+  background: rgba(128, 128, 128, 0.35);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.module-link__anchor {
+  color: inherit;
+}
+
+.module-link__icon {
+  width: 8rem;
+  height: 8rem;
+  max-width: 80%;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.module-link__text {
+  
+
+  max-width: 80%;
+  margin: 1rem auto;
+
+  // Get long URL to wrap
+  // https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  
+}
