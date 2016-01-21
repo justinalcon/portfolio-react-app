@@ -1,10 +1,27 @@
 .post-grid {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
+  // flex-wrap: wrap;
+
+  max-width: 1250px;
+  margin: 0.5rem auto;
 }
 
 .post-grid__item {
-  flex: 1 1 auto;
+  // flex: 1 1 auto;
+  display: inline-block;
+  width: 100%;
+}
+
+@media screen and (min-width: 650px) {
+  .post-grid__item {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .post-grid__item {
+    width: 33.33333%;
+  }
 }

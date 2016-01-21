@@ -10,10 +10,10 @@
   background-position: center center;
 
   height: 250px;
-  max-width: 415px;
+  // max-width: 415px;
 
   color: white;
-  transition: background 0.5s ease 0s;
+  background-color: #232323;
 
 }
 
@@ -145,7 +145,7 @@ $spark-card_dot-height: 1.5rem;
   align-items: center;
 
   opacity: 0;
-  transform: translateX(10%);
+  transform: translateX(2%);
   transition: transform 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
 
   .spark-card--toggled & {

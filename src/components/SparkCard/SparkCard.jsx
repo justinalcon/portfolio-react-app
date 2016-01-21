@@ -1,5 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {detectIsMobile} from '../../js/utils';
+
+// Stores
 import PostsActions from '../../js/actions/PostsActions';
 
 // Menu
@@ -8,7 +11,6 @@ import BtnChipDevNotes from '../Buttons/Chips/BtnChipDevNotes';
 import BtnChipLink from '../Buttons/Chips/BtnChipLink';
 import BtnChipImage from '../Buttons/Chips/BtnChipImage';
 import BtnChipVideo from '../Buttons/Chips/BtnChipVideo';
-
 
 export default class SparkCard extends React.Component {
   constructor() {
@@ -28,13 +30,18 @@ export default class SparkCard extends React.Component {
   };
 
   componentDidMount() {
-    this.addHammerHandlers();
     this.generateDetailIcons();
+
+    if(detectIsMobile()){
+      this.addHammerHandlers();
+    }
   }
 
   componentWillUnmount() {
-    this.hammertime.off('swipe');
-    this.hammertime.destroy();
+    if(detectIsMobile()){
+      this.hammertime.off('swipe');
+      this.hammertime.destroy();
+    }
   }
 
   addHammerHandlers() {
@@ -96,6 +103,16 @@ export default class SparkCard extends React.Component {
     this.setState({ toggled: !this.state.toggled })
   };
 
+  handleMouseOn = () => {
+    this.setState({ toggled: true })
+  };
+
+  handleMouseOff = () => {
+    this.setState({ toggled: false })
+  };
+
+  
+
   render() {
 
     let card_class = "spark-card";
@@ -111,9 +128,9 @@ export default class SparkCard extends React.Component {
     let date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear();
 
     return (
-      <div className={card_class} ref="card" style={card_css}>
+      <div className={card_class} ref="card" style={card_css} onMouseOver={this.handleMouseOn} onMouseOut={this.handleMouseOff}>
         <div className="spark-card__shadows" />
-        <Link className="spark-card__link" to={`/spark/${this.props.spark_data.id}`} onClick={this.selectPost}>
+        <Link className="spark-card__link" to={`/spark/${this.props.spark_data.id}`} onClick={this.selectPost} draggable={detectIsMobile()}>
           <p className="spark-card__title">{this.props.spark_data.title}</p>
           <p className="spark-card__tags">{this.props.spark_data.tags}</p>
           <div className="spark-card__dots">

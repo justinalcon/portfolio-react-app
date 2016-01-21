@@ -7,8 +7,8 @@ export function detectIsDevUrl() {
 }
 
 export function detectIsMobile() {
-  if(detectIsNode) {
-    console.log("TRYING TO DETECT ON SERVER-SIDE");
+  if(detectIsNode()) {
+    console.log("TRYING TO DETECT MOBILE ON SERVER-SIDE");
   } else {
     return window.innerWidth < 1024
   }

@@ -120,9 +120,9 @@ class SparkDetailView extends React.Component {
         </div>
 
         <FloatingMenu>
-          <BtnChipShare add_class="btn-chip--med" />
+          {/*<BtnChipShare add_class="btn-chip--med" />
           <BtnChipFavorite add_class="btn-chip--med" />
-          <hr />
+          <hr />*/}
           {this.menu_btns}          
         </FloatingMenu>
 
