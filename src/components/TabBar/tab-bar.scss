@@ -1,13 +1,17 @@
 .tab-bar {
   height: 100%;
   width: 100%;
-  max-width: auto; // defined based on [data-length]
-  margin: 0 auto;
   border-bottom: 1px solid #979797;
   box-shadow: 0px 5px 6px rgba(128, 128, 128, 0.28);
   position: relative;
   z-index: 100;
+}
 
+.tab-bar__contain {
+  height: 100%;
+  width: 100%;
+  //max-width: none;  defined based on [data-length]
+  margin: 0 auto;
 }
 
 .tab-bar__flex-btns {
@@ -21,6 +25,14 @@
 .tab-bar__btn {
   flex: 1 1 auto;
   height: 100%;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+  border: none !important;
+  outline: none !important;
+  background: white;
+
   color: rgba(0,0,0,0.5);
   transition: color 0.4s ease 0s;
 }
@@ -40,16 +52,17 @@ $selector_height: 0.25rem;
 
 
 @for $i from 0 through 5 {
-  // For diff # of buttons, divide width
-  .tab-bar[data-length="#{$i}"] {
-    
+  
+  // Set max width of contain based on # of btns
+  .tab-bar[data-length="#{$i}"] .tab-bar__contain {
     max-width: #{7rem * $i};
 
+    // Set btns as a % of whole
     .tab-bar__btn,
     .tab-bar__selector {
       width: #{100% / $i};
     }
-  }
+  }  
 
   // Set bnt active state
   .tab-bar[data-tab-state="#{$i}"] .tab-bar__btn[data-tab-index="#{$i}"] {

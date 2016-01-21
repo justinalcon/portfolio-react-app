@@ -29,10 +29,12 @@ export default class TabBar extends React.Component {
 
     return (
       <div className="tab-bar" data-length={this.props.tab_names.length} data-tab-state={this.props.tab_index}>
-        <div className="tab-bar__flex-btns">
-          {btns}
+        <div className="tab-bar__contain">
+          <div className="tab-bar__flex-btns">
+            {btns}
+          </div>
+          <div className="tab-bar__selector" />
         </div>
-        <div className="tab-bar__selector" />
       </div>
     )
   }
