@@ -13,6 +13,7 @@ import ModuleArticle from '../ModuleArticle/ModuleArticle';
 import ModuleDevNotes from '../ModuleDevNotes/ModuleDevNotes';
 import ModuleLink from '../ModuleLink/ModuleLink';
 import ModuleImages from '../ModuleImages/ModuleImages';
+import ModuleVideo from '../ModuleVideo/ModuleVideo';
 
 // Menu
 import FloatingMenu from '../FloatingMenu/FloatingMenu';
@@ -89,7 +90,7 @@ class SparkDetailView extends React.Component {
       this.menu_btns.push(<BtnChipImage key={"imgs-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(selected_post.canned_video !== null){
-      this.slides.push(<TestModule key={"video"+selected_post.id} test={"Video"} />);
+      this.slides.push(<ModuleVideo key={"video"+selected_post.id} canned_video={this.props.selected_post.canned_video} />);
       this.tab_names.push("Video"); 
       this.menu_btns.push(<BtnChipVideo key={"video-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
