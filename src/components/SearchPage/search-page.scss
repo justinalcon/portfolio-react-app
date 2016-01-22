@@ -1,0 +1,30 @@
+@import '../../scss/_colors.scss';
+
+.search-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 10%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.search-page__input {
+  width: 100%;
+  
+  color: $color-gray-main;
+  font-size: 3rem;
+  font-weight: 100;
+  
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $color-gray-main;
+  margin: 5% 0;
+  padding: 0.5rem 0;
+  
+}

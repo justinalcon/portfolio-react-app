@@ -1,3 +1,8 @@
+@import '_colors.scss';
+
+//
+// minimal style. text with underline only.
+//
 .btn-minimal {
   position: relative;
   margin: 0 0.75rem;
@@ -59,4 +64,36 @@
     fill: white;
   }
 
+}
+
+//
+// traditional button with box around 
+//
+.btn-box {
+  cursor: pointer;
+  color: white;
+  background: $color-primary;
+  
+  outline: none;
+  border: 1px solid $color-primary;;
+
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  padding: 0.5rem 1.25rem;
+
+  &.btn-box--invert {
+    color: $color-primary;
+    background: white;
+    border: 1px solid $color-gray-main;
+  }
+
+  &.btn-box--cancel {
+    color: lighten($color-gray-main, 10%);
+    background: white;
+    border: 1px solid lighten($color-gray-main, 33%);
+  }
 }
