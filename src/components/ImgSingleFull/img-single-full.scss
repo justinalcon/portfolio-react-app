@@ -1,0 +1,25 @@
+.img-single-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.img-single-full__img {
+  
+  // width + height are determined in js
+
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  transition: transform 0.5s ease 0s;
+  transition: transform 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s;
+}

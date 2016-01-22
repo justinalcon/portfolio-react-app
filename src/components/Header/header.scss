@@ -33,3 +33,15 @@ header {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+.header__back-btn {
+  position: absolute;
+  top: 0;
+  left: 0.5rem;
+  bottom: 0;
+  width: 2rem;
+
+  &.header__back-btn--hidden {
+    display: none;
+  }
+}

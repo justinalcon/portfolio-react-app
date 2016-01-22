@@ -2,8 +2,8 @@ import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import HeaderStore from '../../js/stores/HeaderStore';
 
-
 import {Link, IndexLink} from 'react-router';
+import BackBtn from '../Buttons/BackBtn/BackBtn';
 
 class Header extends React.Component {
   constructor() {
@@ -18,20 +18,37 @@ class Header extends React.Component {
     return HeaderStore.getState()
   };
 
+  static propTypes = {
+    header_title: React.PropTypes.string
+  };
+
   render() {
 
-    let title  = this.props.header_title || "DISCOVERY";
+    let is_home = this.props.header_title === "";
 
+    let title = is_home ? "DISCOVERY" : this.props.header_title;
+
+    let back_btn_class = "header__back-btn";
+    if(is_home){
+      back_btn_class += " header__back-btn--hidden";
+    }
+    
     return (
       <header>
         
+        <div className={back_btn_class}>
+          <BackBtn/>
+        </div>
+
         <span className="header__logo font--headline"><IndexLink to="/">{title}</IndexLink></span>
 
         <nav className="header__nav">
           <Link className="btn-minimal" activeClassName="btn-minimal--active" to="/filter">
-            <p className="btn-minimal__text">Filter</p>            
+            <p className="btn-minimal__text">Filter</p>
           </Link>
-          <Link className="btn-minimal" activeClassName="btn-minimal--active" to="/search">Search</Link>
+          <Link className="btn-minimal" activeClassName="btn-minimal--active" to="/search">
+            <p className="btn-minimal__text">Search</p>
+          </Link>
         </nav>
 
       </header>

@@ -16,7 +16,7 @@ export default class PostGrid extends React.Component {
 
   componentDidMount() {
     // On home view, reset Header to default state
-    HeaderActions.updateHeaderTitle(undefined);
+    HeaderActions.updateHeaderTitle("");
   }
 
   render() {

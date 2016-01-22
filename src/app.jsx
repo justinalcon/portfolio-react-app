@@ -8,10 +8,8 @@ export default class App extends React.Component {
     return (
       <div>
         
-        <Header />
-
         {/* Static. E.g. may be replaced with a <Header /> Component */}
-        
+        <Header/>       
         
         {/* Dynamic content decided by the Router */}
         <div id="router-content">

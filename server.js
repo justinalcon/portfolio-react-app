@@ -47,7 +47,9 @@ app.get('*', function(req, res, next){
     PostsStore: {
       current_posts: tmp_models_data.getAllPosts()
     },
-    HeaderStore: {}
+    HeaderStore: {
+      header_title: ""
+    }
   }
 
   next();
