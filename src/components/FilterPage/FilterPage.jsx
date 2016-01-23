@@ -1,4 +1,5 @@
 import React from 'react';
+import FilterTags from '../FilterTags/FilterTags';
 
 export default class FilterPage extends React.Component {
   constructor() {
@@ -7,7 +8,9 @@ export default class FilterPage extends React.Component {
 
   render() {
     return (
-      <div>Filter Filter Filter</div>
+      <div className="filter-page">
+        <FilterTags />        
+      </div>
     )
   }
 

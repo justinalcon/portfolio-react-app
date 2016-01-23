@@ -11,10 +11,14 @@ class PostsStore {
     // A single selected post
     this.selected_post = {};
 
+    // An array of all tags
+    this.tags_all = [];
+
     // Catch actions, and run functions to update store
     this.bindListeners({
-      handleUpdateSelectedPost : PostsActions.updateSelectedPost,
-      handleQuerySearch: QueryActions.querySearch
+      handleUpdateSelectedPost: PostsActions.updateSelectedPost,
+      handleQuerySearch: QueryActions.querySearch,
+      handleQueryTags: QueryActions.queryTags
     });
 
   }
@@ -25,7 +29,11 @@ class PostsStore {
   }
 
   handleQuerySearch(search_term) {
-    window.alert(`TODO: search for "${search_term}"`);
+    window.alert(`TODO: submit search for "${search_term}"`);
+  }
+
+  handleQueryTags(tags_array) {
+   window.alert(`TODO: submit query with "${tags_array}"`); 
   }
 
 }

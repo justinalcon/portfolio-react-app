@@ -42,13 +42,16 @@ var tmp_models_data = require('./tmp/tmp_models_data');
   Populate Stores with default data
 */
 app.get('*', function(req, res, next){
-  
+
   stores_obj = {
     PostsStore: {
-      current_posts: tmp_models_data.getAllPosts()
+      current_posts: tmp_models_data.getPostsAll(),
     },
     HeaderStore: {
       header_title: ""
+    },
+    TagStore: {
+      tags_all: tmp_models_data.getTagsAll()
     }
   }
 

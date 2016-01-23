@@ -5,8 +5,6 @@ import QueryActions from '../../js/actions/QueryActions';
 export default class SearchPage extends React.Component {
   constructor() {
     super();
-
-    // Focus type bar!
   }
 
   componentDidMount() {

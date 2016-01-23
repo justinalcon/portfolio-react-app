@@ -1,4 +1,4 @@
-exports.getAllPosts = function(){
+exports.getPostsAll = function(){
     return [
         {
             id: 1,
@@ -111,3 +111,15 @@ exports.getPostSingle = function(id){
     }
 }
 
+exports.getTagsAll = function(){
+    var tags_raw = ["VideoMTV2015","gameinsight","TreCru","NBAVote","job","jobs","android","nowplaying","win","androidgames","RETWEET","np","RT","MGWV","FOLLOW","giveaway","MissUniverse2015","news","SoundCloud","quote"]
+
+    // format tags from an array to an object
+    var tags_all = {};
+    for (var i = 0; i < tags_raw.length; i++) {
+      var key = tags_raw[i];
+      tags_all[key] = false;
+    };
+
+    return tags_all;
+}
