@@ -239,6 +239,27 @@ html, body {
   bottom: 0;
   padding: 0 10%; }
 
+.filter-page__title {
+  font-weight: bold;
+  font-size: 2rem; }
+
+.filter-tag-btn {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem 1.2rem;
+  border-radius: 5px;
+  margin: 0 0.25rem 0.25rem 0;
+  border: 1px solid #C2C2C2;
+  outline: none;
+  color: #4A4A4A;
+  background-color: #E7E7E7;
+  box-shadow: 1px 1px 1px 1px rgba(226, 226, 226, 0.64);
+  transition: color 0.3s ease-out 0s, background 0.3s ease-out 0s, box-shadow 0.3s ease-out 0s; }
+  .filter-tag-btn.filter-tag-btn--active {
+    color: white;
+    background-color: #676767;
+    box-shadow: 0px 0px 0px 0px rgba(226, 226, 226, 0); }
+
 
 .floating-menu {
   position: absolute;
@@ -432,13 +453,6 @@ header {
   max-width: 1100px;
   margin: 0 auto; }
 
-.module-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; }
-
 .module-link {
   position: absolute;
   top: 0;
@@ -483,6 +497,13 @@ header {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto; }
+
+.module-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
 
 .module-video {
   position: absolute;

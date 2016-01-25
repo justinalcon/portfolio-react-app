@@ -8,6 +8,10 @@ class TagActions {
     return tag_name
   }
 
+  resetAllTags(){
+    return false
+  }
+
 }
 
 module.exports = alt.createActions(TagActions);

@@ -10,14 +10,23 @@ class TagStore {
 
     // Catch actions, and run functions to update store
     this.bindListeners({
-      handleUpdateSelectedPost: TagActions.toggleTag
+      handleToggleTag: TagActions.toggleTag,
+      handleResetAllTags: TagActions.resetAllTags
     });
 
   }
 
   // Assign the selected post as the passed in post
-  handleUpdateSelectedPost(tag_name){
+  handleToggleTag(tag_name){
     this.tags_all[tag_name] = !this.tags_all[tag_name];
+  }
+
+  handleResetAllTags(){
+    for (var tag in this.tags_all) {
+      if (this.tags_all.hasOwnProperty(tag)) {
+        this.tags_all[tag] = false;
+      }
+    }
   }
 
 }

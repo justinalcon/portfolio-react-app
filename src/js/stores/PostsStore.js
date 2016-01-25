@@ -18,7 +18,7 @@ class PostsStore {
     this.bindListeners({
       handleUpdateSelectedPost: PostsActions.updateSelectedPost,
       handleQuerySearch: QueryActions.querySearch,
-      handleQueryTags: QueryActions.queryTags
+      handleQueryByTags: QueryActions.queryByTags
     });
 
   }
@@ -32,8 +32,8 @@ class PostsStore {
     window.alert(`TODO: submit search for "${search_term}"`);
   }
 
-  handleQueryTags(tags_array) {
-   window.alert(`TODO: submit query with "${tags_array}"`); 
+  handleQueryByTags(tags_array) {
+   console.log("TODO: submit query with tags",tags_array); 
   }
 
 }

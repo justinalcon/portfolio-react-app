@@ -16,8 +16,14 @@ export default class FilterTagBtn extends React.Component {
   };
 
   render() {
+
+    let btn_class = "filter-tag-btn";
+    if(this.props.is_active){
+      btn_class += " filter-tag-btn--active";
+    }
+
     return (
-      <button className="filter-tag-btn" disabled={this.props.is_active} onClick={this.handleClick}>
+      <button className={btn_class} onClick={this.handleClick}>
         {this.props.tag_name}
       </button>
     )
