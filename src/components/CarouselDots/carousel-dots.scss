@@ -1,0 +1,47 @@
+@import '../../scss/_colors.scss';
+
+.carousel-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 2rem;
+
+  &,
+  .carousel-dots__contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+  }
+  
+}
+
+.carousel-dots__contain {
+  position: relative;
+}
+
+.carousel-dots__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 8px 0;
+  background: rgba(216, 216, 216, 0.75);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.carousel-dots__dot--selector {
+  position: absolute;
+  background: $color-secondary;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-out 0s;
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
+}
+
+@for $i from 0 through 10 {
+  .carousel-dots[data-index="#{$i}"] .carousel-dots__dot--selector {
+    transform: translateY(#{26px * $i});    
+  }
+}
+
