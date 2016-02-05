@@ -13,3 +13,11 @@ export function detectIsMobile() {
     return window.innerWidth < 1024
   }
 }
+
+export function detectIsTouch() {
+  if(detectIsNode()) {
+    console.log("TRYING TO DETECT TOUCH ON SERVER-SIDE");
+  } else {
+    return navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)
+  } 
+}
