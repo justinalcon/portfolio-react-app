@@ -1,3 +1,4 @@
+@import "_colors.scss";
 @import "_sizes.scss";
 
 html, body {
@@ -34,4 +35,15 @@ html, body {
   @media screen and (max-width: ($desktop-only__min-width - 1)) {
     display: none !important;
   }
+}
+
+input[type="text"] {
+  width: 100%;
+  color: $color-gray-main;
+  font-size: 1.25rem;
+  font-weight: 100;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $color-gray-main;
+  padding: 0.5rem 0;
 }

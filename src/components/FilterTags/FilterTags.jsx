@@ -80,8 +80,8 @@ class FilterTags extends React.Component {
 
     return (
       <div className="filter-tags">
-        <p className="filter-page__title">Tags</p>
-        <input className="filter-tags__search" placeholder="Search for Tags..." ref="tag_search" onKeyUp={this.handleSearchKeyUp}/>
+        {/*<p className="filter-page__title">Tags</p>*/}
+        <input className="filter-tags__search" type="text" placeholder="Search for Tags..." ref="tag_search" onKeyUp={this.handleSearchKeyUp}/>
         <div className="filter-tags__tag-bucket">
           {tags_render}
         </div>

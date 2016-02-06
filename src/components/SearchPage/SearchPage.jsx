@@ -42,7 +42,7 @@ export default class SearchPage extends React.Component {
   render() {
     return (
       <div className="search-page">
-        <input className="search-page__input" placeholder="Search all of Discovery..." ref="search_input" onKeyDown={this.handleKeyDown}/>
+        <input className="search-page__input" type="text" placeholder="Search all of Discovery..." ref="search_input" onKeyDown={this.handleKeyDown}/>
         <div className="btn-bar">
           <button className="btn-box btn-box--cancel" onClick={this.clear}>Reset</button>
           <button className="btn-box" onClick={this.submit}>Submit</button>
