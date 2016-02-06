@@ -94,7 +94,18 @@ html, body {
   .desktop-only {
     display: none !important; } }
 
+input[type="text"] {
+  width: 100%;
+  color: #4A4A4A;
+  font-size: 1.25rem;
+  font-weight: 100;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #4A4A4A;
+  padding: 0.5rem 0; }
+
 .btn-minimal {
+  display: block;
   position: relative;
   margin: 0 0.75rem;
   color: white;
@@ -102,11 +113,7 @@ html, body {
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
+  letter-spacing: 1px; }
   @media screen and (max-width: 768px) {
     .btn-minimal {
       margin: 0 0.35rem; } }
@@ -318,11 +325,14 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0 10%; }
+  padding: 5% 10%; }
 
 .filter-page__title {
   font-weight: bold;
   font-size: 2rem; }
+
+.filter-tags__tag-bucket {
+  margin: 5% 0; }
 
 .filter-tag-btn {
   cursor: pointer;
@@ -618,7 +628,9 @@ header {
 
 .post-grid {
   max-width: 1250px;
-  margin: 0.5rem auto; }
+  margin: 0.5rem auto;
+  overflow: auto;
+  height: 100%; }
 
 .post-grid__item {
   display: inline-block;
@@ -638,22 +650,11 @@ header {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start; }
+  padding: 5% 10%; }
 
-.search-page__input {
-  width: 100%;
-  color: #4A4A4A;
+input.search-page__input {
   font-size: 2rem;
-  font-weight: 100;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #4A4A4A;
-  margin: 5% 0;
-  padding: 0.5rem 0; }
+  margin-bottom: 5%; }
 
 .spark-card {
   position: relative;

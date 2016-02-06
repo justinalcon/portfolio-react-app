@@ -5,6 +5,7 @@
 // minimal style. text with underline only.
 //
 .btn-minimal {
+  display: block;
   position: relative;
   margin: 0 0.75rem;
 
@@ -14,11 +15,6 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 
   @media screen and (max-width: $mobile-only__max-width) {
     margin: 0 0.35rem;
