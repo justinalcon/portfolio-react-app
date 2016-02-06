@@ -1,12 +1,14 @@
+@import "_sizes.scss";
+
 html, body {
   font-size: 16px;
   font-family: sans-serif;
   margin: 0;
   overflow: hidden;
 
-  // @media screen and (min-width: 1200px) {
-  //   font-size: 18px;
-  // }
+  @media screen and (max-width: $mobile-only__max-width) {
+    font-size: 12px;
+  }
 
 }
 
@@ -16,8 +18,20 @@ html, body {
 
 #router-content {
   position: absolute;
-  top: 50px;
+  top: 3rem;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.mobile-only {
+  @media screen and (min-width: ($mobile-only__max-width + 1)) {
+    display: none !important;
+  }
+}
+
+.desktop-only {
+  @media screen and (max-width: ($desktop-only__min-width - 1)) {
+    display: none !important;
+  }
 }

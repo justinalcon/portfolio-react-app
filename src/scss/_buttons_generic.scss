@@ -1,4 +1,5 @@
 @import '_colors.scss';
+@import '_sizes.scss';
 
 //
 // minimal style. text with underline only.
@@ -18,6 +19,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: $mobile-only__max-width) {
+    margin: 0 0.35rem;
+  }
 
 
   &:after,
@@ -59,9 +64,10 @@
   }
 
   .btn-minimal__icon {
-    width: 2rem;
-    height: 2rem;
+    width: 1.75rem;
+    height: 1.75rem;
     fill: white;
+    padding: 0.25rem 0;
   }
 
 }

@@ -1,4 +1,5 @@
 @import "../../scss/_colors.scss";
+@import "../../scss/_sizes.scss";
 
 header {
   position: relative;
@@ -11,7 +12,6 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 }
 
 .header__nav {
@@ -23,6 +23,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: $mobile-only__max-width) {
+    right: 0.35rem;
+  }
 }
 
 .header__logo,
@@ -32,6 +36,10 @@ header {
     font-size: 1.5rem;
     letter-spacing: 1px;
     text-transform: uppercase;
+
+    @media screen and (max-width: $mobile-only__max-width) {
+      font-size: 3vw;
+    }
 }
 
 .header__back-btn {
@@ -40,6 +48,10 @@ header {
   left: 0.5rem;
   bottom: 0;
   width: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &.header__back-btn--hidden {
     display: none;
