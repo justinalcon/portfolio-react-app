@@ -74,7 +74,8 @@ export default class ImgListVertical extends React.Component {
   };
 
   addHammerHandlers() {
-    // let toggle = this.toggleState;
+    
+    // Add swipe/left detection to the refs="list" dom node
     let forwardIndex = this.forwardIndex;
     let backwardIndex = this.backwardIndex;
     let list = this.refs.list;

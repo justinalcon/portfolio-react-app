@@ -99,14 +99,15 @@ class SparkDetailView extends React.Component {
 
   setTabState = (index) => {
     
-    // update internal state
-    this.setState({
-      tab_index: index
-    });
+    if(index >= 0 && index < this.slides.length){
+      // update internal state
+      this.setState({
+        tab_index: index
+      });
 
-    // update url to match
-    this.props.history.pushState(null, `/spark/${this.props.selected_post.id}/${index}`);
-
+      // update url to match
+      this.props.history.pushState(null, `/spark/${this.props.selected_post.id}/${index}`);  
+    }
   };
 
   render() {
@@ -115,11 +116,11 @@ class SparkDetailView extends React.Component {
       <div>
 
         <div className="spark-details__tabs">
-          <TabBar tab_index={this.state.tab_index} tab_names={this.tab_names} cbSetTabState={this.setTabState}/>
+          <TabBar tab_names={this.tab_names} tab_index={this.state.tab_index} cbSetTabState={this.setTabState}/>
         </div>
 
         <div className="spark-details__carousel">
-          <FeaturedCarousel tab_index={this.state.tab_index}>
+          <FeaturedCarousel tab_index={this.state.tab_index} cbSetTabState={this.setTabState}>
             {this.slides}
           </FeaturedCarousel>
         </div>
