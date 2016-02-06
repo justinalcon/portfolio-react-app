@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {detectIsMobile} from '../../js/utils';
+import {detectIsTouch} from '../../js/utils';
 
 // Stores
 import PostsActions from '../../js/actions/PostsActions';
@@ -32,13 +32,13 @@ export default class SparkCard extends React.Component {
   componentDidMount() {
     this.generateDetailIcons();
 
-    if(detectIsMobile()){
+    if(detectIsTouch()){
       this.addHammerHandlers();
     }
   }
 
   componentWillUnmount() {
-    if(detectIsMobile()){
+    if(detectIsTouch()){
       this.hammertime.off('swipe');
       this.hammertime.destroy();
     }
