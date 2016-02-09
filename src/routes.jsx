@@ -14,6 +14,6 @@ export default (
     <IndexRoute component={PostGrid} />
     <Route path="search" component={SearchPage} />
     <Route path="filter" component={FilterPage} />
-    <Route path="spark/:id(/:carousel_index)" component={SparkDetailView} />    
+    <Route path="spark/:id" component={SparkDetailView} />    
   </Route>
 );

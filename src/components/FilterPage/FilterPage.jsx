@@ -8,7 +8,7 @@ export default class FilterPage extends React.Component {
 
   render() {
     return (
-      <div className="filter-page">
+      <div className="filter-page css-js--fade-in">
         <FilterTags />        
       </div>
     )

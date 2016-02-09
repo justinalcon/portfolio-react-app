@@ -38,7 +38,7 @@ export default class PostGrid extends React.Component {
     
 
     return (
-      <div className="post-grid">
+      <div className="post-grid css-js--fade-in">
         {cards}
       </div>
     )

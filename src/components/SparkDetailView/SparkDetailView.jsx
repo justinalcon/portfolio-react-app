@@ -1,4 +1,5 @@
 import React from 'react';
+
 import connectToStores from 'alt-utils/lib/connectToStores';
 import PostsStore from '../../js/stores/PostsStore';
 import HeaderActions from '../../js/actions/HeaderActions';
@@ -37,8 +38,8 @@ class SparkDetailView extends React.Component {
 
     // Check for and validate optional :carousel_index param. If valid, set as default state.
     let initial_tab_index = 0;
-    if(props.params.carousel_index !== undefined && parseInt(props.params.carousel_index) < this.slides.length){
-      initial_tab_index = parseInt(props.params.carousel_index);
+    if(props.location.query.slide !== undefined && parseInt(props.location.query.slide) < this.slides.length){
+      initial_tab_index = parseInt(props.location.query.slide);
     }
 
     this.state = {
@@ -106,14 +107,14 @@ class SparkDetailView extends React.Component {
       });
 
       // update url to match
-      this.props.history.pushState(null, `/spark/${this.props.selected_post.id}/${index}`);  
+      this.props.history.pushState(null, this.props.location.pathname, {slide:index});  
     }
   };
 
   render() {
 
     return (
-      <div>
+      <div className="spark-details css-js--fade-in">
 
         <div className="spark-details__tabs">
           <TabBar tab_names={this.tab_names} tab_index={this.state.tab_index} cbSetTabState={this.setTabState}/>

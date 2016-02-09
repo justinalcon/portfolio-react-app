@@ -1,0 +1,39 @@
+.css-js--fade-in {
+  &.css-js--anim-enter {
+    opacity: 0.01;
+  }
+
+  &.css-js--anim-enter.css-js--anim-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-out 500ms;
+  }
+
+  &.css-js--anim-leave {
+    opacity: 1;
+  }
+
+  &.css-js--anim-leave.css-js--anim-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-out 0ms;
+  }  
+}
+
+.css-js--fly-up {
+  &.css-js--anim-enter {
+    transform: translateY(100%);
+  }
+
+  &.css-js--anim-enter.css-js--anim-enter-active {
+    transform: translateY(0px);
+    transition: transform 600ms ease-out 400ms;
+  }
+
+  &.css-js--anim-leave {
+    transform: translateY(0px);
+  }
+
+  &.css-js--anim-leave.css-js--anim-leave-active {
+    transform: translateY(100%);
+    transition: transform 500ms ease-out 0ms;
+  }  
+}
