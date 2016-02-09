@@ -21,3 +21,7 @@ export function detectIsTouch() {
     return navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)
   } 
 }
+
+export function slugify(string) {
+  return string.replace(/\s/g,'-').toLowerCase()
+}

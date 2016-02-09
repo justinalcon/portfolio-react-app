@@ -3,6 +3,7 @@ import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import PostsStore from '../../js/stores/PostsStore';
 import HeaderActions from '../../js/actions/HeaderActions';
+import {slugify} from '../../js/utils';
 
 // UI Component
 import TabBar from '../TabBar/TabBar';
@@ -36,11 +37,17 @@ class SparkDetailView extends React.Component {
     this.menu_btns = [];
     this.generateDetailContent(props.selected_post);
 
-    // Check for and validate optional :carousel_index param. If valid, set as default state.
+    // Check for query string. If found, set initial state.
     let initial_tab_index = 0;
-    if(props.location.query.slide !== undefined && parseInt(props.location.query.slide) < this.slides.length){
-      initial_tab_index = parseInt(props.location.query.slide);
-    }
+    if(props.location.query.slide !== undefined){
+      for (var i = 0; i < this.tab_names.length; i++) {
+        if(props.location.query.slide === slugify(this.tab_names[i])){
+          initial_tab_index = i;
+          this.setQueryString(i);
+          break;
+        }
+      };
+    } 
 
     this.state = {
       tab_index: initial_tab_index
@@ -107,8 +114,12 @@ class SparkDetailView extends React.Component {
       });
 
       // update url to match
-      this.props.history.pushState(null, this.props.location.pathname, {slide:index});  
+      this.setQueryString(index);
     }
+  };
+
+  setQueryString = (index) => {
+    this.props.history.pushState(null, this.props.location.pathname, { slide: slugify(this.tab_names[index]) } );  
   };
 
   render() {
