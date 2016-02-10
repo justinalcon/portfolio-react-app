@@ -43,7 +43,6 @@ class SparkDetailView extends React.Component {
       for (var i = 0; i < this.tab_names.length; i++) {
         if(props.location.query.slide === slugify(this.tab_names[i])){
           initial_tab_index = i;
-          this.setQueryString(i);
           break;
         }
       };
