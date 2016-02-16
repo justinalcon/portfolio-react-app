@@ -35,7 +35,7 @@ var stores_obj;
 
 // While waiting for end-points, storing test data in here
 var tmp_models_data = require('./tmp/tmp_models_data');
-
+var axios = require('axios');
 
 /*
   Runs on every get request
@@ -43,19 +43,35 @@ var tmp_models_data = require('./tmp/tmp_models_data');
 */
 app.get('*', function(req, res, next){
 
-  stores_obj = {
-    PostsStore: {
-      current_posts: tmp_models_data.getPostsAll(),
-    },
-    HeaderStore: {
-      header_title: ""
-    },
-    TagStore: {
-      tags_all: tmp_models_data.getTagsAll()
-    }
+  function getPostsAll(){
+    return axios.get('http://localhost:3000/sparks.json')
+    // return axios.get('http://localhost:3000/sparks/1.json')
+  }
+  function getTagsAll(){
+    return axios.get('http://localhost:3000/tags.json') 
   }
 
-  next();
+
+  // Create a promise that returns once both fn's are complete
+  axios.all([getPostsAll(), getTagsAll()])
+    .then(axios.spread(function(posts, tags){
+      
+      // Populate the stores
+      stores_obj = {
+        PostsStore: {
+          current_posts: posts.data,
+        },
+        HeaderStore: {
+          header_title: ""
+        },
+        TagStore: {
+          tags_all: tmp_models_data.getTagsAll()
+        }
+      }
+
+      next();
+
+    }));
 
 });
 

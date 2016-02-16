@@ -75,33 +75,31 @@ class SparkDetailView extends React.Component {
   }
 
   generateDetailContent(selected_post) {
-    
-    if(selected_post.article_text !== null){
-      this.slides.push(<ModuleArticle key={"article"+selected_post.id} article_text={this.props.selected_post.article_text} />);
+    if(typeof selected_post.longform !== "undefined"){
+      this.slides.push(<ModuleArticle key={"article"+selected_post.id} article_text={this.props.selected_post.longform} />);
       this.tab_names.push("Article");
       this.menu_btns.push(<BtnChipArticle key={"article-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(selected_post.dev_notes !== null){
+    if(typeof selected_post.dev_notes !== "undefined"){
       this.slides.push(<ModuleDevNotes key={"notes"+selected_post.id} dev_notes={this.props.selected_post.dev_notes} />);
       this.tab_names.push("Dev Notes");
       this.menu_btns.push(<BtnChipDevNotes key={"dev-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(selected_post.direct_link !== null){
+    if(typeof selected_post.direct_link !== "undefined"){
       this.slides.push(<ModuleLink key={"link"+selected_post.id} direct_link={this.props.selected_post.direct_link} />);
       this.tab_names.push("Link");
       this.menu_btns.push(<BtnChipLink key={"link-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(selected_post.image_gallery !== null){
+    if(typeof selected_post.image_gallery !== "undefined"){
       this.slides.push(<ModuleImages key={"imgs"+selected_post.id} image_gallery={this.props.selected_post.image_gallery}/>);
       this.tab_names.push("Images"); 
       this.menu_btns.push(<BtnChipImage key={"imgs-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(selected_post.canned_video !== null){
+    if(typeof selected_post.canned_video !== "undefined"){
       this.slides.push(<ModuleVideo key={"video"+selected_post.id} canned_video={this.props.selected_post.canned_video} />);
       this.tab_names.push("Video"); 
       this.menu_btns.push(<BtnChipVideo key={"video-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-
   }
 
   setTabState = (index) => {

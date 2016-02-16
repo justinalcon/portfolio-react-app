@@ -26,15 +26,15 @@ export default class ImgSingleFull extends React.Component {
     let loadImageSuccess = this.loadImageSuccess;
     let img = new Image();
     img.onload = function(){
-      console.log('My width is: ', this.naturalWidth);
-      console.log('My height is: ', this.naturalHeight);
+      // console.log('My width is: ', this.naturalWidth);
+      // console.log('My height is: ', this.naturalHeight);
       loadImageSuccess(this.naturalWidth, this.naturalHeight);
     };
     img.src = this.props.img_url;
   }
 
   loadImageSuccess = (width, height) => {
-    console.log("loadImageSuccess => ()", width, height);
+    // console.log("loadImageSuccess => ()", width, height);
     this.setState({
       img_loaded: true,
       img_width: width,
