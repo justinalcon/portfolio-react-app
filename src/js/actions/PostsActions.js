@@ -8,6 +8,10 @@ class PostsActions {
     return post
   }
 
+  loadMorePosts(how_many){
+    return how_many
+  }
+
 }
 
 module.exports = alt.createActions(PostsActions);

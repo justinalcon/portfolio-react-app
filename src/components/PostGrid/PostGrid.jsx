@@ -1,11 +1,12 @@
 import React from 'react';
 
+import connectToStores from 'alt-utils/lib/connectToStores';
 import PostsStore from '../../js/stores/PostsStore';
 import HeaderActions from '../../js/actions/HeaderActions';
 
 import SparkCard from '../SparkCard/SparkCard';
 
-export default class PostGrid extends React.Component {
+class PostGrid extends React.Component {
   constructor() {
     super();
   }
@@ -13,6 +14,15 @@ export default class PostGrid extends React.Component {
   state = {
     posts_data : PostsStore.getState().current_posts
   };
+
+  // Connects PostsStore.state into this.props. Using connectToStores alt util.
+  static getStores(props) {
+    return [PostsStore]
+  };
+  static getPropsFromStores(props) {
+    return PostsStore.getState()
+  };
+
 
   componentDidMount() {
     // On home view, reset Header to default state
@@ -23,8 +33,8 @@ export default class PostGrid extends React.Component {
 
     let cards;
 
-    if(this.state.posts_data.length > 0){
-      cards = this.state.posts_data.map((post) => {
+    if(this.props.current_posts.length > 0){
+      cards = this.props.current_posts.map((post) => {
         return (
           <div className="post-grid__item" key={post.id}>
             <SparkCard spark_data={post} />
@@ -45,3 +55,5 @@ export default class PostGrid extends React.Component {
   }
 
 }
+
+export default PostGrid = connectToStores(PostGrid);

@@ -31,9 +31,9 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(require('connect-livereload')());
 
 // The base url of our end-points
-var backend_url = "http://localhost:3000";
+var endpoint_url = require('./src/js/utils').endpoint_url;
 
-// AJAX library with Promises. How XHR communicte with 'backend_url'
+// AJAX library with Promises. How XHR communicte with 'endpoint_url'
 var axios = require('axios');
 
 // Placeholder. This is where we will prepopulate all data that is returned from endpoints.
@@ -48,11 +48,11 @@ var stores_obj = {};
 app.get('*', function(req, res, next){
 
   function getPostsAll(){
-    return axios.get(backend_url+'/sparks.json')
+    return axios.get(endpoint_url+'/sparks.json')
     // return axios.get('http://localhost:3000/sparks/1.json')
   }
   function getTagsAll(){
-    return axios.get(backend_url+'/tags.json') 
+    return axios.get(endpoint_url+'/tags.json') 
   }
 
   // Create a promise that returns once both fn's are complete
@@ -90,14 +90,14 @@ app.get('/spark/:id', function(req, res, next){
 
   var id = parseInt(req.params.id);
 
-  axios.get(`${backend_url}/sparks/${id}.json`)
+  axios.get(`${endpoint_url}/sparks/${id}.json`)
     .then(function(response){
 
       // pass returned data into selected_post
       stores_obj.PostsStore.selected_post = response.data;
       stores_obj.HeaderStore.header_title = response.data.title;
       next();
-      
+
     })
     .catch(function(response){
       res.status(404).send({ response: response, message: `Error retrieving spark with id:${id}` });

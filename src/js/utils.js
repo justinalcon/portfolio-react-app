@@ -1,3 +1,5 @@
+export const endpoint_url = "http://localhost:3000";
+
 export function detectIsNode() {
   return typeof window == "undefined"
 }
