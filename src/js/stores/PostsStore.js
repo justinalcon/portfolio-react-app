@@ -29,7 +29,7 @@ class PostsStore {
   }
 
   handleQuerySearch(search_term) {
-    window.alert(`TODO: submit search for "${search_term}"`);
+    console.log(`TODO: submit search for "${search_term}"`);
   }
 
   handleQueryByTags(tags_array) {

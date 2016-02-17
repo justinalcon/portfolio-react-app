@@ -47,36 +47,22 @@ class FilterTags extends React.Component {
     QueryActions.queryByTags();
   };
 
-  checkTagActiveState(tag_name) {
-    return this.props.tags_all[tag_name]
-  }
-
   render() {
     
-    // Create an array of tag buttons, passing in the active state to each one 
     let tags_render = [];
-    let tags_all = this.props.tags_all;
     let filter_tag_names = this.state.filter_tag_names;
 
-    // tags_all = Object.keys(tags_all).filter(function(tag_name){ return tag_name.indexOf(filter_tag_names) > -1 });
-
-    for(var tag_name in tags_all){
-      if (tags_all.hasOwnProperty(tag_name)) {
+    this.props.tags_all.forEach(function(tag_obj){
       
-        // check if the name passes the internal search filter
-        if(filter_tag_names == "" || tag_name.toLowerCase().indexOf(filter_tag_names.toLowerCase()) > -1){
-          
-          // return the active state bool
-          let active_state = this.checkTagActiveState(tag_name);
-          
-          // add a tag to the render variable
-          tags_render.push(
-            <FilterTagBtn key={tag_name} tag_name={tag_name} is_active={active_state} />
-          );
-        }
-
+      // check if the name passes the internal search filter
+      if(filter_tag_names == "" || tag_obj.tag.toLowerCase().indexOf(filter_tag_names.toLowerCase()) > -1){
+        
+        // add a component to the render variable
+        tags_render.push(
+          <FilterTagBtn key={tag_obj.id} tag_name={tag_obj.tag} is_active={tag_obj.state} />
+        );
       }
-    }
+    });
 
     return (
       <div className="filter-tags">

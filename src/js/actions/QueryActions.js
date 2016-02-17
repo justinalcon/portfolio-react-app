@@ -12,15 +12,12 @@ class QueryActions {
   queryByTags(){
 
     let tags_active = [];
-    let tags_all = TagStore.getState().tags_all
   
-    for (var tag in tags_all) {
-      if (tags_all.hasOwnProperty(tag)) {
-        if(tags_all[tag] == true){
-          tags_active.push(tag);
-        }
+    TagStore.getState().tags_all.forEach(function(tag_obj){
+      if(tag_obj.state){
+        tags_active.push(tag_obj.id);
       }
-    }
+    });
 
     return tags_active
   }

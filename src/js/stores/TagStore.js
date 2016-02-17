@@ -4,9 +4,15 @@ import TagActions from '../actions/TagActions';
 class TagStore {
   constructor() {
 
-    // An object of all tags
-    // name_of_tag: isSelected (boolean)
-    this.tags_all = {};
+    // An array of all tag objects
+    this.tags_all = [];
+    
+    // Once the server-side data is passed into the store, add a state boolean to each.
+    this.on('bootstrap', () => {
+      this.tags_all.forEach(function(tag){
+        tag.state = false;
+      });
+    });
 
     // Catch actions, and run functions to update store
     this.bindListeners({
@@ -16,17 +22,21 @@ class TagStore {
 
   }
 
-  // Assign the selected post as the passed in post
+  // Find tab object with tag_name, and toggle state boolean
   handleToggleTag(tag_name){
-    this.tags_all[tag_name] = !this.tags_all[tag_name];
+    for (var i = 0; i < this.tags_all.length; i++) {
+      if(this.tags_all[i].tag == tag_name){
+        this.tags_all[i].state = !this.tags_all[i].state;
+        break;
+      } 
+    }
   }
 
+  // Set all tags to false
   handleResetAllTags(){
-    for (var tag in this.tags_all) {
-      if (this.tags_all.hasOwnProperty(tag)) {
-        this.tags_all[tag] = false;
-      }
-    }
+    this.tags_all.forEach(function(tag_obj){
+      tag_obj.state = false;
+    });
   }
 
 }
