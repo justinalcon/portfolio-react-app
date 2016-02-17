@@ -5,6 +5,9 @@ import {detectIsTouch} from '../../js/utils';
 // Stores
 import PostsActions from '../../js/actions/PostsActions';
 
+// Model Spec
+import {SparkPropConfirm} from '../../js/specs';
+
 // Menu
 import BtnChipArticle from '../Buttons/Chips/BtnChipArticle';
 import BtnChipDevNotes from '../Buttons/Chips/BtnChipDevNotes';
@@ -58,35 +61,35 @@ export default class SparkCard extends React.Component {
   }
 
   generateDetailIcons() {
-    if(this.props.spark_data.longform.length !== 0){
+    if(SparkPropConfirm(this.props.spark_data, "longform")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=article`} key={"article-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipArticle add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       );
     }
-    if(this.props.spark_data.dev_notes.length !== 0){
+    if(SparkPropConfirm(this.props.spark_data, "dev_notes")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=dev-notes`} key={"dev-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipDevNotes add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       )
     }
-    if(this.props.spark_data.direct_link.length !== 0){
+    if(SparkPropConfirm(this.props.spark_data, "direct_link")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=link`} key={"link-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipLink add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       )
     }
-    // if(typeof this.props.spark_data.spark_images.length !== 0){
-    //   this.menu_btns.push(
-    //     <Link to={`/spark/${this.props.spark_data.id}?slide=images`} key={"imgs-btn"+this.props.spark_data.id} onClick={this.selectPost}>
-    //       <BtnChipImage add_class="btn-chip--white-out btn-chip--med" />
-    //     </Link>
-    //   )
-    // }
-    if(this.props.spark_data.canned_video.url !== null || this.props.spark_data.video_url.length !== 0){
+    if(SparkPropConfirm(this.props.spark_data, "images")){
+      this.menu_btns.push(
+        <Link to={`/spark/${this.props.spark_data.id}?slide=images`} key={"imgs-btn"+this.props.spark_data.id} onClick={this.selectPost}>
+          <BtnChipImage add_class="btn-chip--white-out btn-chip--med" />
+        </Link>
+      )
+    }
+    if(SparkPropConfirm(this.props.spark_data, "video")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=video`} key={"video-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipVideo add_class="btn-chip--white-out btn-chip--med" />

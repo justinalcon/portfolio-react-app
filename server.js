@@ -36,6 +36,7 @@ var stores_obj;
 // While waiting for end-points, storing test data in here
 var tmp_models_data = require('./tmp/tmp_models_data');
 var axios = require('axios');
+var backend_url = "http://localhost:3000";
 
 /*
   Runs on every get request
@@ -44,13 +45,12 @@ var axios = require('axios');
 app.get('*', function(req, res, next){
 
   function getPostsAll(){
-    return axios.get('http://localhost:3000/sparks.json')
+    return axios.get(backend_url+'/sparks.json')
     // return axios.get('http://localhost:3000/sparks/1.json')
   }
   function getTagsAll(){
-    return axios.get('http://localhost:3000/tags.json') 
+    return axios.get(backend_url+'/tags.json') 
   }
-
 
   // Create a promise that returns once both fn's are complete
   axios.all([getPostsAll(), getTagsAll()])
@@ -71,36 +71,34 @@ app.get('*', function(req, res, next){
 
       next();
 
-    }));
+    }))
+    .catch(function(response){
+      res.status(404).send({ response: response, message: "Error retrieving posts/tags in server.js" });
+      process.exit();
+    });
 
 });
 
 /*
-  Matches requests that have /spark/:id, with an optional 2nd param /:carousel_index
+  Matches requests that have /spark/:id
   Populates the PostsStore selected_post with data from spark/:id
 */
 app.get('/spark/:id', function(req, res, next){
 
   var id = parseInt(req.params.id);
 
-  // Simulate an ansyc ajax call
-  setTimeout(function(){
+  axios.get(`${backend_url}/sparks/${id}.json`)
+    .then(function(response){
 
-    // on success
-    if(true){
-      
       // pass returned data into selected_post
-      var data = tmp_models_data.getPostSingle(id);
-
-      stores_obj.PostsStore.selected_post = data;
-      stores_obj.HeaderStore.header_title = data.title;
-
-    } else {
-      res.status(404).send({ message: `spark with id:${id} not found` });
+      stores_obj.PostsStore.selected_post = response.data;
+      stores_obj.HeaderStore.header_title = response.data.title;
+      next();
+    })
+    .catch(function(response){
+      res.status(404).send({ response: response, message: `Error retrieving spark with id:${id}` });
       process.exit();
-    }  
-    next();
-  }, 300);
+    });
   
 });
 
