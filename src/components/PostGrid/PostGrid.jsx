@@ -48,7 +48,7 @@ class PostGrid extends React.Component {
     
 
     return (
-      <div className="post-grid css-js--fade-in">
+      <div className="post-grid">
         {cards}
       </div>
     )

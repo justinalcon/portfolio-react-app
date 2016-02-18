@@ -10,6 +10,7 @@ class PostsStore {
 
     // Boolean state value to show if loading or not.
     this.is_loading_more_posts = false;
+    this.TEMPORARY_COUNTER = 100;
 
     // A single selected post
     this.selected_post = {};
@@ -34,19 +35,28 @@ class PostsStore {
     this.selected_post = post;
   }
 
+  // Catch initial action dispatch and set loading to true
   handleLoadMorePosts(){
     this.setState({
       is_loading_more_posts: true
     })
-    // console.log("handleLoadMorePosts");
   }
+
+  // Catch success of handleLoadMorePosts. Update the state var with new posts data
   handleLoadMorePostsSuccess(posts){
-    // console.log("handleLoadMorePostsSuccess");
     let appended_posts = this.current_posts;
+    
+    /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
+    if(this.TEMPORARY_COUNTER == undefined) this.TEMPORARY_COUNTER = 100;
+    this.TEMPORARY_COUNTER += 100;
+    let TEMPORARY_COUNTER = this.TEMPORARY_COUNTER;
+
     posts.data.forEach(function(post){
       
       /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
-      post.id = Math.floor(Math.random()*100);
+      TEMPORARY_COUNTER += 1;
+      post.id = TEMPORARY_COUNTER;
+      post.title = `Temp #:${TEMPORARY_COUNTER}`;;
       /* ---------------- */
 
       appended_posts.push(post);
@@ -58,6 +68,8 @@ class PostsStore {
       is_loading_more_posts: false
     });
   }
+
+  // Catch fail of handleLoadMorePosts. Reset state and throw error
   handleLoadMorePostsFail(err_msg){
     this.setState({
       is_loading_more_posts: false

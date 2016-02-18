@@ -21,7 +21,7 @@ export default class IndexPage extends React.Component {
 
   render() {
     return (
-      <div className="index-page" onClick={this.handleLoadMore}>
+      <div className="index-page css-js--fade-in" onClick={this.handleLoadMore}>
         <InfiniteScrollContain fnLoadMore={this.handleLoadMore}>
           <PostGrid/>
         </InfiniteScrollContain>
