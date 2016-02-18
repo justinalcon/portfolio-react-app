@@ -2,14 +2,14 @@ import alt from '../alt';
 import PostsActions from '../actions/PostsActions';
 import QueryActions from '../actions/QueryActions';
 
-import axios from 'axios';
-import {endpoint_url} from '../utils';
-
 class PostsStore {
   constructor() {
 
     // All of the posts in view
     this.current_posts = [];
+
+    // Boolean state value to show if loading or not.
+    this.is_loading_more_posts = false;
 
     // A single selected post
     this.selected_post = {};
@@ -21,6 +21,8 @@ class PostsStore {
     this.bindListeners({
       handleUpdateSelectedPost: PostsActions.updateSelectedPost,
       handleLoadMorePosts: PostsActions.loadMorePosts,
+      handleLoadMorePostsSuccess: PostsActions.loadMorePostsSuccess,
+      handleLoadMorePostsFail: PostsActions.loadMorePostsFail,
       handleQuerySearch: QueryActions.querySearch,
       handleQueryByTags: QueryActions.queryByTags
     });
@@ -32,30 +34,36 @@ class PostsStore {
     this.selected_post = post;
   }
 
-  //
-  handleLoadMorePosts(how_many) {
-    let selected_post = this.selected_post;
-    
+  handleLoadMorePosts(){
+    this.setState({
+      is_loading_more_posts: true
+    })
+    // console.log("handleLoadMorePosts");
+  }
+  handleLoadMorePostsSuccess(posts){
+    // console.log("handleLoadMorePostsSuccess");
+    let appended_posts = this.current_posts;
+    posts.data.forEach(function(post){
+      
+      /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
+      post.id = Math.floor(Math.random()*100);
+      /* ---------------- */
 
-    axios.get(endpoint_url+'/sparks.json')
-      .then(function(response){
-        
-        let appended_posts = this.current_posts;
-        response.data.forEach(function(post){
-          
-          /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
-          post.id = Math.floor(Math.random()*100);
-          /* ---------------- */
+      appended_posts.push(post);
+    });
 
-          appended_posts.push(post);
-        });
-        this.setState({current_posts: appended_posts});
-
-      }.bind(this))
-      .catch(function(response){
-        console.error("Error loading more posts", response);
-      });
-  };
+    // Update state and emit change
+    this.setState({
+      current_posts: appended_posts,
+      is_loading_more_posts: false
+    });
+  }
+  handleLoadMorePostsFail(err_msg){
+    this.setState({
+      is_loading_more_posts: false
+    });
+    console.error(err_msg.status, err_msg.statusText);
+  }
 
   //
   handleQuerySearch(search_term) {
