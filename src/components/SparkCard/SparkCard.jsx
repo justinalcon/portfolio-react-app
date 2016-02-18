@@ -99,6 +99,7 @@ export default class SparkCard extends React.Component {
   }
 
   selectPost = () => {
+    PostsActions.holdScrollForSelectedPost();
     PostsActions.updateSelectedPost(this.props.spark_data);
   };
 

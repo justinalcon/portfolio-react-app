@@ -10,10 +10,11 @@ class PostsStore {
 
     // Boolean state value to show if loading or not.
     this.is_loading_more_posts = false;
-    this.TEMPORARY_COUNTER = 100;
+    this.TEMPORARY_COUNTER = 10;
 
     // A single selected post
     this.selected_post = {};
+    this.selected_post_scroll_pos = 0;
 
     // An array of all tags
     this.tags_all = [];
@@ -21,6 +22,7 @@ class PostsStore {
     // Catch actions, and run functions to update store
     this.bindListeners({
       handleUpdateSelectedPost: PostsActions.updateSelectedPost,
+      handleHoldScrollForSelectedPost: PostsActions.holdScrollForSelectedPost,
       handleLoadMorePosts: PostsActions.loadMorePosts,
       handleLoadMorePostsSuccess: PostsActions.loadMorePostsSuccess,
       handleLoadMorePostsFail: PostsActions.loadMorePostsFail,
@@ -35,6 +37,10 @@ class PostsStore {
     this.selected_post = post;
   }
 
+  handleHoldScrollForSelectedPost(scroll_amt) {
+    this.selected_post_scroll_pos = scroll_amt;
+  }
+
   // Catch initial action dispatch and set loading to true
   handleLoadMorePosts(){
     this.setState({
@@ -47,8 +53,8 @@ class PostsStore {
     let appended_posts = this.current_posts;
     
     /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
-    if(this.TEMPORARY_COUNTER == undefined) this.TEMPORARY_COUNTER = 100;
-    this.TEMPORARY_COUNTER += 100;
+    if(this.TEMPORARY_COUNTER == undefined) this.TEMPORARY_COUNTER = 10;
+    this.TEMPORARY_COUNTER += 10;
     let TEMPORARY_COUNTER = this.TEMPORARY_COUNTER;
 
     posts.data.forEach(function(post){

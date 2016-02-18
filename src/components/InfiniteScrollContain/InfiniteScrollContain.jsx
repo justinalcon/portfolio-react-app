@@ -1,25 +1,58 @@
 import React from 'react';
 
+// Stores
+import connectToStores from 'alt-utils/lib/connectToStores';
+import PostsStore from '../../js/stores/PostsStore';
+
+// Utils
 import {detectIsNode, throttle} from '../../js/utils';
 
-export default class InfiniteScrollContain extends React.Component {
+class InfiniteScrollContain extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      previous_scroll_pos: 0
+    }
   }
 
+  static defaultProps = {
+    selected_post_scroll_pos: 0
+  };
+
   static propTypes = {
-    fnLoadMore: React.PropTypes.func.isRequired
+    fnLoadMore: React.PropTypes.func.isRequired,
+    selected_post_scroll_pos: React.PropTypes.number
   };  
 
-  componentDidMount() {
+  // Connects PostsStore.state into this.props. Using connectToStores alt util.
+  static getStores(props) {
+    return [PostsStore]
+  };
+  static getPropsFromStores(props) {
+    var post_state =  PostsStore.getState();
+    return {
+      selected_post_scroll_pos: post_state.selected_post_scroll_pos
+    }
+  };
+  
+  componentDidMount() {    
+    // save sizes for perf
     this.initializeScrollVariables();
 
+    // if on client
     if(!detectIsNode()){
+
+      // add scroll event handler
       this.refs.infinite_scroll.addEventListener("scroll", throttle(this.handleScroll, 100));
+
+      // jump to previous known position
+      this.jumpScrollTo(this.props.selected_post_scroll_pos);
     }
   }
 
   componentWillUnmount() {
+    // rm event handler to rm memory leak
     if(!detectIsNode()){
       this.refs.infinite_scroll.removeEventListener("scroll", throttle(this.handleScroll, 100));
     }    
@@ -33,6 +66,7 @@ export default class InfiniteScrollContain extends React.Component {
     this.window_height = window.innerHeight;
   }
 
+  // Scroll logic to detect bottom of .infinite-scroll
   handleScroll = () => {
 
     let scroll_height = this.refs.infinite_scroll.children[0].scrollHeight;
@@ -41,6 +75,10 @@ export default class InfiniteScrollContain extends React.Component {
     if(scroll_height - dist_from_bottom < 400){
       this.props.fnLoadMore();
     }
+  };
+
+  jumpScrollTo = (scroll_top) => {
+    this.refs.infinite_scroll.scrollTop = scroll_top;
   };
 
   render() {
@@ -52,3 +90,5 @@ export default class InfiniteScrollContain extends React.Component {
   }
 
 }
+
+export default InfiniteScrollContain = connectToStores(InfiniteScrollContain);

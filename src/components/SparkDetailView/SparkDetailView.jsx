@@ -78,7 +78,6 @@ class SparkDetailView extends React.Component {
   }
 
   generateDetailContent(selected_post) {
-    console.log(selected_post);
     if(SparkPropConfirm(selected_post, "longform")){
       this.slides.push(<ModuleArticle key={"article"+selected_post.id} article_text={selected_post.longform} />);
       this.tab_names.push("Article");

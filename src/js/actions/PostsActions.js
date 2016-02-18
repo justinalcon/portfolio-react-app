@@ -15,6 +15,11 @@ class PostsActions {
     return post
   }
 
+  holdScrollForSelectedPost(){
+    return document.getElementsByClassName("infinite-scroll")[0].scrollTop
+  }
+  
+
   // 2 step Async Actions 
   // Using defer so success/fail action waits for store to finish dispatch
   // Could be improved using this example: http://alt.js.org/docs/async/

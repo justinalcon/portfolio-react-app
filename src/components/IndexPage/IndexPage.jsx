@@ -10,14 +10,9 @@ export default class IndexPage extends React.Component {
     super();
   }
 
-  handleLoadMore = (callback) => {
-    console.log("onClick fired");
+  handleLoadMore(){
     PostsActions.loadMorePosts();
   };
-
-  loadedMoreCallback() {
-    console.log("successly called back to load more");
-  }
 
   render() {
     return (
