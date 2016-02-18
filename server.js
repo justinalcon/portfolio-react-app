@@ -76,7 +76,10 @@ app.get('*', function(req, res, next){
 
     }))
     .catch(function(response){
-      res.status(404).send({ response: response, message: "Error retrieving posts/tags in server.js" });
+      res.status(404).send({ 
+        message: "Error retrieving posts/tags in server.js", 
+        status: response.status,
+      });
       process.exit();
     });
 
@@ -100,7 +103,10 @@ app.get('/spark/:id', function(req, res, next){
 
     })
     .catch(function(response){
-      res.status(404).send({ response: response, message: `Error retrieving spark with id:${id}` });
+      res.status(404).send({ 
+        message: `Error retrieving spark with id:${id}`,
+        status: response.status,
+      });
       process.exit();
     });
   
