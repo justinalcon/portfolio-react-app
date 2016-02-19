@@ -10,7 +10,6 @@ class PostsStore {
 
     // Boolean state value to show if loading or not.
     this.is_loading_more_posts = false;
-    this.TEMPORARY_COUNTER = 10;
 
     // A single selected post
     this.selected_post = {};
@@ -52,19 +51,7 @@ class PostsStore {
   handleLoadMorePostsSuccess(posts){
     let appended_posts = this.current_posts;
     
-    /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
-    if(this.TEMPORARY_COUNTER == undefined) this.TEMPORARY_COUNTER = 10;
-    this.TEMPORARY_COUNTER += 10;
-    let TEMPORARY_COUNTER = this.TEMPORARY_COUNTER;
-
     posts.data.forEach(function(post){
-      
-      /* TEMP WORKAROUND TO TEST PULLING IN MORE DATA */
-      TEMPORARY_COUNTER += 1;
-      post.id = TEMPORARY_COUNTER;
-      post.title = `Temp #:${TEMPORARY_COUNTER}`;;
-      /* ---------------- */
-
       appended_posts.push(post);
     });
 

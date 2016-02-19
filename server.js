@@ -46,10 +46,9 @@ var stores_obj = {};
   Populate Stores with default data
 */
 app.get('*', function(req, res, next){
-    
 
   function getPostsAll(){
-    return axios.get(endpoint_url+'/sparks.json')
+    return axios.get(`${endpoint_url}/sparks.json?start=0&limit=9`)
   }
   function getTagsAll(){
     return axios.get(endpoint_url+'/tags.json') 

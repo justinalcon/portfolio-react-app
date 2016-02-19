@@ -5,9 +5,17 @@ import PostsStore from '../stores/PostsStore';
 import axios from 'axios';
 import {endpoint_url} from '../utils';
 
+
+const LOAD_MORE_LIMIT = 3;
+
 class PostsActions {
   constructor() {
     this.prevent_more_posts = false;
+    
+    // the # to start loading more at
+    // increments after successful loadMorePosts() 
+    this.load_more_offset = 9;
+    
   }
 
   // Pass in a post_data obj. Action is handled by PostsStore and assigns to selected_post
@@ -37,11 +45,14 @@ class PostsActions {
       this.prevent_more_posts = true;
 
       // ajax for endpoints. call succuess/fail fn based on promise
-      axios.get(endpoint_url+'/sparks.json')
+      axios.get(`${endpoint_url}/sparks.json?start=${this.load_more_offset}&limit=${LOAD_MORE_LIMIT}`)
         .then(function(posts){
+          // success
           this.loadMorePostsSuccess.defer(posts)
+          this.load_more_offset += LOAD_MORE_LIMIT;
         }.bind(this))
         .catch(function(err_msg){
+          // fail
           this.loadMorePostsFail.defer(err_msg)
         }.bind(this))
     }
