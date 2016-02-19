@@ -1,9 +1,14 @@
 import React from 'react';
+
+
 import connectToStores from 'alt-utils/lib/connectToStores';
 import HeaderStore from '../../js/stores/HeaderStore';
+import PostsActions from '../../js/actions/PostsActions';
 
 import {Link, IndexLink} from 'react-router';
 import BackBtn from '../Buttons/BackBtn/BackBtn';
+
+
 
 class Header extends React.Component {
   constructor() {
@@ -40,7 +45,7 @@ class Header extends React.Component {
           <BackBtn/>
         </div>
 
-        <span className="header__logo font--headline"><IndexLink to="/">{title}</IndexLink></span>
+        <span className="header__logo font--headline"><IndexLink to="/" onClick={PostsActions.loadPostsDefault}>{title}</IndexLink></span>
 
         <nav className="header__nav">
           <Link className="btn-minimal" activeClassName="btn-minimal--active" to="/filter">

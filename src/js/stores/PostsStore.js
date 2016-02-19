@@ -22,6 +22,7 @@ class PostsStore {
     this.bindListeners({
       handleUpdateSelectedPost: PostsActions.updateSelectedPost,
       handleHoldScrollForSelectedPost: PostsActions.holdScrollForSelectedPost,
+      handleEmptyPosts: PostsActions.emptyPosts,
       handleLoadMorePosts: PostsActions.loadMorePosts,
       handleLoadMorePostsSuccess: PostsActions.loadMorePostsSuccess,
       handleLoadMorePostsFail: PostsActions.loadMorePostsFail,
@@ -45,6 +46,13 @@ class PostsStore {
     this.setState({
       is_loading_more_posts: true
     })
+  }
+
+  // When a request comes in for new tags, reset current posts
+  handleEmptyPosts(){
+    this.setState({
+      current_posts: []
+    });
   }
 
   // Catch success of handleLoadMorePosts. Update the state var with new posts data

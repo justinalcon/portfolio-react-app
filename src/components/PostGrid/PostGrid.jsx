@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import connectToStores from 'alt-utils/lib/connectToStores';
 import PostsStore from '../../js/stores/PostsStore';
 import HeaderActions from '../../js/actions/HeaderActions';
@@ -36,20 +38,23 @@ class PostGrid extends React.Component {
     if(this.props.current_posts.length > 0){
       cards = this.props.current_posts.map((post) => {
         return (
-          <div className="post-grid__item" key={post.id}>
+          <div className="post-grid__item css-js--fade-in" key={post.id}>
             <SparkCard spark_data={post} />
           </div>
         );
       });
     } else {
-      cards = <p>Discovery content will show here. Working on that now...</p>;
-      console.error("posts_data returned empty;");
+
+      // Loading indicator?
+      cards = ""; //<p>Discovery content will show here. Working on that now...</p>;
     }
     
 
     return (
       <div className="post-grid">
-        {cards}
+        <ReactCSSTransitionGroup transitionName="css-js--anim" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+          {cards}
+        </ReactCSSTransitionGroup>
       </div>
     )
   }

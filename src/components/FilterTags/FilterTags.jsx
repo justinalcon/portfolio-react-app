@@ -3,7 +3,7 @@ import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import TagStore from '../../js/stores/TagStore';
 import TagActions from '../../js/actions/TagActions';
-import QueryActions from '../../js/actions/QueryActions';
+import PostsActions from '../../js/actions/PostsActions';
 
 import FilterTagBtn from '../FilterTagBtn/FilterTagBtn';
 
@@ -15,6 +15,10 @@ class FilterTags extends React.Component {
       filter_tag_names: ""
     }
   }
+
+  static propTypes = {
+    backToIndex: React.PropTypes.func.isRequired
+  };
 
   // Connects TagStore.state into this.props. Using connectToStores alt util.
   static getStores(props) {
@@ -44,7 +48,24 @@ class FilterTags extends React.Component {
   };
 
   submit = () => {
-    QueryActions.queryByTags();
+    
+    // iterate over the tags and create a comma delimited string
+    let tags_active_string = "";
+    TagStore.getState().tags_all.forEach(function(tag_obj){
+      if(tag_obj.state){
+        tags_active_string += tag_obj.tag + ",";
+      }
+    });
+
+    // strip off final string
+    tags_active_string = tags_active_string.replace(/,$/, "");
+
+    // send action to ajax and update stores
+    PostsActions.loadPostsWithTags(tags_active_string);
+
+    // redirect back to home page
+    this.props.backToIndex();
+
   };
 
   render() {
