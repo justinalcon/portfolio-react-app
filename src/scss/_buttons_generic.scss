@@ -74,7 +74,9 @@
 .btn-box {
   cursor: pointer;
   color: white;
+  
   background: $color-primary;
+  box-shadow: 0 0 0px rgba(0,0,0,0);
   
   outline: none;
   border: 1px solid $color-primary;;
@@ -87,6 +89,13 @@
 
   padding: 0.5rem 1.25rem;
 
+  transition: background 0.3s ease-out 0s, box-shadow 0.3s ease-out 0s;
+
+  &:hover {
+    background: lighten($color-primary, 15%);
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  }
+
   &.btn-box--invert {
     color: $color-primary;
     background: white;
@@ -97,5 +106,10 @@
     color: lighten($color-gray-main, 10%);
     background: white;
     border: 1px solid lighten($color-gray-main, 33%);
+
+    &:hover {
+      background: darken(white, 5%);
+      box-shadow: 0 0 4px rgba(0,0,0,0.25);
+    }
   }
 }

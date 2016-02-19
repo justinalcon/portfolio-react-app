@@ -37,7 +37,8 @@ html, body {
   }
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   color: $color-gray-main;
   font-size: 1.25rem;

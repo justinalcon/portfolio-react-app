@@ -1,0 +1,28 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.login-page__box {
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.login-page__input {
+  margin-bottom: 0.5rem;
+}
+
+.login-page__submit {
+  display: block;
+  margin-top: 1rem;
+}
