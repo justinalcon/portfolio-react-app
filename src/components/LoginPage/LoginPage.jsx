@@ -1,5 +1,10 @@
 import React from 'react';
 
+import UserActions from '../../js/actions/UserActions';
+
+import axios from 'axios';
+import {endpoint_url} from '../../js/utils';
+
 export default class LoginPage extends React.Component {
   constructor() {
     super();
@@ -19,10 +24,27 @@ export default class LoginPage extends React.Component {
   };
 
   submitForm = () =>{
-    // FE validation
+
+    /***** TEMP */
+    let username = "test@test.com";//this.refs.input_username.value;
+    let password = "testtest";//this.refs.input_password.value;
+    /***** */
 
     // AJAX with params
-    console.log("submitting form", this.refs.input_username.value, this.refs.input_password.value);
+    axios.post(`${endpoint_url}/api/login.json?email=${username}&password=${password}`)
+      .then(function (response) {
+        // success
+        UserActions.saveCredentials(response.data);
+
+        // check for UserStore.pre_login_req_url
+        this.props.history.push("/");
+        
+      }.bind(this))
+      .catch(function (response) {
+        // Fail
+        console.error(response);
+        // show a view notification
+      });
   };
 
   render() {

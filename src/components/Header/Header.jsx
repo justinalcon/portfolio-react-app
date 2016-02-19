@@ -2,6 +2,7 @@ import React from 'react';
 
 
 import connectToStores from 'alt-utils/lib/connectToStores';
+import UserStore from '../../js/stores/UserStore';
 import HeaderStore from '../../js/stores/HeaderStore';
 import PostsActions from '../../js/actions/PostsActions';
 
@@ -17,7 +18,7 @@ class Header extends React.Component {
 
   // Get HeaderStore.state and pass into this.props
   static getStores(props) {
-    return [HeaderStore]
+    return [HeaderStore, UserStore]
   };
   static getPropsFromStores(props) {
     return HeaderStore.getState()

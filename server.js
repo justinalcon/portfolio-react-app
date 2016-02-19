@@ -58,6 +58,8 @@ app.get('*', function(req, res, next){
   axios.all([getPostsAll(), getTagsAll()])
     .then(axios.spread(function(posts, tags){
 
+      console.log(posts);
+
       // Populate the stores
       stores_obj = {
         PostsStore: {
