@@ -38,7 +38,7 @@ class PostGrid extends React.Component {
     if(this.props.current_posts.length > 0){
       cards = this.props.current_posts.map((post) => {
         return (
-          <div className="post-grid__item css-js--fade-in" key={post.id}>
+          <div className="post-grid__item css-js--fade-in css-js--fade-in-instant" key={post.id}>
             <SparkCard spark_data={post} />
           </div>
         );
@@ -52,7 +52,7 @@ class PostGrid extends React.Component {
 
     return (
       <div className="post-grid">
-        <ReactCSSTransitionGroup transitionName="css-js--anim" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+        <ReactCSSTransitionGroup transitionName="css-js--anim" transitionEnterTimeout={1000} transitionLeave={false}>
           {cards}
         </ReactCSSTransitionGroup>
       </div>

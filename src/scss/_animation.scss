@@ -1,11 +1,15 @@
 .css-js--fade-in {
   &.css-js--anim-enter {
-    opacity: 0.01;
+    opacity: 0;
   }
 
   &.css-js--anim-enter.css-js--anim-enter-active {
     opacity: 1;
     transition: opacity 500ms ease-out 500ms;
+    
+    &.css-js--fade-in-instant {
+      transition-delay: 0;
+    }
   }
 
   &.css-js--anim-leave {
@@ -13,7 +17,7 @@
   }
 
   &.css-js--anim-leave.css-js--anim-leave-active {
-    opacity: 0.01;
+    opacity: 0;
     transition: opacity 300ms ease-out 0ms;
   }  
 }

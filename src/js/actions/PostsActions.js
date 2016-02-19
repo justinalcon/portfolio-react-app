@@ -4,7 +4,8 @@ import axios from 'axios';
 import {endpoint_url} from '../utils';
 
 
-const LOAD_MORE_LIMIT = 3;
+const DEFAULT_OFFSET = 9;
+const DEFAULT_LIMIT = 3;
 
 class PostsActions {
   constructor() {
@@ -46,8 +47,11 @@ class PostsActions {
     this.load_more_offset = 0;
     this.load_more_limit = 9;
 
+    // dispatch to store to reset all posts
     this.emptyPosts();
-    this.loadMorePosts().defer();
+
+    // call load more with params from above
+    this.loadMorePosts.defer();
 
     return true;
   }
@@ -84,22 +88,25 @@ class PostsActions {
       // dispatch event for initial "loading" state
       dispatch();
       this.prevent_more_posts = true;
-
+      
       // ajax for endpoints. call succuess/fail fn based on promise
       axios.get(`${endpoint_url}/sparks.json?tags=${this.load_more_tags}&start=${this.load_more_offset}&limit=${this.load_more_limit}`)
         .then(function(posts){
           // success
+          if(this.load_more_limit == DEFAULT_LIMIT){
+            // increment counter
+            this.load_more_offset += this.load_more_limit;
+          } else {
+            // subsequent 'infinite-load' calls should only load 3
+            this.load_more_limit = DEFAULT_LIMIT;
+            this.load_more_offset = DEFAULT_OFFSET;
+          }
           this.loadMorePostsSuccess.defer(posts)
-          this.load_more_offset += this.load_more_limit;
         }.bind(this))
         .catch(function(err_msg){
           // fail
           this.loadMorePostsFail.defer(err_msg)
         }.bind(this))
-
-      // subsequent 'infinite-load' calls should only load 3
-      this.load_more_limit = 3;
-
     }
   };
 

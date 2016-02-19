@@ -40,11 +40,22 @@ class FilterTags extends React.Component {
   };
 
   clear = () => {
+
+    // deselect all the tags
     TagActions.resetAllTags();
+
+    // clear input fields
     this.refs.tag_search.value = "";
     this.setState({
       filter_tag_names: ""
     });
+
+    // ajax to load default posts
+    PostsActions.loadPostsDefault();
+
+    // go back to index
+    this.backToIndex();
+
   };
 
   submit = () => {
@@ -63,10 +74,15 @@ class FilterTags extends React.Component {
     // send action to ajax and update stores
     PostsActions.loadPostsWithTags(tags_active_string);
 
-    // redirect back to home page
-    this.props.backToIndex();
-
+    // go back to index
+    this.backToIndex();    
   };
+
+  backToIndex(){
+    // redirect back to home page
+    this.props.backToIndex();  
+  }
+  
 
   render() {
     
