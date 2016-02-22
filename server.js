@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
+var cookies = require('cookie-parser');
 
 // Babel ES6/JSX Compiler
 require('babel-register');
@@ -22,6 +23,7 @@ var ip = '0.0.0.0';
 var port = 8080;
 var app = express();
 
+
 app.use(logger('dev'))
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -29,6 +31,8 @@ app.set('views', path.join(__dirname,'src/views'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(require('connect-livereload')());
+app.use(cookies());
+
 
 // The base url of our end-points
 var endpoint_url = require('./src/js/utils').endpoint_url;
@@ -40,6 +44,22 @@ var axios = require('axios');
 // Using Alt with Iso, we bootstrap here in server.js, and then bootstrap in client.js to sync.
 var stores_obj = {};
 
+/*
+** Check auth_token, otherwise redirect to login page
+*/
+app.get('/login', function(req, res, next){
+  // On login page, set a var so we dont redirect into infinite loop
+  res.locals.login_page = true;
+  next();
+});
+app.get('*', function(req, res, next){
+  console.log("*** AUTH TOKEN:", req.cookies.auth_token);
+  if(res.locals.login_page !== true && req.cookies.auth_token == undefined){
+    res.redirect('/login');
+  } else {
+    next();
+  } 
+});
 
 /*
   Runs on every get request
@@ -48,17 +68,15 @@ var stores_obj = {};
 app.get('*', function(req, res, next){
 
   function getPostsAll(){
-    return axios.get(`${endpoint_url}/sparks.json?start=0&limit=9`)
+    return axios.get(`${endpoint_url}/sparks.json?start=0&limit=9&token=${req.cookies.auth_token}`)
   }
   function getTagsAll(){
-    return axios.get(endpoint_url+'/tags.json') 
+    return axios.get(`${endpoint_url}/tags.json?token=${req.cookies.auth_token}`) 
   }
 
   // Create a promise that returns once both fn's are complete
   axios.all([getPostsAll(), getTagsAll()])
     .then(axios.spread(function(posts, tags){
-
-      console.log(posts);
 
       // Populate the stores
       stores_obj = {
@@ -70,6 +88,11 @@ app.get('*', function(req, res, next){
         },
         TagStore: {
           tags_all: tags.data
+        },
+        UserStore: {
+          auth_token: req.cookies.auth_token,
+          user_role: req.cookies.user_role,
+          is_logged_in: true
         }
       }
 
@@ -94,7 +117,7 @@ app.get('/spark/:id', function(req, res, next){
 
   var id = parseInt(req.params.id);
 
-  axios.get(`${endpoint_url}/sparks/${id}.json`)
+  axios.get(`${endpoint_url}/sparks/${id}.json?token=${req.cookies.auth_token}`)
     .then(function(response){
 
       // pass returned data into selected_post

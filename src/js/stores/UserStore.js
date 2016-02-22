@@ -1,6 +1,9 @@
 import alt from '../alt';
 import UserActions from '../actions/UserActions';
 
+import {setCookie, getCookie, checkCookie} from '../utils';
+
+
 class UserStore {
   constructor() {
     
@@ -30,6 +33,9 @@ class UserStore {
     this.auth_token = data[0].message;
     this.user_role = data[0].user_role;
     this.is_logged_in = true;
+
+    setCookie("auth_token", this.auth_token, 30);
+    setCookie("user_role", this.user_role, 30);
   }
 
 }

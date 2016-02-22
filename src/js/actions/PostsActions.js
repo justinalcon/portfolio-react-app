@@ -2,7 +2,7 @@ import alt from '../alt';
 
 import axios from 'axios';
 import {endpoint_url} from '../utils';
-
+import UserStore from '../stores/UserStore';
 
 const DEFAULT_OFFSET = 9;
 const DEFAULT_LIMIT = 3;
@@ -90,7 +90,7 @@ class PostsActions {
       this.prevent_more_posts = true;
       
       // ajax for endpoints. call succuess/fail fn based on promise
-      axios.get(`${endpoint_url}/sparks.json?tags=${this.load_more_tags}&start=${this.load_more_offset}&limit=${this.load_more_limit}`)
+      axios.get(`${endpoint_url}/sparks.json?tags=${this.load_more_tags}&start=${this.load_more_offset}&limit=${this.load_more_limit}&token=${UserStore.getState().auth_token}`)
         .then(function(posts){
           // success
           if(this.load_more_limit == DEFAULT_LIMIT){
