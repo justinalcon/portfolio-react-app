@@ -94,7 +94,7 @@ class SparkDetailView extends React.Component {
       this.menu_btns.push(<BtnChipLink key={"link-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
     if(SparkPropConfirm(selected_post, "images")){
-      this.slides.push(<ModuleImages key={"imgs"+selected_post.id} image_gallery={selected_post.image_gallery}/>);
+      this.slides.push(<ModuleImages key={"imgs"+selected_post.id} image_gallery={selected_post.images}/>);
       this.tab_names.push("Images"); 
       this.menu_btns.push(<BtnChipImage key={"imgs-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }

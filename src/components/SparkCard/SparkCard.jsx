@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {detectIsTouch} from '../../js/utils';
+import {ENDPOINT_URL, detectIsTouch} from '../../js/utils';
 
 // Stores
 import PostsActions from '../../js/actions/PostsActions';
@@ -27,8 +27,7 @@ export default class SparkCard extends React.Component {
   static propTypes = {
     spark_data : React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
-      title: React.PropTypes.string.isRequired,
-      image_gallery: React.PropTypes.arrayOf(React.PropTypes.string)
+      title: React.PropTypes.string.isRequired
     })
   };
 
@@ -125,8 +124,8 @@ export default class SparkCard extends React.Component {
 
     // Apply the background image as inline style
     let card_css = {}
-    if(typeof this.props.spark_data.image_gallery != "undefined"){
-      card_css.backgroundImage = `url(${this.props.spark_data.image_gallery[0]})`
+    if(SparkPropConfirm(this.props.spark_data, "images")){
+      card_css.backgroundImage = `url(${ENDPOINT_URL+this.props.spark_data.images[0].location.url})`
     }
 
     // Convert date to legible string
