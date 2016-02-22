@@ -22,8 +22,7 @@ class Header extends React.Component {
   };
   static getPropsFromStores(props) {
     var header_state = HeaderStore.getState();
-    var user_state = UserStore.getState().is_logged_in;
-    console.log(user_state);
+    var user_state = UserStore.getState();
     return {
       header_title: header_state.header_title,
       is_logged_in: user_state.is_logged_in
@@ -35,7 +34,7 @@ class Header extends React.Component {
   };
 
   render() {
-
+    
     if(this.props.is_logged_in){
       
       let is_home = this.props.header_title === "";

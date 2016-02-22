@@ -1,5 +1,6 @@
 import React from 'react';
 
+import UserStore from '../../js/stores/UserStore';
 import UserActions from '../../js/actions/UserActions';
 import PostActions from '../../js/actions/PostsActions';
 
@@ -31,7 +32,7 @@ export default class LoginPage extends React.Component {
   };
 
   frontEndValidation = () => {
-  return true;
+    
     // Check username
     if(validateEmail(this.refs.input_email.value) == false){
       this.setState({ 
@@ -65,10 +66,10 @@ export default class LoginPage extends React.Component {
 
   submitForm = () => {
 
+    // Check FE Validation. Exit immediately if an error is found.
     if(!this.frontEndValidation()){
       return false;
     }
-
 
     let username = this.refs.input_email.value;
     let password = this.refs.input_password.value;
@@ -76,17 +77,20 @@ export default class LoginPage extends React.Component {
     // AJAX with params
     axios.post(`${endpoint_url}/api/login.json?email=${username}&password=${password}`)
       .then(function (response) {
-        // success
+        // SUCCESS
         UserActions.saveCredentials(response.data);
 
         // check for UserStore.pre_login_req_url
-        this.props.history.push("/");
-        window.location.reload();
+        var redirect_url = UserStore.getState().pre_login_req_url;
+        if(redirect_url == "") redirect_url = "/";
+
+        // Redirect. Force reload so that all endpoints can be hit with provided auth_key from api/login.
+        location.href = redirect_url; // this.props.history.push("/");
         
       }.bind(this))
       .catch(function (response) {
         
-        // Fail
+        // FAIL
         // show a view notification
         if(response.status == 401){
           this.setState({ 

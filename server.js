@@ -50,12 +50,19 @@ var stores_obj = {};
 app.get('/login', function(req, res, next){
   // On login page, set a var so we dont redirect into infinite loop
   res.locals.login_page = true;
+  console.log("*********", req.url);
+  stores_obj = {
+    UserStore: {
+      is_logged_in: false,
+      pre_login_req_url: req.query.original_req
+    }
+  }
   next();
 });
 app.get('*', function(req, res, next){
-  console.log("*** AUTH TOKEN:", req.cookies.auth_token);
+  // console.log("*** AUTH TOKEN:", req.cookies.auth_token);
   if(res.locals.login_page !== true && req.cookies.auth_token == undefined){
-    res.redirect('/login');
+    res.redirect('/login?original_req='+encodeURIComponent(req.url));
   } else {
     next();
   } 
@@ -66,6 +73,11 @@ app.get('*', function(req, res, next){
   Populate Stores with default data
 */
 app.get('*', function(req, res, next){
+
+  // If we're on login page, and still unauthenticated, skip this middleware.
+  if(res.locals.login_page){
+    next();
+  }
 
   function getPostsAll(){
     return axios.get(`${endpoint_url}/sparks.json?start=0&limit=9&token=${req.cookies.auth_token}`)
