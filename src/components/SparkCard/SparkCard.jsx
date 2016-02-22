@@ -22,7 +22,8 @@ export default class SparkCard extends React.Component {
     this.menu_btns = [];
   }
   state = {
-    toggled : false
+    toggled : false,
+    img_loaded: false
   };
   static propTypes = {
     spark_data : React.PropTypes.shape({
@@ -32,6 +33,7 @@ export default class SparkCard extends React.Component {
   };
 
   componentDidMount() {
+    this.loadBackgroundImage();
     this.generateDetailIcons();
 
     if(detectIsTouch()){
@@ -44,6 +46,24 @@ export default class SparkCard extends React.Component {
       this.hammertime.off('swipe');
       this.hammertime.destroy();
     }
+  }
+
+  loadBackgroundImage(){
+    if(this.props.spark_data.images.length == 0){
+      return false
+    } else {
+      
+      function imgLoadSuccess(){
+        console.log("imgLoadSuccess");
+      }
+      var img = new Image();
+      img.onload = function(){ 
+        this.setState({img_loaded: true})
+      }.bind(this);      
+      img.src = ENDPOINT_URL + this.props.spark_data.images[0].location.url;
+    }
+
+      
   }
 
   addHammerHandlers() {
@@ -122,11 +142,14 @@ export default class SparkCard extends React.Component {
       card_class += " spark-card--toggled"
     }
 
-    // Apply the background image as inline style
-    let card_css = {}
+    // BG and opacity state of bg image
     if(SparkPropConfirm(this.props.spark_data, "images")){
-      card_css.backgroundImage = `url(${ENDPOINT_URL+this.props.spark_data.images[0].location.url})`
+      var spark_bg_styles = {
+        backgroundImage: `url(${ENDPOINT_URL+this.props.spark_data.images[0].location.url})`,
+        opacity: this.state.img_loaded ? 1 : 0
+      }
     }
+    
 
     // Convert date to legible string
     let d = new Date(this.props.spark_data.updated_at);
@@ -138,7 +161,8 @@ export default class SparkCard extends React.Component {
     });
 
     return (
-      <div className={card_class} ref="card" style={card_css} onMouseOver={this.handleMouseOn} onMouseOut={this.handleMouseOff}>
+      <div className={card_class} ref="card" onMouseOver={this.handleMouseOn} onMouseOut={this.handleMouseOff}>
+        <div className="spark-card__bg" style={spark_bg_styles} />
         <div className="spark-card__shadows" />
         <Link className="spark-card__link" to={`/spark/${this.props.spark_data.id}`} onClick={this.selectPost} draggable="false">
           <p className="spark-card__title">{this.props.spark_data.title}</p>

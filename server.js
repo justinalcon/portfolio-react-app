@@ -50,7 +50,6 @@ var stores_obj = {};
 app.get('/login', function(req, res, next){
   // On login page, set a var so we dont redirect into infinite loop
   res.locals.login_page = true;
-  console.log("*********", req.url);
   stores_obj = {
     UserStore: {
       is_logged_in: false,

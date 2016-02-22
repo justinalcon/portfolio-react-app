@@ -6,6 +6,7 @@
   border-radius: 2px;
   margin: 0.5rem;
 
+  background-image: url(/discovery_ss.png);
   background-size: cover;
   background-position: center center;
 
@@ -30,6 +31,21 @@
   bottom: 0;
   padding: 0.5rem 1rem;
 }
+
+.spark-card__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-out 0s;
+  background-position: center center;
+  background-size: cover;
+}
+
+
+
 
 //
 // Border gradients + black overlay
@@ -145,7 +161,7 @@ $spark-card_dot-height: 1.5rem;
   align-items: center;
 
   opacity: 0;
-  transform: translateX(2%);
+  transform: translateX(3px);
   transition: transform 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
 
   .spark-card--toggled & {
