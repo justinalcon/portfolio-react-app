@@ -35,9 +35,9 @@ app.use(cookies());
 
 
 // The base url of our end-points
-var endpoint_url = require('./src/js/utils').endpoint_url;
+var ENDPOINT_URL = require('./src/js/utils').ENDPOINT_URL;
 
-// AJAX library with Promises. How XHR communicte with 'endpoint_url'
+// AJAX library with Promises. How XHR communicte with 'ENDPOINT_URL'
 var axios = require('axios');
 
 // Placeholder. This is where we will prepopulate all data that is returned from endpoints.
@@ -80,10 +80,10 @@ app.get('*', function(req, res, next){
   }
 
   function getPostsAll(){
-    return axios.get(`${endpoint_url}/sparks.json?start=0&limit=9&token=${req.cookies.auth_token}`)
+    return axios.get(`${ENDPOINT_URL}/sparks.json?start=0&limit=9&token=${req.cookies.auth_token}`)
   }
   function getTagsAll(){
-    return axios.get(`${endpoint_url}/tags.json?token=${req.cookies.auth_token}`) 
+    return axios.get(`${ENDPOINT_URL}/tags.json?token=${req.cookies.auth_token}`) 
   }
 
   // Create a promise that returns once both fn's are complete
@@ -129,7 +129,7 @@ app.get('/spark/:id', function(req, res, next){
 
   var id = parseInt(req.params.id);
 
-  axios.get(`${endpoint_url}/sparks/${id}.json?token=${req.cookies.auth_token}`)
+  axios.get(`${ENDPOINT_URL}/sparks/${id}.json?token=${req.cookies.auth_token}`)
     .then(function(response){
 
       // pass returned data into selected_post

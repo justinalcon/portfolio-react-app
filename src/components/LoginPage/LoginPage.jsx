@@ -5,7 +5,7 @@ import UserActions from '../../js/actions/UserActions';
 import PostActions from '../../js/actions/PostsActions';
 
 import axios from 'axios';
-import {endpoint_url, validateEmail} from '../../js/utils';
+import {ENDPOINT_URL, validateEmail} from '../../js/utils';
 
 export default class LoginPage extends React.Component {
   constructor() {
@@ -75,7 +75,7 @@ export default class LoginPage extends React.Component {
     let password = this.refs.input_password.value;
 
     // AJAX with params
-    axios.post(`${endpoint_url}/api/login.json?email=${username}&password=${password}`)
+    axios.post(`${ENDPOINT_URL}/api/login.json?email=${username}&password=${password}`)
       .then(function (response) {
         // SUCCESS
         UserActions.saveCredentials(response.data);

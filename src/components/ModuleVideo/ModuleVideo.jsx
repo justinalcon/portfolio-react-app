@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {endpoint_url} from '../../js/utils';
+import {ENDPOINT_URL} from '../../js/utils';
 
 export default class ModuleVideo extends React.Component {
   constructor() {
@@ -14,7 +14,7 @@ export default class ModuleVideo extends React.Component {
   render() {
     return (
       <div className="module-video">
-        <video className="module-video__vid" src={endpoint_url+this.props.canned_video} autoload="false" preload="false" controls />
+        <video className="module-video__vid" src={ENDPOINT_URL+this.props.canned_video} autoload="false" preload="false" controls />
       </div>
     )
   }

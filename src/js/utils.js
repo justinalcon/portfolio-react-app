@@ -1,4 +1,4 @@
-export const endpoint_url = "http://localhost:3000";
+export const ENDPOINT_URL = "http://localhost:3000";
 
 /*
 ** Various detection functions
