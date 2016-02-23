@@ -94,15 +94,9 @@ export default class LoginPage extends React.Component {
         // show a view notification
         if(response.status == 401){
           this.setState({ 
-            email_valid: true,
-            password_valid: false,
-            error_message: "Password did not match our system."
-          });
-        } else if(response.status == 422){
-          this.setState({ 
             email_valid: false,
-            password_valid: true,
-            error_message: "Username not detected or invalid."
+            password_valid: false,
+            error_message: "Username/Password combination did not match our system."
           });
         } else {
           console.error("Undetected error code", response.status);  
