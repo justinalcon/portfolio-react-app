@@ -63,7 +63,8 @@
   }
 
   &:before {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 20%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.7) 90%);
+    // background: linear-gradient(to bottom, rgba(0,0,0,0.7) 20%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.7) 90%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 10%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.3) 90%), radial-gradient(ellipse at center , rgba(0,0,0,0) 20%, rgba(0,0,0,0.5) 95%);
   }
 
   &:after {
@@ -85,7 +86,7 @@
 // Title + tags
 //
 .spark-card__title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin: 0.5rem 0;
 }
@@ -93,7 +94,7 @@
 .spark-card__tags {
 
   margin: 0.25rem 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 100;
 
   span {
@@ -152,6 +153,7 @@ $spark-card_dot-height: 1.5rem;
   bottom: $spark-card_dot-height;
   left: 0;
   right: 0;
+  padding: 0 10%;
 
   pointer-events: none; // Prevents bg from blocking click. Make sure to enable children.
 
