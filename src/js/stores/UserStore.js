@@ -1,8 +1,18 @@
 import alt from '../alt';
 import UserActions from '../actions/UserActions';
 
-import {setCookie, getCookie, checkCookie} from '../utils';
+import {setCookie, killCookies, detectIsNode} from '../utils';
 
+/*
+** Temporary solution until better FE logout functionality is needed.
+********************
+*/
+if(!detectIsNode()){
+  window._logout = function(){
+    killCookies();
+    window.location.reload()
+  }
+}
 
 class UserStore {
   constructor() {

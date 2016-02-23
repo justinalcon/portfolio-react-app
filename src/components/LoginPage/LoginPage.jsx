@@ -82,7 +82,7 @@ export default class LoginPage extends React.Component {
 
         // check for UserStore.pre_login_req_url
         var redirect_url = UserStore.getState().pre_login_req_url;
-        if(redirect_url == "") redirect_url = "/";
+        if(redirect_url == undefined) redirect_url = "/";
 
         // Redirect. Force reload so that all endpoints can be hit with provided auth_key from api/login.
         location.href = redirect_url; // this.props.history.push("/");

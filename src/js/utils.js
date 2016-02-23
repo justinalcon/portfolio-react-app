@@ -78,14 +78,3 @@ export function getCookie(cname) {
 export function killCookies(){
   document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 }
-// export function checkCookie() {
-//     var username = getCookie("username");
-//     if (username != "") {
-//         alert("Welcome again " + username);
-//     } else {
-//         username = prompt("Please enter your name:", "");
-//         if (username != "" && username != null) {
-//             setCookie("username", username, 365);
-//         }
-//     }
-// }

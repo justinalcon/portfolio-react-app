@@ -5,7 +5,7 @@ export function SparkPropConfirm(spark_obj, prop_name){
     case "longform" :
       return spark_obj["longform"].length !== 0;
     case "dev_notes" :
-      return spark_obj["dev_notes"].length !== 0;
+      return spark_obj["dev_notes"].length !== 0 && hasRightTech();
     case "direct_link" :
       return spark_obj["direct_link"].length !== 0;
     case "images" :
@@ -16,4 +16,19 @@ export function SparkPropConfirm(spark_obj, prop_name){
       console.error("unknow prop type of Spark");
       return false;
   }
+}
+
+/*
+** Check User Permissions
+*/
+import UserStore from './stores/UserStore';
+const ROLE_ADMIN = "admin";
+const ROLE_TECH = "tech";
+const ROLE_NONTECH = "nontech";
+
+export function hasRightsAdmin(){
+  return UserStore.getState().user_role == ROLE_ADMIN;
+}
+export function hasRightTech(){
+  return UserStore.getState().user_role == ROLE_ADMIN || UserStore.getState().user_role == ROLE_TECH
 }
