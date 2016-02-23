@@ -55,9 +55,9 @@ export default class ImgSingleFull extends React.Component {
       let scale = 1;
 
       if(window_w / this.state.img_width > window_h / this.state.img_height){
-        scale = window_w / this.state.img_width;
+        scale = this.state.img_height / window_h;
       } else {
-        scale = window_h / this.state.img_height;
+        scale = this.state.img_width / window_w;
       }  
       this.setState({
         img_scale: scale,
