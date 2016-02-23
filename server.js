@@ -35,7 +35,10 @@ app.use(cookies());
 
 
 // The base url of our end-points
-var ENDPOINT_URL = require('./src/js/utils').ENDPOINT_URL;
+const ENDPOINT_URL = require('./src/js/utils').ENDPOINT_URL;
+
+// The name of the query string for redirecting to login
+const ORIGINAL_REQ = "original_req";
 
 // AJAX library with Promises. How XHR communicte with 'ENDPOINT_URL'
 var axios = require('axios');
@@ -53,15 +56,14 @@ app.get('/login', function(req, res, next){
   stores_obj = {
     UserStore: {
       is_logged_in: false,
-      pre_login_req_url: req.query.original_req
+      pre_login_req_url: req.query[ORIGINAL_REQ]
     }
   }
   next();
 });
 app.get('*', function(req, res, next){
-  // console.log("*** AUTH TOKEN:", req.cookies.auth_token);
   if(res.locals.login_page !== true && req.cookies.auth_token == undefined){
-    res.redirect('/login?original_req='+encodeURIComponent(req.url));
+    res.redirect(`/login?${ORIGINAL_REQ}=${encodeURIComponent(req.url)}`);
   } else {
     next();
   } 
