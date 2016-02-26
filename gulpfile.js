@@ -82,7 +82,7 @@ gulp.task('bundleDev', function(){
   // watchify is a cache/performance layer around browserify
   var watcher  = watchify(browserify({
     entries: ["./client.js"],
-    transform: babelify.configure({ presets: ["es2015", "stage-0", "react"] }),
+    transform: babelify.configure({ presets: ["es2015", "react"] }),
     extensions: ['.jsx'],
     debug: true,
     cache: {},
