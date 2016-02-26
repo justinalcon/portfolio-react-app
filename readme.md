@@ -46,9 +46,36 @@ Isomorphic Web-Apps can run both server-side and client-side, while sharing the 
 2. Get your IP address. (On Linux run `ifconfig|grep inet`, and look for `inet XX.XX.XX.XXX netmask 0xfffffc00 ...`)
 3. Navigate to http://-your-ip-:port on your remote device
 
-### Todo:
-* Create Prod build process
+### Ubuntu 14.04 Trusty
 
+#### git
+    
+    $ sudo apt-get update
+    $ sudo apt-get install git
+
+#### Get the code:
+
+1. generate an ssh key, and add it to bitbucket if this deploy machine is new
+
+#### NODE & NPM
+
+    $ sudo apt-get install nodejs
+    $ sudo ln -s /usr/bin/nodejs /usr/bin/node
+    $ sudo apt-get install npm
+    $ cd /var/www/
+    $ sudo mkdir discovery
+    $ sudo chown ubuntu discovery
+    $ git clone git@bitbucket.org:cnstudiotech/discovery-fe-app.git discovery
+    $ cd discovery
+
+
+#### GULP
+    $sudo npm install -g gulp
+  
+#### Install
+    $ npm install
+    $ gulp
+    
 #### Resources: 
 * [React on ES6+](http://babeljs.io/blog/2015/06/07/react-on-es6-plus/)
 * [Alt.js Guide](http://alt.js.org/guide/)
