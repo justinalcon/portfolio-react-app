@@ -10,7 +10,7 @@
 6. [Gulp](http://gulpjs.com/) - Build process and automation tool
 
 
-### Communicate with Back-End API
+### Back-End API:
 This Front-End application is reliant on a RESTful JSON API. The associated RoR CMS and API is on [bitbucket here](https://bitbucket.org/cnstudiotech/discovery).
 
 You can change the IP of the Back-End in the file `./src/js/utils`. The variable `endpoint` is the base of the Back-End URL used in production. The variable `localhost` is the URL used in development.
