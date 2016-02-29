@@ -1,6 +1,5 @@
-# React Bootstrap. A scaffold for __HTML + ReactJS__ Isomorphic Single-Page Applications.
-
-Hit the ground running and immediately start building in React!
+# Discovery Front-End
+## An Isomorphic Single-Page Application
 
 ### Toolset:
 1. [ReactJS](https://facebook.github.io/react/) - Component-based javascript framework for building UI's
@@ -19,14 +18,19 @@ npm is the package manager that will download dependencies, and gulp is the comm
 2. From the root directory, run `npm install` to download dependencies
 3. Confirm that you have gulp installed on your command line (run `gulp`, if not found run `npm install -g gulp`, possible requiring sudo)
 4. If installed, running `gulp` from the root directly will run the default task to setup a webserver with livereload, and a watcher build task that compiles scss and js on save.
-4. Source files in in `/` and `./src`, while compiled files will be put in `./public`
+5. Source files in in `/` and `./src`, while compiled files will be put in `./public`
 
 Now you're up and ready to begin coding!
 
-**If your gulp build hangs on** `bundleDev`, it's possible that experimental Babel features broke the example code. Comment out the ExampleComponents in `routes.jsx`, save, and re-run the build. More on that below...
+### Production Build:
+Run the task `gulp buildProd` to generate production-ready css + jss in `./public/dist`.
+
+Add a file at the root directory called `env.js` with one line specifying your build environment: `export const NODE_ENV = "production"`. Without this file, the default value is assumed to be `"development"`.
+
+Changing that variable between `development||production` will affect which files are included in the swig template in `./src/views`
 
 ### Important Disclaimer for Client-Facing Projects:
-This bootstrap is setup to transpile next generation ES6+ javascript syntax to browser-supported ES5+ syntax, including experimental features by default. If you're building a client-facing project, strongly consider these suggestions for improved stability.
+This bootstrap is setup to transpile next generation ES6+ javascript syntax to browser-supported ES5+ syntax, including experimental features by default. If you're building a client-facing project, **BEFORE STARTING TO CODE**, strongly consider these suggestions for improved stability.
 
 * Remove the more experimental `stage-0` from the babel config in `gulpfile.js`
 * [shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) your npm dependencies to exact version numbers

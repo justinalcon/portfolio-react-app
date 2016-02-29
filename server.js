@@ -22,17 +22,22 @@ var alt = require('./src/js/alt');
 var ip = '0.0.0.0';
 var port = 8080;
 var app = express();
+try {
+  var env = require('./env.js').NODE_ENV;
+} catch(err) {
+  var env = "development";
+}
 
 
 app.use(logger('dev'))
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname,'src/views'));
+app.set('env', env);
 app.use(express.static(path.join(__dirname,'public')));
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/assets/favicon.ico'));
 app.use(require('connect-livereload')());
 app.use(cookies());
-
 
 // The base url of our end-points
 const ENDPOINT_URL = require('./src/js/utils').ENDPOINT_URL;
@@ -178,7 +183,7 @@ app.use(function(req, res) {
       // 2. https://github.com/goatslacker/iso
       iso.add(content, alt.flush());
       // Render to swig HTML template
-      res.render('index', { html: iso.render() });
+      res.render('index', { html: iso.render(), NODE_ENV: app.get('env') });
 
     } else {
       res.status(404).send('Page Not Found')
