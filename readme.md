@@ -9,6 +9,12 @@
 5. [Babel](https://babeljs.io/) - ES6+ javascript transpiler
 6. [Gulp](http://gulpjs.com/) - Build process and automation tool
 
+
+### Communicate with Back-End API
+This Front-End application is reliant on a RESTful JSON API. The associated RoR CMS and API is on [bitbucket here](https://bitbucket.org/cnstudiotech/discovery).
+
+You can change the IP of the Back-End in the file `./src/js/utils`. The variable `endpoint` is the base of the Back-End URL used in production. The variable `localhost` is the URL used in development.
+
 ### Build Process:
 
 ##### This how to instantiate the project and run the automation tools on OS X. 
@@ -23,17 +29,13 @@ npm is the package manager that will download dependencies, and gulp is the comm
 Now you're up and ready to begin coding!
 
 ### Production Build:
+
+##### This is how to configure the project for production
 Run the task `gulp buildProd` to generate production-ready css + jss in `./public/dist`.
 
 Using [dotenv](https://github.com/motdotla/dotenv) to detect a `.env` file at the root directory. Add environment specific variables: `NODE_ENV=production`. The default value is assumed to `development`.
 
 Changing the `NODE_ENV` variable between `development||production` will affect which files are included in the swig template in `./src/views`
-
-### Important Disclaimer for Client-Facing Projects:
-This bootstrap is setup to transpile next generation ES6+ javascript syntax to browser-supported ES5+ syntax, including experimental features by default. If you're building a client-facing project, **BEFORE STARTING TO CODE**, strongly consider these suggestions for improved stability.
-
-* Remove the more experimental `stage-0` from the babel config in `gulpfile.js`
-* [shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) your npm dependencies to exact version numbers
 
 ### Notes on How Isomorphic Works:
 Isomorphic Web-Apps can run both server-side and client-side, while sharing the same codebase. The code is pre-rendered and delivered as HTML, where the client can pick back up and continue running the application.
