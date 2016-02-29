@@ -67,8 +67,7 @@ gulp.task('scssDev', function(){
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(PATH.SCSS_OUT_DEV))
 });
-
-function handleErrors() {
+ function handleErrors() {
   var args = Array.prototype.slice.call(arguments);
   notify.onError({
     title: 'Compile Error',
@@ -148,7 +147,6 @@ gulp.task('buildProd', function(){
   .pipe(source(PATH.JS_NAME_PROD))
   .pipe(streamify(uglify()))
   .pipe(gulp.dest(PATH.JS_OUT_PROD));
-
 });
 
 gulp.task('default', ["connectDev", "scssDev", "watchDev", "bundleDev"]);

@@ -25,9 +25,9 @@ Now you're up and ready to begin coding!
 ### Production Build:
 Run the task `gulp buildProd` to generate production-ready css + jss in `./public/dist`.
 
-Add a file at the root directory called `env.js` with one line specifying your build environment: `export const NODE_ENV = "production"`. Without this file, the default value is assumed to be `"development"`.
+Using [dotenv](https://github.com/motdotla/dotenv) to detect a `.env` file at the root directory. Add environment specific variables: `NODE_ENV=production`. The default value is assumed to `development`.
 
-Changing that variable between `development||production` will affect which files are included in the swig template in `./src/views`
+Changing the `NODE_ENV` variable between `development||production` will affect which files are included in the swig template in `./src/views`
 
 ### Important Disclaimer for Client-Facing Projects:
 This bootstrap is setup to transpile next generation ES6+ javascript syntax to browser-supported ES5+ syntax, including experimental features by default. If you're building a client-facing project, **BEFORE STARTING TO CODE**, strongly consider these suggestions for improved stability.

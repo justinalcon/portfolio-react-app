@@ -5,8 +5,12 @@ var logger = require('morgan');
 var favicon = require('serve-favicon');
 var cookies = require('cookie-parser');
 
+// Read .env config variables
+require('dotenv').config({silent: true});
+
 // Babel ES6/JSX Compiler
 require('babel-register');
+
 // JS templating engine - http://paularmstrong.github.io/swig/
 var swig  = require('swig');
 
@@ -22,18 +26,13 @@ var alt = require('./src/js/alt');
 var ip = '0.0.0.0';
 var port = 8080;
 var app = express();
-try {
-  var env = require('./env.js').NODE_ENV;
-} catch(err) {
-  var env = "development";
-}
 
 
 app.use(logger('dev'))
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname,'src/views'));
-app.set('env', env);
+app.set('env', process.env.NODE_ENV || "development");
 app.use(express.static(path.join(__dirname,'public')));
 app.use(favicon(__dirname + '/public/assets/favicon.ico'));
 app.use(require('connect-livereload')());
