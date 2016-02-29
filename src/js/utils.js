@@ -1,4 +1,6 @@
-export const ENDPOINT_URL = "http://localhost:3000";
+let endpoint = "http://localhost:3000";
+let localhost = "http://localhost:3000";
+export const ENDPOINT_URL = detectIsNode() && process.env.NODE_ENV == "production" ? endpoint : localhost;  
 
 /*
 ** Various detection functions
