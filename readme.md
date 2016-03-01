@@ -65,23 +65,53 @@ Isomorphic Web-Apps can run both server-side and client-side, while sharing the 
 
 #### NODE & NPM
 
-    $ sudo apt-get install nodejs
-    $ sudo ln -s /usr/bin/nodejs /usr/bin/node
-    $ sudo apt-get install npm
+    $ cd ~
+    $ wget https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz
+    $ mkdir node
+    $ tar xvf node-v*.tar.gz --strip-components=1 -C ./node
+    $ cd ~
+    $ rm -rf node-v*
+    $ mkdir node/etc
+    $ echo 'prefix=/usr/local' > node/etc/npmrc
+    $ sudo mv node /opt/
+    $ sudo chown -R root: /opt/node
+    $ sudo ln -s /opt/node/bin/node /usr/local/bin/node
+    $ sudo ln -s /opt/node/bin/npm /usr/local/bin/npm
+    
     $ cd /var/www/
     $ sudo mkdir discovery
     $ sudo chown ubuntu discovery
     $ git clone git@bitbucket.org:cnstudiotech/discovery-fe-app.git discovery
     $ cd discovery
-
-
-#### GULP
-    $sudo npm install -g gulp
-  
-#### Install
-    $ npm install
-    $ gulp
     
+#### PM2
+
+    $ sudo npm install pm2 -g
+    $ pm start server.js
+
+#### nginx
+
+    $ sudo apt-get update
+    $ sudo apt-get install nginx
+    $ sudo vi /etc/nginx/sites-available/default
+    
+    server {
+        listen 80;
+    
+        server_name example.com;
+    
+        location / {
+            proxy_pass http://APP_PRIVATE_IP_ADDRESS:8080;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }
+    
+    $ sudo service nginx restart
+
 #### Resources: 
 * [React on ES6+](http://babeljs.io/blog/2015/06/07/react-on-es6-plus/)
 * [Alt.js Guide](http://alt.js.org/guide/)
