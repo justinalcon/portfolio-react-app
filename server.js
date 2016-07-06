@@ -14,7 +14,7 @@ require('babel-register');
 // JS templating engine - http://paularmstrong.github.io/swig/
 var swig  = require('swig');
 
-// React 
+// React
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
@@ -70,7 +70,7 @@ app.get('*', function(req, res, next){
     res.redirect(`/login?${ORIGINAL_REQ}=${encodeURIComponent(req.url)}`);
   } else {
     next();
-  } 
+  }
 });
 
 /*
@@ -84,27 +84,20 @@ app.get('*', function(req, res, next){
     next();
   }
 
-  function getPostsAll(){
-    return axios.get(`${ENDPOINT_URL}/sparks.json?start=0&limit=9&token=${req.cookies.auth_token}`)
-  }
-  function getTagsAll(){
-    return axios.get(`${ENDPOINT_URL}/tags.json?token=${req.cookies.auth_token}`) 
+  function getTechnologiesAll(){
+    return axios.get(`${ENDPOINT_URL}/technologies.json?start=0&limit=9&token=${req.cookies.auth_token}`)
   }
 
   // Create a promise that returns once both fn's are complete
-  axios.all([getPostsAll(), getTagsAll()])
-    .then(axios.spread(function(posts, tags){
-
-      // Populate the stores
+  axios.all([getTechnologiesAll()])
+    .then(axios.spread(function(technologies){
+      // Populate the Technologiess
       stores_obj = {
-        PostsStore: {
-          current_posts: posts.data
+        TechnologiesStore: {
+          current_technologies: technologies.data
         },
         HeaderStore: {
           header_title: ""
-        },
-        TagStore: {
-          tags_all: tags.data
         },
         UserStore: {
           auth_token: req.cookies.auth_token,
@@ -117,8 +110,8 @@ app.get('*', function(req, res, next){
 
     }))
     .catch(function(response){
-      res.status(404).send({ 
-        message: "Error retrieving posts/tags in server.js", 
+      res.status(404).send({
+        message: "Error retrieving posts/tags in server.js",
         status: response.status,
       });
       process.exit();
@@ -128,38 +121,38 @@ app.get('*', function(req, res, next){
 
 /*
   Matches requests that have /spark/:id
-  Populates the PostsStore selected_post with data from spark/:id
+  Populates the TechnologiesStore selected_post with data from spark/:id
 */
-app.get('/spark/:id', function(req, res, next){
+app.get('/technologies/:id', function(req, res, next){
 
   var id = parseInt(req.params.id);
 
-  axios.get(`${ENDPOINT_URL}/sparks/${id}.json?token=${req.cookies.auth_token}`)
+  axios.get(`${ENDPOINT_URL}/technologies/${id}.json?token=${req.cookies.auth_token}`)
     .then(function(response){
 
       // pass returned data into selected_post
-      stores_obj.PostsStore.selected_post = response.data;
+      stores_obj.TechnologiesStore.selected_technology = response.data;
       stores_obj.HeaderStore.header_title = response.data.title;
       next();
 
     })
     .catch(function(response){
-      res.status(404).send({ 
-        message: `Error retrieving spark with id:${id}`,
+      res.status(404).send({
+        message: `Error retrieving technologies with id:${id}`,
         status: response.status,
       });
       process.exit();
     });
-  
+
 });
 
 
 
 /*
-  Serves page data based on React Router 
+  Serves page data based on React Router
 */
 app.use(function(req, res) {
-  
+
   // We take the locals data we have fetched and seed our stores with data
   alt.bootstrap(JSON.stringify(stores_obj || {}));
 
@@ -172,7 +165,7 @@ app.use(function(req, res) {
     } else if (redirectLocation) {
       res.status(302).redirect(redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-      
+
       // Compile correct components based on routing context. defined in ./src/routes
       // `renderToString` will render React Components to a string that client.js can rehydrate
       var content = ReactDOM.renderToString(React.createElement(Router.RoutingContext, renderProps));

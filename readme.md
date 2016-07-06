@@ -1,5 +1,5 @@
-# Discovery Front-End
-## An Isomorphic Single-Page Application
+# Portfolio Front-End
+## An Isomorphic Application
 
 ### Toolset:
 1. [ReactJS](https://facebook.github.io/react/) - Component-based javascript framework for building UI's
@@ -11,13 +11,13 @@
 
 
 ### Back-End API:
-This Front-End application is reliant on a RESTful JSON API. The associated RoR CMS and API is on [bitbucket here](https://bitbucket.org/cnstudiotech/discovery).
+This Front-End application is reliant on a RESTful JSON API. The associated RoR CMS and API is on [github here](https://github.com/justinalcon/portfolio-cms).
 
 You can change the IP of the Back-End in the file `./src/js/utils`. The variable `endpoint` is the base of the Back-End URL used in production. The variable `localhost` is the URL used in development.
 
 ### Build Process:
 
-##### This how to instantiate the project and run the automation tools on OS X. 
+##### This how to instantiate the project and run the automation tools on OS X.
 npm is the package manager that will download dependencies, and gulp is the command line tool for automation tasks.
 
 1. Confirm that you have latest npm (run `npm -v`, if it says not found then install via [NodeJS](https://nodejs.org/en/download/))
@@ -55,13 +55,13 @@ Isomorphic Web-Apps can run both server-side and client-side, while sharing the 
 ### Ubuntu 14.04 Trusty
 
 #### git
-    
+
     $ sudo apt-get update
     $ sudo apt-get install git
 
 #### Get the code:
 
-1. generate an ssh key, and add it to bitbucket if this deploy machine is new
+1. Fork this repo to your own github account
 
 #### NODE & NPM
 
@@ -77,13 +77,11 @@ Isomorphic Web-Apps can run both server-side and client-side, while sharing the 
     $ sudo chown -R root: /opt/node
     $ sudo ln -s /opt/node/bin/node /usr/local/bin/node
     $ sudo ln -s /opt/node/bin/npm /usr/local/bin/npm
-    
-    $ cd /var/www/
-    $ sudo mkdir discovery
-    $ sudo chown ubuntu discovery
-    $ git clone git@bitbucket.org:cnstudiotech/discovery-fe-app.git discovery
-    $ cd discovery
-    
+
+
+    $ git clone YOUR FORK
+    $ cd portfolio-react-app
+
 #### PM2
 
     $ sudo npm install pm2 -g
@@ -93,13 +91,13 @@ Isomorphic Web-Apps can run both server-side and client-side, while sharing the 
 
     $ sudo apt-get update
     $ sudo apt-get install nginx
-    $ sudo vi /etc/nginx/sites-available/default
-    
+    $ sudo vi /etc/nginx/sites-available/portfolio
+
     server {
         listen 80;
-    
+
         server_name example.com;
-    
+
         location / {
             proxy_pass http://APP_PRIVATE_IP_ADDRESS:8080;
             proxy_http_version 1.1;
@@ -109,10 +107,10 @@ Isomorphic Web-Apps can run both server-side and client-side, while sharing the 
             proxy_cache_bypass $http_upgrade;
         }
     }
-    
+
     $ sudo service nginx restart
 
-#### Resources: 
+#### Resources:
 * [React on ES6+](http://babeljs.io/blog/2015/06/07/react-on-es6-plus/)
 * [Alt.js Guide](http://alt.js.org/guide/)
 * [React DevTools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)

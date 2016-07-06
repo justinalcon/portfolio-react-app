@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Discovery</title>
+        <title>Portfolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         {% if NODE_ENV == "development" %}
         <link rel="stylesheet" href="/dev/styles.css">
         {% else %}
@@ -16,14 +16,14 @@
     <body>
         <!-- react.js UI - See App.jsx -->
         <div id="app">{{ html|safe }}</div>
-        
+
         <script src="/vendor/hammer.min.js"></script>
-        
+
         {% if NODE_ENV == "development" %}
         <script src="/dev/build.js"></script>
         {% else %}
         <script src="/dist/build.min.js"></script>
         {% endif %}
-        
+
     </body>
 </html>

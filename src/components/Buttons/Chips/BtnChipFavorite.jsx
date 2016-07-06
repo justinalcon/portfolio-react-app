@@ -2,16 +2,16 @@ import React from 'react';
 import BtnChip from './BtnChip';
 
 import connectToStores from 'alt-utils/lib/connectToStores';
-import PostsStore from '../../../js/stores/PostsStore';
+import TechnologiesStore from '../../../js/stores/TechnologiesStore';
 
 class BtnChipFavorite extends BtnChip {
   
-  // Connects PostsStore.state into this.props. Using connectToStores alt util.
+  // Connects TechnologiesStore.state into this.props. Using connectToStores alt util.
   static getStores(props) {
-    return [PostsStore]
+    return [TechnologiesStore]
   };
   static getPropsFromStores(props) {
-    return PostsStore.getState()
+    return TechnologiesStore.getState()
   };
 
   handleClick = () => {

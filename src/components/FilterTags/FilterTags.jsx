@@ -3,7 +3,7 @@ import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import TagStore from '../../js/stores/TagStore';
 import TagActions from '../../js/actions/TagActions';
-import PostsActions from '../../js/actions/PostsActions';
+import TechnologiesActions from '../../js/actions/TechnologiesActions';
 
 import FilterTagBtn from '../FilterTagBtn/FilterTagBtn';
 
@@ -59,7 +59,7 @@ class FilterTags extends React.Component {
   };
 
   submit = () => {
-    
+
     // iterate over the tags and create a comma delimited string
     let tags_active_string = "";
     TagStore.getState().tags_all.forEach(function(tag_obj){
@@ -71,29 +71,26 @@ class FilterTags extends React.Component {
     // strip off final string
     tags_active_string = tags_active_string.replace(/,$/, "");
 
-    // send action to ajax and update stores
-    PostsActions.loadPostsWithTags(tags_active_string);
-
     // go back to index
-    this.backToIndex();    
+    this.backToIndex();
   };
 
   backToIndex(){
     // redirect back to home page
-    this.props.backToIndex();  
+    this.props.backToIndex();
   }
-  
+
 
   render() {
-    
+
     let tags_render = [];
     let filter_tag_names = this.state.filter_tag_names;
 
     this.props.tags_all.forEach(function(tag_obj){
-      
+
       // check if the name passes the internal search filter
       if(filter_tag_names == "" || tag_obj.tag.toLowerCase().indexOf(filter_tag_names.toLowerCase()) > -1){
-        
+
         // add a component to the render variable
         tags_render.push(
           <FilterTagBtn key={tag_obj.id} tag_name={tag_obj.tag} is_active={tag_obj.state} />

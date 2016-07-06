@@ -6,7 +6,7 @@
   border-radius: 2px;
   margin: 0.5rem;
 
-  background-image: url(/assets/discovery_ss.png);
+  background-image: url(/assets/portfolio_ss.png);
   background-size: cover;
   background-position: center center;
 
@@ -73,11 +73,11 @@
     opacity: 0;
     transition: opacity 0.4s ease 0s;
   }
-  
+
   .spark-card--toggled & {
     &:after {
       opacity: 1;
-    } 
+    }
   }
 
 }
@@ -114,7 +114,7 @@ $spark-card_dot-height: 1.5rem;
   left: 0;
   right: 0;
   height: $spark-card_dot-height;
-  
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -136,15 +136,15 @@ $spark-card_dot-height: 1.5rem;
 .spark-card--toggled {
   .spark-card__dot:first-child {
     background: rgba(255,255,255,0);
-  } 
+  }
   .spark-card__dot:last-child {
     background: rgba(255,255,255,0.5);
-  } 
+  }
 }
 
 
 
-// 
+//
 // Secondary screen (on swipe/hover)
 //
 .spark-card__detail {
@@ -174,7 +174,7 @@ $spark-card_dot-height: 1.5rem;
 }
 
 .spark-card__summary,
-.spark-card__menu-btns {  
+.spark-card__menu-btns {
   margin: 0.5rem;
   text-align: center;
 }
@@ -213,18 +213,3 @@ $spark-card_dot-height: 1.5rem;
 .spark-card__date {
   right: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import connectToStores from 'alt-utils/lib/connectToStores';
-import PostsStore from '../../js/stores/PostsStore';
+import TechnologiesStore from '../../js/stores/TechnologiesStore';
 import HeaderActions from '../../js/actions/HeaderActions';
 
 import SparkCard from '../SparkCard/SparkCard';
@@ -14,15 +14,15 @@ class PostGrid extends React.Component {
   }
 
   state = {
-    posts_data : PostsStore.getState().current_posts
+    posts_data : TechnologiesStore.getState().current_technologies
   };
 
-  // Connects PostsStore.state into this.props. Using connectToStores alt util.
+  // Connects TechnologiesStore.state into this.props. Using connectToStores alt util.
   static getStores(props) {
-    return [PostsStore]
+    return [TechnologiesStore]
   };
   static getPropsFromStores(props) {
-    return PostsStore.getState()
+    return TechnologiesStore.getState()
   };
 
 
@@ -35,8 +35,8 @@ class PostGrid extends React.Component {
 
     let cards;
 
-    if(this.props.current_posts.length > 0){
-      cards = this.props.current_posts.map((post) => {
+    if(this.props.current_technologies.length > 0){
+      cards = this.props.current_technologies.map((post) => {
         return (
           <div className="post-grid__item css-js--fade-in css-js--fade-in-instant" key={post.id}>
             <SparkCard spark_data={post} />
@@ -46,9 +46,9 @@ class PostGrid extends React.Component {
     } else {
 
       // Loading indicator?
-      cards = ""; //<p>Discovery content will show here. Working on that now...</p>;
+      cards = "";
     }
-    
+
 
     return (
       <div className="post-grid">

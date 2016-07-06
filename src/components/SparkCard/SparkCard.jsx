@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import {ENDPOINT_URL, detectIsTouch} from '../../js/utils';
 
 // Stores
-import PostsActions from '../../js/actions/PostsActions';
+import TechnologiesActions from '../../js/actions/TechnologiesActions';
 
 // Model Spec
 import {SparkPropConfirm} from '../../js/specs';
@@ -52,18 +52,18 @@ export default class SparkCard extends React.Component {
     if(this.props.spark_data.images.length == 0){
       return false
     } else {
-      
+
       function imgLoadSuccess(){
         console.log("imgLoadSuccess");
       }
       var img = new Image();
-      img.onload = function(){ 
+      img.onload = function(){
         this.setState({img_loaded: true})
-      }.bind(this);      
+      }.bind(this);
       img.src = ENDPOINT_URL + this.props.spark_data.images[0].location.url;
     }
 
-      
+
   }
 
   addHammerHandlers() {
@@ -118,8 +118,8 @@ export default class SparkCard extends React.Component {
   }
 
   selectPost = () => {
-    PostsActions.holdScrollForSelectedPost();
-    PostsActions.updateSelectedPost(this.props.spark_data);
+    TechnologiesActions.holdScrollForSelectedTechnology();
+    TechnologiesActions.updateSelectedTechnology(this.props.spark_data);
   };
 
   toggleState = () => {
@@ -132,7 +132,7 @@ export default class SparkCard extends React.Component {
 
   handleMouseOff = () => {
     this.setState({ toggled: false })
-  }; 
+  };
 
   render() {
 
@@ -149,7 +149,7 @@ export default class SparkCard extends React.Component {
         opacity: this.state.img_loaded ? 1 : 0
       }
     }
-    
+
 
     // Convert date to legible string
     let d = new Date(this.props.spark_data.updated_at);

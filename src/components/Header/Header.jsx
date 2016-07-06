@@ -4,7 +4,7 @@ import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import HeaderStore from '../../js/stores/HeaderStore';
 import UserStore from '../../js/stores/UserStore';
-import PostsActions from '../../js/actions/PostsActions';
+import TechnologiesActions from '../../js/actions/TechnologiesActions';
 
 import {Link, IndexLink} from 'react-router';
 import BackBtn from '../Buttons/BackBtn/BackBtn';
@@ -34,26 +34,26 @@ class Header extends React.Component {
   };
 
   render() {
-    
+
     if(this.props.is_logged_in){
-      
+
       let is_home = this.props.header_title === "";
 
-      let title = is_home ? "DISCOVERY" : this.props.header_title;
+      let title = is_home ? "PORTFOLIO" : this.props.header_title;
 
       let back_btn_class = "header__back-btn";
       if(is_home){
         back_btn_class += " header__back-btn--hidden";
       }
-      
+
       return (
         <header>
-          
+
           <div className={back_btn_class}>
             <BackBtn/>
           </div>
 
-          <span className="header__logo font--headline"><IndexLink to="/" onClick={PostsActions.loadPostsDefault}>{title}</IndexLink></span>
+          <span className="header__logo font--headline"><IndexLink to="/" onClick={TechnologiesActions.loadTechnologiesDefault}>{title}</IndexLink></span>
 
           <nav className="header__nav">
             <Link className="btn-minimal" activeClassName="btn-minimal--active" to="/filter">
@@ -74,13 +74,13 @@ class Header extends React.Component {
             </Link>*/}
           </nav>
 
-        </header>  
+        </header>
       );
 
     } else {
       return false;
-    }    
-    
+    }
+
   }
 
 }

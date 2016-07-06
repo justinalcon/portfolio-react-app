@@ -2,7 +2,7 @@ import React from 'react';
 
 // Stores
 import connectToStores from 'alt-utils/lib/connectToStores';
-import PostsStore from '../../js/stores/PostsStore';
+import TechnologiesStore from '../../js/stores/TechnologiesStore';
 
 // Utils
 import {detectIsNode, throttle} from '../../js/utils';
@@ -25,12 +25,12 @@ class InfiniteScrollContain extends React.Component {
     selected_post_scroll_pos: React.PropTypes.number
   };  
 
-  // Connects PostsStore.state into this.props. Using connectToStores alt util.
+  // Connects TechnologiesStore.state into this.props. Using connectToStores alt util.
   static getStores(props) {
-    return [PostsStore]
+    return [TechnologiesStore]
   };
   static getPropsFromStores(props) {
-    var post_state =  PostsStore.getState();
+    var post_state =  TechnologiesStore.getState();
     return {
       selected_post_scroll_pos: post_state.selected_post_scroll_pos
     }

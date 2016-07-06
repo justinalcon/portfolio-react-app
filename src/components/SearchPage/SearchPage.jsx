@@ -12,16 +12,16 @@ export default class SearchPage extends React.Component {
   }
 
   handleKeyDown = (event) => {
-    
+
     // 13 = Enter
     // 27 = ESC
 
     if(event.keyCode == 13){
-      this.submit();  
+      this.submit();
     } else if(event.keyCode == 27) {
       this.exit();
     }
-    
+
   };
 
   exit = () => {
@@ -42,7 +42,7 @@ export default class SearchPage extends React.Component {
   render() {
     return (
       <div className="search-page css-js--fade-in">
-        <input className="search-page__input" type="text" placeholder="Search all of Discovery..." ref="search_input" onKeyDown={this.handleKeyDown}/>
+        <input className="search-page__input" type="text" placeholder="Search Portfolio..." ref="search_input" onKeyDown={this.handleKeyDown}/>
         <div className="btn-bar">
           <button className="btn-box btn-box--cancel" onClick={this.clear}>Reset</button>
           <button className="btn-box" onClick={this.submit}>Submit</button>

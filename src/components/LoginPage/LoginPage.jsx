@@ -2,7 +2,7 @@ import React from 'react';
 
 import UserStore from '../../js/stores/UserStore';
 import UserActions from '../../js/actions/UserActions';
-import PostActions from '../../js/actions/PostsActions';
+import TechnologiesActions from '../../js/actions/TechnologiesActions';
 
 import axios from 'axios';
 import {ENDPOINT_URL, validateEmail} from '../../js/utils';
@@ -20,28 +20,28 @@ export default class LoginPage extends React.Component {
 
   componentDidMount() {
     this.refs.input_email.focus();
-  } 
+  }
 
   handleKeyDown = (event) => {
-    
+
     // 13 = Enter
     if(event.keyCode == 13){
       this.submitForm();
     }
-    
+
   };
 
   frontEndValidation = () => {
-    
+
     // Check username
     if(validateEmail(this.refs.input_email.value) == false){
-      this.setState({ 
+      this.setState({
         email_valid: false,
         error_message: "That email looks funky. Please check the format."
       });
       return false;
     } else {
-      this.setState({ 
+      this.setState({
         email_valid: true,
         error_message: ""
       });
@@ -49,13 +49,13 @@ export default class LoginPage extends React.Component {
 
     // Check password
     if(this.refs.input_password.value.length == 0){
-      this.setState({ 
+      this.setState({
         password_valid: false,
         error_message: "C'mon man. Put in a password."
       });
       return false;
     } else {
-      this.setState({ 
+      this.setState({
         password_valid: true,
         error_message: ""
       });
@@ -86,27 +86,27 @@ export default class LoginPage extends React.Component {
 
         // Redirect. Force reload so that all endpoints can be hit with provided auth_key from api/login.
         location.href = redirect_url; // this.props.history.push("/");
-        
+
       }.bind(this))
       .catch(function (response) {
-        
+
         // FAIL
         // show a view notification
         if(response.status == 401){
-          this.setState({ 
+          this.setState({
             email_valid: false,
             password_valid: false,
             error_message: "Username/Password combination did not match our system."
           });
         } else {
-          console.error("Undetected error code", response.status);  
-          this.setState({ 
+          console.error("Undetected error code", response.status);
+          this.setState({
             email_valid: false,
             password_valid: false,
             error_message: "Please double-check username/password."
           });
-        }        
-        
+        }
+
       }.bind(this));
   };
 

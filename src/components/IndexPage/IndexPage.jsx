@@ -3,7 +3,7 @@ import React from 'react';
 import InfiniteScrollContain from '../InfiniteScrollContain/InfiniteScrollContain';
 import PostGrid from '../PostGrid/PostGrid';
 
-import PostsActions from '../../js/actions/PostsActions';
+import TechnologiesActions from '../../js/actions/TechnologiesActions';
 
 export default class IndexPage extends React.Component {
   constructor() {
@@ -11,7 +11,7 @@ export default class IndexPage extends React.Component {
   }
 
   handleLoadMore(){
-    PostsActions.loadMorePosts();
+    TechnologiesActions.loadMoreTechnologies();
   };
 
   render() {
