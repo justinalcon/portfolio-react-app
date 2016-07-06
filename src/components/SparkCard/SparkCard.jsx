@@ -28,7 +28,7 @@ export default class SparkCard extends React.Component {
   static propTypes = {
     spark_data : React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
-      title: React.PropTypes.string.isRequired
+      name: React.PropTypes.string.isRequired
     })
   };
 
@@ -52,7 +52,6 @@ export default class SparkCard extends React.Component {
     if(this.props.spark_data.images.length == 0){
       return false
     } else {
-
       function imgLoadSuccess(){
         console.log("imgLoadSuccess");
       }
