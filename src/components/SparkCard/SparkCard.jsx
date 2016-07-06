@@ -155,25 +155,19 @@ export default class SparkCard extends React.Component {
     let d = new Date(this.props.spark_data.updated_at);
     let date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear();
 
-    // Convert tags to names
-    let tags_names = this.props.spark_data.tags.map(function(obj){
-      return obj.tag + " ";
-    });
-
     return (
       <div className={card_class} ref="card" onMouseOver={this.handleMouseOn} onMouseOut={this.handleMouseOff}>
         <div className="spark-card__bg" style={spark_bg_styles} />
         <div className="spark-card__shadows" />
         <Link className="spark-card__link" to={`/spark/${this.props.spark_data.id}`} onClick={this.selectPost} draggable="false">
-          <p className="spark-card__title">{this.props.spark_data.title}</p>
-          <p className="spark-card__tags">{tags_names}</p>
+          <p className="spark-card__title">{this.props.spark_data.name}</p>
           <div className="spark-card__dots">
             <div className="spark-card__dot"/>
             <div className="spark-card__dot"/>
           </div>
         </Link>
         <div className="spark-card__detail">
-          <p className="spark-card__summary">{this.props.spark_data.summary}</p>
+          <p className="spark-card__summary">{this.props.spark_data.name}</p>
           <div className="spark-card__menu-btns">{this.menu_btns}</div>
         </div>
         <div className="spark-card__bottom-info">
