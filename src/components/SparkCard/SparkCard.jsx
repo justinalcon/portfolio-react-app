@@ -6,7 +6,7 @@ import {ENDPOINT_URL, detectIsTouch} from '../../js/utils';
 import TechnologiesActions from '../../js/actions/TechnologiesActions';
 
 // Model Spec
-import {SparkPropConfirm} from '../../js/specs';
+import {PropConfirm} from '../../js/specs';
 
 // Menu
 import BtnChipArticle from '../Buttons/Chips/BtnChipArticle';
@@ -79,35 +79,35 @@ export default class SparkCard extends React.Component {
   }
 
   generateDetailIcons() {
-    if(SparkPropConfirm(this.props.spark_data, "longform")){
+    if(PropConfirm(this.props.spark_data, "longform")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=article`} key={"article-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipArticle add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       );
     }
-    if(SparkPropConfirm(this.props.spark_data, "dev_notes")){
+    if(PropConfirm(this.props.spark_data, "dev_notes")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=dev-notes`} key={"dev-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipDevNotes add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       );
     }
-    if(SparkPropConfirm(this.props.spark_data, "direct_link")){
+    if(PropConfirm(this.props.spark_data, "direct_link")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=link`} key={"link-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipLink add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       );
     }
-    if(SparkPropConfirm(this.props.spark_data, "images")){
+    if(PropConfirm(this.props.spark_data, "images")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=images`} key={"imgs-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipImage add_class="btn-chip--white-out btn-chip--med" />
         </Link>
       );
     }
-    if(SparkPropConfirm(this.props.spark_data, "video")){
+    if(PropConfirm(this.props.spark_data, "video")){
       this.menu_btns.push(
         <Link to={`/spark/${this.props.spark_data.id}?slide=video`} key={"video-btn"+this.props.spark_data.id} onClick={this.selectPost}>
           <BtnChipVideo add_class="btn-chip--white-out btn-chip--med" />
@@ -142,7 +142,7 @@ export default class SparkCard extends React.Component {
     }
 
     // BG and opacity state of bg image
-    if(SparkPropConfirm(this.props.spark_data, "images")){
+    if(PropConfirm(this.props.spark_data, "images")){
       var spark_bg_styles = {
         backgroundImage: `url(${ENDPOINT_URL+this.props.spark_data.images[0].location.url})`,
         opacity: this.state.img_loaded ? 1 : 0

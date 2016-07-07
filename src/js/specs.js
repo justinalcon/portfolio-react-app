@@ -1,6 +1,6 @@
 // A re-usable spec for confirming props of the Spark model
 // Return true if the property exists and is defined, return false if undefined.
-export function SparkPropConfirm(spark_obj, prop_name){
+export function PropConfirm(spark_obj, prop_name){
   switch (prop_name){
     // TODO add all tech properties here
     case "images" :

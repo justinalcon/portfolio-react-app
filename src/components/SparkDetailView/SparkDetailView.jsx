@@ -6,7 +6,7 @@ import HeaderActions from '../../js/actions/HeaderActions';
 import {slugify} from '../../js/utils';
 
 // Model Spec
-import {SparkPropConfirm} from '../../js/specs';
+import {PropConfirm} from '../../js/specs';
 
 // UI Component
 import TabBar from '../TabBar/TabBar';
@@ -34,26 +34,6 @@ class SparkDetailView extends React.Component {
   constructor(props) {
     super(props);
 
-    // Procedurally generate all content based on data in selected_post
-    this.slides = [];
-    this.tab_names = [];
-    this.menu_btns = [];
-    this.generateDetailContent(props.selected_post);
-
-    // Check for query string. If found, set initial state.
-    let initial_tab_index = 0;
-    if(props.location.query.slide !== undefined){
-      for (var i = 0; i < this.tab_names.length; i++) {
-        if(props.location.query.slide === slugify(this.tab_names[i])){
-          initial_tab_index = i;
-          break;
-        }
-      };
-    } 
-
-    this.state = {
-      tab_index: initial_tab_index
-    }
   }
 
   // Connects TechnologiesStore.state into this.props. Using connectToStores alt util.
@@ -78,35 +58,35 @@ class SparkDetailView extends React.Component {
   }
 
   generateDetailContent(selected_post) {
-    if(SparkPropConfirm(selected_post, "longform")){
+    if(PropConfirm(selected_post, "longform")){
       this.slides.push(<ModuleArticle key={"article"+selected_post.id} article_text={selected_post.longform} />);
       this.tab_names.push("Article");
       this.menu_btns.push(<BtnChipArticle key={"article-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(SparkPropConfirm(selected_post, "dev_notes")){
+    if(PropConfirm(selected_post, "dev_notes")){
       this.slides.push(<ModuleDevNotes key={"notes"+selected_post.id} dev_notes={selected_post.dev_notes} />);
       this.tab_names.push("Dev Notes");
       this.menu_btns.push(<BtnChipDevNotes key={"dev-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(SparkPropConfirm(selected_post, "direct_link")){
+    if(PropConfirm(selected_post, "direct_link")){
       this.slides.push(<ModuleLink key={"link"+selected_post.id} direct_link={selected_post.direct_link} />);
       this.tab_names.push("Link");
       this.menu_btns.push(<BtnChipLink key={"link-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(SparkPropConfirm(selected_post, "images")){
+    if(PropConfirm(selected_post, "images")){
       this.slides.push(<ModuleImages key={"imgs"+selected_post.id} image_gallery={selected_post.images}/>);
-      this.tab_names.push("Images"); 
+      this.tab_names.push("Images");
       this.menu_btns.push(<BtnChipImage key={"imgs-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
-    if(SparkPropConfirm(selected_post, "video")){
+    if(PropConfirm(selected_post, "video")){
       this.slides.push(<ModuleVideo key={"video"+selected_post.id} canned_video={selected_post.canned_video.url} />);
-      this.tab_names.push("Video"); 
+      this.tab_names.push("Video");
       this.menu_btns.push(<BtnChipVideo key={"video-btn"+selected_post.id} add_class="btn-chip--med" cbClick={this.setTabState.bind(this, this.menu_btns.length)} />)
     }
   }
 
   setTabState = (index) => {
-    
+
     if(index >= 0 && index < this.slides.length){
       // update internal state
       this.setState({
@@ -119,7 +99,7 @@ class SparkDetailView extends React.Component {
   };
 
   setQueryString = (index) => {
-    this.props.history.pushState(null, this.props.location.pathname, { slide: slugify(this.tab_names[index]) } );  
+    this.props.history.pushState(null, this.props.location.pathname, { slide: slugify(this.tab_names[index]) } );
   };
 
   render() {
@@ -127,23 +107,7 @@ class SparkDetailView extends React.Component {
     return (
       <div className="spark-details css-js--fade-in">
 
-        <div className="spark-details__tabs">
-          <TabBar tab_names={this.tab_names} tab_index={this.state.tab_index} cbSetTabState={this.setTabState}/>
-        </div>
-
-        <div className="spark-details__carousel">
-          <FeaturedCarousel tab_index={this.state.tab_index} cbSetTabState={this.setTabState}>
-            {this.slides}
-          </FeaturedCarousel>
-        </div>
-
-        <FloatingMenu>
-          {/*<BtnChipShare add_class="btn-chip--med" />
-          <BtnChipFavorite add_class="btn-chip--med" />
-          <hr />*/}
-          {this.menu_btns}          
-        </FloatingMenu>
-
+        details
       </div>
     )
   }

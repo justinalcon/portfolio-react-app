@@ -204,14 +204,6 @@ input.input--error {
   transition: transform 1000ms ease-out 0ms;
   transition: transform 505.876ms cubic-bezier(0.6, -0.28, 0.74, 0.05) 0ms; }
 
-.example-component {
-  border: 1px solid gray;
-  padding: 1rem 0.5rem;
-  border-radius: 3px;
-  margin: 1rem 0;
-  background: #EBEBEB;
-  box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
-
 .carousel-dots {
   position: absolute;
   top: 0;
@@ -277,6 +269,14 @@ input.input--error {
 
 .carousel-dots[data-index="10"] .carousel-dots__dot--selector {
   transform: translateY(280px); }
+
+.example-component {
+  border: 1px solid gray;
+  padding: 1rem 0.5rem;
+  border-radius: 3px;
+  margin: 1rem 0;
+  background: #EBEBEB;
+  box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
 
 
 .feat-carousel {
@@ -599,6 +599,153 @@ header {
 @media screen and (min-width: 1024px) {
   .grid__item {
     width: 33.33333%; } }
+
+.card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  margin: 0.5rem;
+  background-image: url(/assets/portfolio_ss.png);
+  background-size: cover;
+  background-position: center center;
+  height: 250px;
+  color: white;
+  background-color: #232323; }
+
+.card a {
+  text-decoration: none;
+  color: inherit; }
+
+.card__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 1rem; }
+
+.card__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-out 0s;
+  background-position: center center;
+  background-size: cover; }
+
+.card__shadows:before, .card__shadows:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+.card__shadows:before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 10%, transparent 40%, transparent 60%, rgba(0, 0, 0, 0.3) 90%), radial-gradient(ellipse at center, transparent 20%, rgba(0, 0, 0, 0.5) 95%); }
+
+.card__shadows:after {
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.4s ease 0s; }
+
+.card--toggled .card__shadows:after {
+  opacity: 1; }
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0; }
+
+.card__tags {
+  margin: 0.25rem 0;
+  font-size: 0.8rem;
+  font-weight: 100; }
+  .card__tags span {
+    margin-right: 0.75rem;
+    letter-spacing: 0.5px; }
+
+.card__dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.card__dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  margin: 0 0.25rem;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.4s ease 0s; }
+
+.card__dot:first-child {
+  background: rgba(255, 255, 255, 0.5); }
+
+.card--toggled .card__dot:first-child {
+  background: rgba(255, 255, 255, 0); }
+
+.card--toggled .card__dot:last-child {
+  background: rgba(255, 255, 255, 0.5); }
+
+.card__detail {
+  position: absolute;
+  top: 5rem;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  padding: 0 10%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(3px);
+  transition: transform 0.4s ease-out 0s, opacity 0.4s ease-out 0s; }
+  .spark-card--toggled .card__detail {
+    opacity: 1;
+    transform: translateX(0%); }
+
+.card__summary,
+.card__menu-btns {
+  margin: 0.5rem;
+  text-align: center; }
+
+.card__menu-btns > * {
+  margin: 0 0.5rem;
+  pointer-events: auto; }
+
+.card__bottom-info {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  opacity: 1;
+  transition: opacity 0.4s ease-out 0s; }
+  .card--toggled .card__bottom-info {
+    opacity: 0; }
+
+.card__author,
+.card__date {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8rem; }
+
+.card__author {
+  left: 0; }
+
+.card__date {
+  right: 0; }
 
 .infinite-scroll {
   overflow: auto;
@@ -1017,6 +1164,8 @@ input.search-page__input {
 
 .tab-bar[data-tab-state="5"] .tab-bar__selector {
   transform: translateX(500%); }
+
+
 
 
 .test-module {

@@ -19,6 +19,7 @@ class ExpertiseStore {
       handleEmptyExpertise: ExpertiseActions.emptyExpertise,
       handleLoadMoreExpertise: ExpertiseActions.loadMoreExpertise,
       handleLoadMoreExpertiseSuccess: ExpertiseActions.loadMoreExpertiseSuccess,
+      handleLoadMoreExpertiseFail: ExpertiseActions.loadMoreExpertiseFail,
       handleQuerySearch: QueryActions.querySearch,
       handleQueryByTags: QueryActions.queryByTags
     });

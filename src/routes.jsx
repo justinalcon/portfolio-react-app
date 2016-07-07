@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SearchPage from './components/SearchPage/SearchPage';
 import FilterPage from './components/FilterPage/FilterPage';
 import SparkDetailView from './components/SparkDetailView/SparkDetailView';
+import TechDetailView from './components/TechDetailView/TechDetailView';
 
 export default (
   <Route path="/" component={App}>
@@ -16,6 +17,7 @@ export default (
     <Route path="login" component={LoginPage} />
     <Route path="search" component={SearchPage} />
     <Route path="filter" component={FilterPage} />
-    <Route path="spark/:id" component={SparkDetailView} />    
+    <Route path="spark/:id" component={SparkDetailView} />
+    <Route path="tech/:id" component={TechDetailView} />
   </Route>
 );

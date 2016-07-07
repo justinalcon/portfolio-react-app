@@ -29,3 +29,206 @@
     width: 33.33333%;
   }
 }
+
+.card {
+  position: relative;
+  overflow: hidden;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  border-radius: 2px;
+  margin: 0.5rem;
+
+  background-image: url(/assets/portfolio_ss.png);
+  background-size: cover;
+  background-position: center center;
+
+  height: 250px;
+  // max-width: 415px;
+
+  color: white;
+  background-color: #232323;
+
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 1rem;
+}
+
+.card__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-out 0s;
+  background-position: center center;
+  background-size: cover;
+}
+
+.card__shadows {
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &:before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 10%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.3) 90%), radial-gradient(ellipse at center , rgba(0,0,0,0) 20%, rgba(0,0,0,0.5) 95%);
+  }
+
+  &:after {
+    background: rgba(0,0,0,0.7);
+
+    opacity: 0;
+    transition: opacity 0.4s ease 0s;
+  }
+
+  .card--toggled & {
+    &:after {
+      opacity: 1;
+    }
+  }
+
+}
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.card__tags {
+
+  margin: 0.25rem 0;
+  font-size: 0.8rem;
+  font-weight: 100;
+
+  span {
+    margin-right: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+//
+// Dots
+//
+$card_dot-height: 1.5rem;
+
+.card__dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $card_dot-height;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__dot {
+  width: $card_dot-height / 2;
+  height: $card_dot-height / 2;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  margin: 0 0.25rem;
+  background: rgba(255,255,255,0);
+  transition: background 0.4s ease 0s;
+}
+.card__dot:first-child {
+  background: rgba(255,255,255,0.5);
+}
+.card--toggled {
+  .card__dot:first-child {
+    background: rgba(255,255,255,0);
+  }
+  .card__dot:last-child {
+    background: rgba(255,255,255,0.5);
+  }
+}
+
+//
+// Secondary screen (on swipe/hover)
+//
+.card__detail {
+  position: absolute;
+  top: 5rem;
+  bottom: $card_dot-height;
+  left: 0;
+  right: 0;
+  padding: 0 10%;
+
+  pointer-events: none; // Prevents bg from blocking click. Make sure to enable children.
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateX(3px);
+  transition: transform 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
+
+  .spark-card--toggled & {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+}
+
+.card__summary,
+.card__menu-btns {
+  margin: 0.5rem;
+  text-align: center;
+}
+
+.card__menu-btns > * {
+  margin: 0 0.5rem;
+  pointer-events: auto;
+}
+
+//
+// Bottom info
+//
+.card__bottom-info {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+
+  opacity: 1;
+  transition: opacity 0.4s ease-out 0s;
+
+  .card--toggled & {
+    opacity: 0;
+  }
+}
+.card__author,
+.card__date {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8rem;
+}
+.card__author {
+  left: 0;
+}
+.card__date {
+  right: 0;
+}

@@ -6,7 +6,7 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import TechnologiesStore from '../../js/stores/TechnologiesStore';
 import HeaderActions from '../../js/actions/HeaderActions';
 
-import SparkCard from '../SparkCard/SparkCard';
+import TechCard from '../TechCard/TechCard';
 
 class TechGrid extends React.Component {
   constructor() {
@@ -39,7 +39,7 @@ class TechGrid extends React.Component {
       cards = this.props.current_technologies.map((tech) => {
         return (
           <div className="grid__item css-js--fade-in css-js--fade-in-instant" key={tech.id}>
-            <SparkCard spark_data={tech} />
+            <TechCard tech_data={tech} />
           </div>
         );
       });
