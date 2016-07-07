@@ -204,6 +204,14 @@ input.input--error {
   transition: transform 1000ms ease-out 0ms;
   transition: transform 505.876ms cubic-bezier(0.6, -0.28, 0.74, 0.05) 0ms; }
 
+.example-component {
+  border: 1px solid gray;
+  padding: 1rem 0.5rem;
+  border-radius: 3px;
+  margin: 1rem 0;
+  background: #EBEBEB;
+  box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
+
 .carousel-dots {
   position: absolute;
   top: 0;
@@ -269,14 +277,6 @@ input.input--error {
 
 .carousel-dots[data-index="10"] .carousel-dots__dot--selector {
   transform: translateY(280px); }
-
-.example-component {
-  border: 1px solid gray;
-  padding: 1rem 0.5rem;
-  border-radius: 3px;
-  margin: 1rem 0;
-  background: #EBEBEB;
-  box-shadow: 0 0 4px rgba(128, 128, 128, 0.4); }
 
 
 .feat-carousel {
@@ -725,6 +725,7 @@ header {
 .module-video__vid {
   max-width: 100%;
   max-height: 100%; }
+
 
 
 .search-page {

@@ -96,9 +96,12 @@ app.get('*', function(req, res, next){
   function getExpertiseAll(){
     return axios.get(`${ENDPOINT_URL}/expertise.json?start=0&limit=9&token=${req.cookies.auth_token}`)
   }
+  function getProjectsAll(){
+    return axios.get(`${ENDPOINT_URL}/projects.json?start=0&limit=9&token=${req.cookies.auth_token}`)
+  }
   // Create a promise that returns once both fn's are complete
-  axios.all([getTechnologiesAll(), getSpecialtiesAll(), getOrganiztionsAll(), getExpertiseAll()])
-    .then(axios.spread(function(technologies, specs, orgs, expertise){
+  axios.all([getTechnologiesAll(), getSpecialtiesAll(), getOrganiztionsAll(), getExpertiseAll(), getProjectsAll()])
+    .then(axios.spread(function(technologies, specs, orgs, expertise, projects){
       // Populate the Technologiess
       stores_obj = {
         TechnologiesStore: {
@@ -112,6 +115,9 @@ app.get('*', function(req, res, next){
         },
         ExpertiseStore: {
           current_expertise: expertise.data
+        },
+        ProjectsStore: {
+          current_projects: projects.data
         },
         HeaderStore: {
           header_title: ""
@@ -186,6 +192,28 @@ app.get('/expertise/:id', function(req, res, next){
 
 });
 
+app.get('/project/:id', function(req, res, next){
+
+  var id = parseInt(req.params.id);
+
+  axios.get(`${ENDPOINT_URL}/project/${id}.json?token=${req.cookies.auth_token}`)
+    .then(function(response){
+
+      // pass returned data into selected_post
+      stores_obj.ExpertiseStore.selected_expertise = response.data;
+      stores_obj.HeaderStore.header_title = response.data.title;
+      next();
+
+    })
+    .catch(function(response){
+      res.status(404).send({
+        message: `Error retrieving project with id:${id}`,
+        status: response.status,
+      });
+      process.exit();
+    });
+
+});
 
 app.get('/specialties/:id', function(req, res, next){
 

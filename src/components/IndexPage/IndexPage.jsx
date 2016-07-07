@@ -5,11 +5,13 @@ import TechGrid from '../TechGrid/TechGrid';
 import SpecialtyGrid from '../SpecialtyGrid/SpecialtyGrid'
 import OrganizationGrid from '../OrganizationGrid/OrganizationGrid'
 import ExpertiseGrid from '../ExpertiseGrid/ExpertiseGrid'
+import ProjectGrid from '../ProjectGrid/ProjectGrid'
 
 import TechnologiesActions from '../../js/actions/TechnologiesActions';
 import SpecialtiesActions from '../../js/actions/SpecialtiesActions';
 import OrganizationsActions from '../../js/actions/OrganizationsActions';
 import ExpertiseActions from '../../js/actions/ExpertiseActions';
+import ProjectsActions from '../../js/actions/ProjectsActions';
 
 export default class IndexPage extends React.Component {
   constructor() {
@@ -17,8 +19,7 @@ export default class IndexPage extends React.Component {
   }
 
   handleLoadMore(){
-    TechnologiesActions.loadMoreTechnologies();
-    SpecialtiesActions.loadMoreSpecialties();
+    //TODO REMOVE INFINITE SCROLL STUFF
   };
 
   render() {
@@ -39,7 +40,7 @@ export default class IndexPage extends React.Component {
           <ExpertiseGrid/>
           <div className="section-divider">Projects</div>
           <hr></hr>
-
+          <ProjectGrid/>
         </InfiniteScrollContain>
       </div>
     )
