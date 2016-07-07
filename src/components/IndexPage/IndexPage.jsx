@@ -23,7 +23,7 @@ export default class IndexPage extends React.Component {
     return (
       <div className="index-page css-js--fade-in">
         <InfiniteScrollContain fnLoadMore={this.handleLoadMore}>
-          <div className="section-divider">Technoliges</div>
+          <div className="section-divider">Technologies</div>
           <hr></hr>
           <TechGrid/>
           <div className="section-divider">Specialties</div>

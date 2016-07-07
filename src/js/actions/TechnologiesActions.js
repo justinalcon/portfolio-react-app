@@ -90,7 +90,7 @@ class TechnologiesActions {
   }
 
   loadMoreTechnologiesFail(err_msg){
-    this.prevent_more_posts = false;
+    this.prevent_more_technologies = false;
     return err_msg
   }
 

@@ -63,7 +63,7 @@ class SpecialtiesActions {
       this.prevent_more_specialties = true;
 
       // ajax for endpoints. call succuess/fail fn based on promise
-      axios.get(`${ENDPOINT_URL}/special.json?start=${this.load_more_offset}&limit=${this.load_more_limit}&token=${UserStore.getState().auth_token}`)
+      axios.get(`${ENDPOINT_URL}/specialties.json?start=${this.load_more_offset}&limit=${this.load_more_limit}&token=${UserStore.getState().auth_token}`)
         .then(function(specialties){
           // success
           if(this.load_more_limit == DEFAULT_LIMIT){

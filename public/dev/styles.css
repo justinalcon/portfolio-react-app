@@ -1016,21 +1016,6 @@ input.search-page__input {
 .tab-bar[data-tab-state="5"] .tab-bar__selector {
   transform: translateX(500%); }
 
-.tech-grid {
-  max-width: 1250px;
-  margin: 0.5rem auto; }
-
-.tech-grid__item {
-  display: inline-block;
-  width: 100%; }
-
-@media screen and (min-width: 650px) {
-  .tech-grid__item {
-    width: 50%; } }
-
-@media screen and (min-width: 1024px) {
-  .tech-grid__item {
-    width: 33.33333%; } }
 
 .test-module {
   border: 5px solid gray;
