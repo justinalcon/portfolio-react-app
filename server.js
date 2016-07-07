@@ -90,9 +90,12 @@ app.get('*', function(req, res, next){
   function getSpecialtiesAll(){
     return axios.get(`${ENDPOINT_URL}/specialties.json?start=0&limit=9&token=${req.cookies.auth_token}`)
   }
+  function getOrganiztionsAll(){
+    return axios.get(`${ENDPOINT_URL}/organizations.json?start=0&limit=9&token=${req.cookies.auth_token}`)
+  }
   // Create a promise that returns once both fn's are complete
-  axios.all([getTechnologiesAll(), getSpecialtiesAll()])
-    .then(axios.spread(function(technologies, specs){
+  axios.all([getTechnologiesAll(), getSpecialtiesAll(), getOrganiztionsAll()])
+    .then(axios.spread(function(technologies, specs, orgs){
       // Populate the Technologiess
       stores_obj = {
         TechnologiesStore: {
@@ -100,6 +103,9 @@ app.get('*', function(req, res, next){
         },
         SpecialtiesStore: {
           current_specialties: specs.data
+        },
+        OrganizationsStore: {
+          current_organizations: orgs.data
         },
         HeaderStore: {
           header_title: ""
@@ -116,7 +122,7 @@ app.get('*', function(req, res, next){
     }))
     .catch(function(response){
       res.status(404).send({
-        message: "Error retrieving technologies or specialties in server.js",
+        message: "Error retrieving data in server.js",
         status: response.status,
       });
       process.exit();
@@ -173,6 +179,31 @@ axios.get(`${ENDPOINT_URL}/specialties/${id}.json?token=${req.cookies.auth_token
   });
 
 });
+
+app.get('/organizations/:id', function(req, res, next){
+
+var id = parseInt(req.params.id);
+
+axios.get(`${ENDPOINT_URL}/organizations/${id}.json?token=${req.cookies.auth_token}`)
+  .then(function(response){
+
+    // pass returned data into selected_post
+    stores_obj.OrganizationsStore.selected_specialty = response.data;
+    stores_obj.HeaderStore.header_title = response.data.title;
+    next();
+
+  })
+  .catch(function(response){
+    res.status(404).send({
+      message: `Error retrieving organization with id:${id}`,
+      status: response.status,
+    });
+    process.exit();
+  });
+
+});
+
+
 
 /*
   Serves page data based on React Router
