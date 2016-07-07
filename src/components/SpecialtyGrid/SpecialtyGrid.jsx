@@ -37,7 +37,7 @@ class SpecialtyGrid extends React.Component {
     if(this.props.current_specialties.length > 0){
       spec_cards = this.props.current_specialties.map((spec) => {
         return (
-          <div className="specialty-grid__item css-js--fade-in css-js--fade-in-instant" key={spec.id}>
+          <div className="grid__item css-js--fade-in css-js--fade-in-instant" key={spec.id}>
             <SparkCard spark_data={spec} />
           </div>
         );
@@ -50,7 +50,7 @@ class SpecialtyGrid extends React.Component {
 
 
     return (
-      <div className="specialty-grid">
+      <div className="grid">
         <ReactCSSTransitionGroup transitionName="css-js--anim" transitionEnterTimeout={1000} transitionLeave={false}>
           {spec_cards}
         </ReactCSSTransitionGroup>

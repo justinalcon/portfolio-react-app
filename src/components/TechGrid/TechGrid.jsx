@@ -38,7 +38,7 @@ class TechGrid extends React.Component {
     if(this.props.current_technologies.length > 0){
       cards = this.props.current_technologies.map((tech) => {
         return (
-          <div className="tech-grid__item css-js--fade-in css-js--fade-in-instant" key={tech.id}>
+          <div className="grid__item css-js--fade-in css-js--fade-in-instant" key={tech.id}>
             <SparkCard spark_data={tech} />
           </div>
         );
@@ -51,7 +51,7 @@ class TechGrid extends React.Component {
 
 
     return (
-      <div className="tech-grid">
+      <div className="grid">
         <ReactCSSTransitionGroup transitionName="css-js--anim" transitionEnterTimeout={1000} transitionLeave={false}>
           {cards}
         </ReactCSSTransitionGroup>

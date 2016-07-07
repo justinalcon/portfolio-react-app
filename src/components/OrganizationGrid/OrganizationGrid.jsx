@@ -38,7 +38,7 @@ class OrganizationGrid extends React.Component {
     if(this.props.current_organizations.length > 0){
       cards = this.props.current_organizations.map((org) => {
         return (
-          <div className="tech-grid__item css-js--fade-in css-js--fade-in-instant" key={org.id}>
+          <div className="grid__item css-js--fade-in css-js--fade-in-instant" key={org.id}>
             <SparkCard spark_data={org} />
           </div>
         );
@@ -51,7 +51,7 @@ class OrganizationGrid extends React.Component {
 
 
     return (
-      <div className="organization-grid">
+      <div className="grid">
         <ReactCSSTransitionGroup transitionName="css-js--anim" transitionEnterTimeout={1000} transitionLeave={false}>
           {cards}
         </ReactCSSTransitionGroup>

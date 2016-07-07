@@ -7,3 +7,25 @@
   margin-top: 50px;
   font-size: 25px;
 }
+
+.grid {
+  max-width: 1250px;
+  margin: 0.5rem auto;
+}
+
+.grid__item {
+  display: inline-block;
+  width: 100%;
+}
+
+@media screen and (min-width: 650px) {
+  .grid__item {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid__item {
+    width: 33.33333%;
+  }
+}
