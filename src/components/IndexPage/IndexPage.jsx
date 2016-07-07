@@ -4,10 +4,12 @@ import InfiniteScrollContain from '../InfiniteScrollContain/InfiniteScrollContai
 import TechGrid from '../TechGrid/TechGrid';
 import SpecialtyGrid from '../SpecialtyGrid/SpecialtyGrid'
 import OrganizationGrid from '../OrganizationGrid/OrganizationGrid'
+import ExpertiseGrid from '../ExpertiseGrid/ExpertiseGrid'
 
 import TechnologiesActions from '../../js/actions/TechnologiesActions';
 import SpecialtiesActions from '../../js/actions/SpecialtiesActions';
 import OrganizationsActions from '../../js/actions/OrganizationsActions';
+import ExpertiseActions from '../../js/actions/ExpertiseActions';
 
 export default class IndexPage extends React.Component {
   constructor() {
@@ -34,7 +36,7 @@ export default class IndexPage extends React.Component {
           <OrganizationGrid/>
           <div className="section-divider">Expertise</div>
           <hr></hr>
-
+          <ExpertiseGrid/>
           <div className="section-divider">Projects</div>
           <hr></hr>
 
