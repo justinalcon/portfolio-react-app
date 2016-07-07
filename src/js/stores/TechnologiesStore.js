@@ -5,13 +5,11 @@ import QueryActions from '../actions/QueryActions';
 class TechnologiesStore {
   constructor() {
 
-    // All of the posts in view
     this.current_technologies = [];
 
     // Boolean state value to show if loading or not.
     this.is_loading_more_technologies = false;
 
-    // A single selected post
     this.selected_technology = {};
     this.selected_technology_scroll_pos = 0;
 
@@ -28,12 +26,12 @@ class TechnologiesStore {
 
   }
 
-  handleUpdateSelectedTechnology(post) {
-    this.selected_post = post;
+  handleUpdateSelectedTechnology(tech) {
+    this.selected_technology = tech;
   }
 
   handleHoldScrollForSelectedTechnologies(scroll_amt) {
-    this.selected_post_scroll_pos = scroll_amt;
+    this.selected_technology_scroll_pos = scroll_amt;
   }
 
   handleLoadMoreTechnologies(){

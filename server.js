@@ -87,14 +87,19 @@ app.get('*', function(req, res, next){
   function getTechnologiesAll(){
     return axios.get(`${ENDPOINT_URL}/technologies.json?start=0&limit=9&token=${req.cookies.auth_token}`)
   }
-
+  function getSpecialtiesAll(){
+    return axios.get(`${ENDPOINT_URL}/specialties.json?start=0&limit=9&token=${req.cookies.auth_token}`)
+  }
   // Create a promise that returns once both fn's are complete
-  axios.all([getTechnologiesAll()])
-    .then(axios.spread(function(technologies){
+  axios.all([getTechnologiesAll(), getSpecialtiesAll()])
+    .then(axios.spread(function(technologies, specs){
       // Populate the Technologiess
       stores_obj = {
         TechnologiesStore: {
           current_technologies: technologies.data
+        },
+        SpecialtiesStore: {
+          current_specialties: specs.data
         },
         HeaderStore: {
           header_title: ""
@@ -111,7 +116,7 @@ app.get('*', function(req, res, next){
     }))
     .catch(function(response){
       res.status(404).send({
-        message: "Error retrieving posts/tags in server.js",
+        message: "Error retrieving technologies or specialties in server.js",
         status: response.status,
       });
       process.exit();
@@ -146,7 +151,28 @@ app.get('/technologies/:id', function(req, res, next){
 
 });
 
+app.get('/specialties/:id', function(req, res, next){
 
+var id = parseInt(req.params.id);
+
+axios.get(`${ENDPOINT_URL}/specialties/${id}.json?token=${req.cookies.auth_token}`)
+  .then(function(response){
+
+    // pass returned data into selected_post
+    stores_obj.SpecialtiesStore.selected_specialty = response.data;
+    stores_obj.HeaderStore.header_title = response.data.title;
+    next();
+
+  })
+  .catch(function(response){
+    res.status(404).send({
+      message: `Error retrieving specialties with id:${id}`,
+      status: response.status,
+    });
+    process.exit();
+  });
+
+});
 
 /*
   Serves page data based on React Router
